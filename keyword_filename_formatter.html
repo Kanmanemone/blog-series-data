@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>키워드 파일명 변환기</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 720px;
+      margin: 40px auto;
+      padding: 0 20px;
+      line-height: 1.6;
+    }
+
+    h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+
+    input {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 12px;
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+
+    .result-box {
+      padding: 16px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background: #f7f7f7;
+    }
+
+    .result-label {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .result-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    #result {
+      flex: 1;
+      min-width: 0;
+      font-family: Consolas, monospace;
+      font-size: 16px;
+      word-break: break-all;
+    }
+
+    #copyButton {
+      flex: 0 0 auto;
+      padding: 8px 12px;
+      border: 1px solid #aaa;
+      border-radius: 6px;
+      background: #fff;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    #copyButton:hover:not(:disabled) {
+      background: #eee;
+    }
+
+    #copyButton:disabled {
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+
+    #copyStatus {
+      min-height: 24px;
+      margin-top: 8px;
+      font-size: 13px;
+      color: #287a35;
+    }
+  </style>
+<script type="text/javascript" nonce="df18077f16d5473d9c14289337b" src="//local.adguard.org?ts=1783744035659&amp;type=content-script&amp;dmn=chatgpt.com&amp;url=https%3A%2F%2Fchatgpt.com%2Fbackend-api%2Festuary%2Fcontent%3Fid%3Dfile_0000000037a4720994eb466e2f2f3055%26ts%3D495484%26p%3Dfs%26cid%3D1%26sig%3D7c96ec5c368094fa96654083a951fd7e1e1382f326f3cf64748336def16e1d06%26v%3D0&amp;app=chrome.exe&amp;css=2&amp;js=1&amp;rel=1&amp;rji=1&amp;sbe=1&amp;stealth=1&amp;st-loc&amp;st-dnt"></script><script type="text/javascript" nonce="df18077f16d5473d9c14289337b" src="//local.adguard.org?ts=1783744035659&amp;name=AdGuard%20Extra&amp;name=AdGuard%20Popup%20Blocker&amp;type=user-script"></script></head>
+<body>
+  <h1>키워드 파일명 변환기</h1>
+
+  <label for="keywordInput">문자열 입력</label>
+  <input
+    id="keywordInput"
+    type="text"
+    placeholder='예: 2026 Build with AI: Hands-on Campus'
+    autocomplete="off"
+  />
+
+  <div class="result-box">
+    <div class="result-label">return 값</div>
+
+    <div class="result-row">
+      <div id="result"></div>
+      <button id="copyButton" type="button" disabled>복사</button>
+    </div>
+
+    <div id="copyStatus" aria-live="polite"></div>
+  </div>
+
+  <script>
+    const keywordInput = document.getElementById("keywordInput");
+    const result = document.getElementById("result");
+    const copyButton = document.getElementById("copyButton");
+    const copyStatus = document.getElementById("copyStatus");
+
+    keywordInput.addEventListener("input", updateResult);
+    copyButton.addEventListener("click", copyResult);
+
+    function updateResult() {
+      const formattedFileName = formatKeyword(keywordInput.value);
+
+      result.textContent = formattedFileName;
+      copyButton.disabled = formattedFileName.length === 0;
+      copyStatus.textContent = "";
+    }
+
+    function formatKeyword(keyword) {
+      // (1) 공백 제거 및 소문자 변환
+      // (2) Windows 파일 이름 금지 문자 제거
+      // (3) 파일명 뒤에 "_series.json" 추가
+      const formattedKeyword = lowerCaseAndRemoveSpace(keyword)
+        .replace(/[\\/:*?"<>|]/g, "");
+
+      return formattedKeyword
+        ? `${formattedKeyword}_series.json`
+        : "";
+    }
+
+    function lowerCaseAndRemoveSpace(inputString) {
+      return inputString.replace(/\s+/g, "").toLowerCase();
+    }
+
+    async function copyResult() {
+      const text = result.textContent;
+      if (!text) return;
+
+      try {
+        await navigator.clipboard.writeText(text);
+        copyStatus.textContent = "복사했습니다.";
+      } catch (error) {
+        const textArea = document.createElement("textarea");
+        textArea.value = text;
+        textArea.style.position = "fixed";
+        textArea.style.opacity = "0";
+        document.body.appendChild(textArea);
+        textArea.select();
+
+        const copied = document.execCommand("copy");
+        textArea.remove();
+
+        copyStatus.textContent = copied
+          ? "복사했습니다."
+          : "복사하지 못했습니다.";
+      }
+    }
+  </script>
+</body>
+</html>
