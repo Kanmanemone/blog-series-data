@@ -93,22 +93,28 @@
 - **커트라인 계산(FR-003)**: `cutoff = new Date(Date.now() - 5 * 60 * 1000)`, 저장 시
   `+09:00` 오프셋 문자열로 직렬화.
 
-## 6. Pull Request 생성
+## 6. 변경 사항 반영 방식
 
-- **Decision**: 스크립트는 워킹 트리의 `*_series.json`과 동기화 상태 파일만 갱신하고, PR
-  생성 자체는 워크플로우에서 `peter-evans/create-pull-request` GitHub Action에 위임한다.
-- **Rationale**: 스크립트 안에 GitHub API 호출/Octokit 의존성을 넣지 않아도 되고, 이
-  액션은 변경된 파일이 없으면 자동으로 아무 것도 하지 않아 "변경 없음 → 정상 종료"(User
-  Story 1 시나리오 2)를 별도 분기 없이 만족한다. 커밋 대상에 시리즈 json과 동기화 상태
-  파일을 함께 포함해, PR이 병합되기 전까지는 실제 저장소가 바뀌지 않는다(User Story 3).
-- **Alternatives considered**: 스크립트 내부에서 `@octokit/rest`로 직접 PR 생성 — 의존성
-  추가 및 인증 처리 로직이 늘어나 기각.
+- **Decision**: 스크립트는 워킹 트리의 `*_series.json`과 동기화 상태 파일만 갱신하고, 워크플로우가
+  같은 job 안에서 `git add`·`git commit`·`git push`로 저장소 기본 브랜치에 직접 반영한다. 변경된
+  파일이 없으면(`git status --porcelain`이 비어 있으면) 커밋·푸시 단계를 건너뛰어 "변경 없음 →
+  정상 종료"(User Story 1 시나리오 2)를 만족한다. 커밋 작성자는 `github-actions[bot]`으로
+  설정한다.
+- **Rationale**: 스프린트 초기에는 `peter-evans/create-pull-request` 액션으로 PR을 생성해
+  병합 전 사람이 검토하는 안전장치(구 User Story 3)를 두었으나, 2026-07-22 결정으로 PR 검토가
+  반복적인 수동 부담만 준다고 판단해 폐기했다(spec.md Clarifications Session 2026-07-22). 잘못된
+  변경은 `git revert`로 되돌리는 것으로 충분하다고 보아, 외부 GitHub Action이나 GitHub API
+  호출 없이 `git` CLI만으로 기본 브랜치에 즉시 반영한다.
+- **Alternatives considered**:
+  - `peter-evans/create-pull-request`로 PR 생성 — 2026-07-22 결정으로 폐기(위 Rationale 참고).
+  - 스크립트 내부에서 `@octokit/rest`로 직접 커밋 API 호출 — `git` CLI만으로 충분하고 의존성이
+    늘어나므로 기각.
 
 ## 7. 동기화 상태 저장 위치/형식
 
 - **Decision**: `.github/sync-state.json`에 저장한다(자동화 내부 상태이므로, 콘텐츠
-  데이터인 저장소 루트의 `*_series.json`과 위치를 분리). PR로 제안되므로 병합 전까지는
-  갱신되지 않는다(FR-015).
+  데이터인 저장소 루트의 `*_series.json`과 위치를 분리). 시리즈 json과 같은 커밋으로 기본
+  브랜치에 직접 반영되므로, 다음 실행은 그 커밋이 push된 직후부터 갱신된 값을 읽는다(FR-015).
 - **Alternatives considered**: 저장소 루트에 다른 `*_series.json` 파일들과 나란히 두는
   방안 — 콘텐츠 데이터가 아닌 자동화 내부 상태를 섞어 두면 루트 디렉터리를 스캔하는
   기존/향후 도구(`index.html` 등)가 이 파일을 시리즈 파일로 오인할 위험이 있어 기각.

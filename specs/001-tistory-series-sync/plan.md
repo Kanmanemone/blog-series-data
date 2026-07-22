@@ -12,16 +12,17 @@ GitHub Actions(예약 실행 + 수동 실행)에서 의존성 없는 Node.js 스
 `kenel.tistory.com/sitemap.xml`을 조회하고, 저장된 커트라인 이후 `lastmod`가 갱신된
 게시글만 골라 제목을 확인한다. 제목에서 추출한 원시 시리즈명 → seriesId로 기존
 `<seriesId>_series.json`과 매칭되면 항목을 추가하고, 매칭되는 파일이 없고 같은 seriesId를
-공유하는 공개 게시글이 2개 이상이면 새 파일을 만든다. 스크립트는 워킹 트리 파일만
-갱신하고, `peter-evans/create-pull-request` 액션이 그 변경을 Pull Request로 제안한다
-(병합 전까지 저장소 상태 불변, User Story 3). 커트라인·게시글별 처리 기록은
-`.github/sync-state.json`에 저장하고, 이 역시 PR이 병합되어야 다음 실행에 반영된다.
+공유하는 공개 게시글이 2개 이상이면 새 파일을 만든다. 스크립트가 워킹 트리 파일을 갱신한
+직후, 같은 워크플로우 단계에서 `git commit`·`git push`로 저장소 기본 브랜치에 바로 반영한다
+(병합 전 검토 단계 없이 즉시 반영, 문제가 있으면 관리자가 `git revert`로 되돌림). 커트라인·
+게시글별 처리 기록은 `.github/sync-state.json`에 저장하고, 이 역시 같은 커밋으로 즉시
+다음 실행에 반영된다.
 
 ## Technical Context
 
 **Language/Version**: Node.js (GitHub Actions `ubuntu-latest` 기본 제공 버전, 내장 `fetch` 사용). 외부 npm 의존성 없음 — [research.md](research.md) §1
 
-**Primary Dependencies**: 없음(스크립트 자체는 Node 내장 모듈만 사용). 워크플로우 수준에서 GitHub Action `peter-evans/create-pull-request`만 사용 — [research.md](research.md) §6
+**Primary Dependencies**: 없음(스크립트 자체는 Node 내장 모듈만 사용). 워크플로우 수준에서도 별도 GitHub Action 없이 `git commit`/`git push`만 사용 — [research.md](research.md) §6
 
 **Storage**: 파일 기반. 시리즈 데이터는 저장소 루트 `*_series.json`(기존 스키마 유지), 동기화 상태는 `.github/sync-state.json`(신규) — [research.md](research.md) §7, [data-model.md](data-model.md)
 
@@ -74,7 +75,7 @@ data-model.md에서 이미 다룬다.
 ```text
 .github/
 ├── workflows/
-│   └── tistory-series-sync.yml   # cron + workflow_dispatch 트리거, sync 스크립트 실행 후 create-pull-request 액션 호출
+│   └── tistory-series-sync.yml   # cron + workflow_dispatch 트리거, sync 스크립트 실행 후 git commit/push로 기본 브랜치에 직접 반영
 └── sync-state.json               # Sync State (신규, 이 기능이 처음 생성)
 
 scripts/

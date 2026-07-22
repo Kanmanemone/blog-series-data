@@ -47,7 +47,7 @@ git diff -- '*_series.json' .github/sync-state.json
   순서(오래된 것 → 최신 것)로 정렬되어 있다(FR-013).
 - 1개뿐인 seriesId에 대해서는 어떤 파일도 생성되지 않는다(SC-005).
 
-## 시나리오 3 — GitHub Actions 워크플로우 수동 실행 (FR-014, User Story 3 검증)
+## 시나리오 3 — GitHub Actions 워크플로우 수동 실행 (FR-014)
 
 ```sh
 gh workflow run tistory-series-sync.yml
@@ -56,29 +56,24 @@ gh run watch
 
 **기대 결과**:
 - 워크플로우가 성공적으로 종료된다.
-- 변경 사항이 있었다면 `peter-evans/create-pull-request`가 생성한 PR이 저장소에 나타난다.
+- 변경 사항이 있었다면 워크플로우가 병합 검토 단계 없이 기본 브랜치에 직접 커밋·푸시한다.
 
 ```sh
-gh pr list --search "head:tistory-series-sync" --json number,title,url
+git fetch origin
+git log origin/main -3 --oneline
+git show --stat origin/main
 ```
 
-- PR이 생성된 시점에는 `main`(또는 기본 브랜치)의 `*_series.json`·
-  `.github/sync-state.json`이 아직 변경되지 않은 상태여야 한다(User Story 3 시나리오 1).
+- 방금 워크플로우가 만든 커밋에 예상한 시리즈 파일 변경(또는 신규 파일)과
+  `.github/sync-state.json` 변경만 포함되어 있는지 확인한다.
 
-```sh
-gh pr diff <PR 번호>
-```
+## 시나리오 4 — 재실행 시 커트라인 갱신 확인 (FR-015)
 
-- diff에 예상한 시리즈 파일 변경(또는 신규 파일)과 `.github/sync-state.json` 변경만
-  포함되어 있는지 확인한다.
-
-## 시나리오 4 — PR 병합 후 커트라인 갱신 확인 (FR-015)
-
-1. 시나리오 3에서 생성된 PR을 병합한다.
+1. 시나리오 3에서 워크플로우가 커밋·푸시한 것을 확인한다.
 2. 워크플로우를 다시 수동 실행한다.
 
 **기대 결과**:
-- 방금 병합으로 반영된 게시글이 다시 처리 대상에 포함되지 않는다(이미 `items`에 URL이
+- 방금 반영된 게시글이 다시 처리 대상에 포함되지 않는다(이미 `items`에 URL이
   있으므로 FR-011에 의해 건너뜀, 또한 새로 갱신된 `cutoff` 이전 `lastmod`이므로 FR-004에
   의해 애초에 후보에도 들지 않음).
 
