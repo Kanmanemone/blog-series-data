@@ -107,7 +107,7 @@ description: "Task list template for feature implementation"
 
 - [X] T021 Add fetch-failure and git-push-failure error handling with specific Korean log messages (sitemap 조회 실패, 게시글 제목 조회 실패, 두 실행이 겹쳐 push가 거부된 경우 각각 어떤 URL/단계에서 어떤 이유로 실패했는지 로그에 남기고, push 실패 시 자동 재시도 없이 워크플로우를 실패로 종료) in scripts/sync-tistory-series/index.js and .github/workflows/tistory-series-sync.yml (주석은 한국어로, 구체적으로 작성 — Constitution II; depends on T015, T016, T020)
 - [X] T022 [P] Run full unit test suite `node --test scripts/sync-tistory-series` and fix any failures across scripts/sync-tistory-series/__tests__/
-- [ ] T023 Execute quickstart.md 시나리오 1–4 end-to-end validation against a real branch (depends on T021, T022)
+- [X] T023 Execute quickstart.md 시나리오 1–4 end-to-end validation against a real branch (depends on T021, T022)
 
 ---
 
