@@ -32,7 +32,7 @@ description: "Task list template for feature implementation"
 **Purpose**: 자동화 스크립트를 위한 최소 디렉터리 구조 준비. Constitution III(독립형 바닐라
 웹 유틸리티)의 취지에 따라 `package.json`이나 빌드 도구는 추가하지 않는다.
 
-- [ ] T001 Create directory scaffold `scripts/sync-tistory-series/` and `scripts/sync-tistory-series/__tests__/` per plan.md Project Structure (첫 소스 파일 작성 시 함께 생성해도 무방)
+- [X] T001 Create directory scaffold `scripts/sync-tistory-series/` and `scripts/sync-tistory-series/__tests__/` per plan.md Project Structure (첫 소스 파일 작성 시 함께 생성해도 무방)
 
 ---
 
@@ -44,14 +44,14 @@ description: "Task list template for feature implementation"
 
 **⚠️ CRITICAL**: 이 Phase가 끝나기 전에는 User Story 작업을 시작할 수 없다.
 
-- [ ] T002 [P] Implement sitemap fetch, `<url>` block parsing, post-path filtering, desktop/mobile ID merge in scripts/sync-tistory-series/sitemap.js (FR-001, FR-005, FR-006; research.md §2 — `^/(m/)?[0-9]+$` 패턴, `<loc>`/`<lastmod>` 정규식 추출, 커트라인 필터는 포함하지 않고 전체 게시글 목록을 반환; 주석은 한국어로, 구체적으로 작성 — Constitution II)
-- [ ] T003 [P] Implement raw series name extraction and seriesId normalization in scripts/sync-tistory-series/seriesName.js (FR-008, FR-009; research.md §4 — `keyword_filename_formatter.html`과 동일한 공백 제거·소문자 변환·Windows 금지 문자 제거 로직 이식; 주석은 한국어로, 구체적으로 작성 — Constitution II)
-- [ ] T004 [P] Implement sync state read/write and KST cutoff formatting in scripts/sync-tistory-series/syncState.js (FR-002, FR-003, FR-016; research.md §5, §7; data-model.md Sync State — `.github/sync-state.json`이 없으면 커트라인 없음으로 간주해 전체 sitemap을 대상으로 처리하는 기본 동작 포함; 주석은 한국어로, 구체적으로 작성 — Constitution II)
-- [ ] T005 [P] Implement series file directory listing and seriesId matching (read-only) in scripts/sync-tistory-series/seriesFiles.js (FR-010, FR-017; data-model.md Series File — 저장소 루트 `*_series.json`을 모두 읽어 seriesId → 파일 매핑을 구성하는 함수만 우선 구현, 갱신/생성 함수는 US1·US2에서 추가; 주석은 한국어로, 구체적으로 작성 — Constitution II)
-- [ ] T006 [P] Unit tests for sitemap.js in scripts/sync-tistory-series/__tests__/sitemap.test.js (FR-005 데스크톱/모바일 병합, FR-006 카테고리 페이지 등 비게시글 경로 제외)
-- [ ] T007 [P] Unit tests for seriesName.js in scripts/sync-tistory-series/__tests__/seriesName.test.js (FR-008 마지막 `" - "` 기준 분리·대괄호 구간 제거·공백 정리, `" - "` 없는 제목의 추출 제외, FR-009 seriesId 정규화)
-- [ ] T008 [P] Unit tests for syncState.js in scripts/sync-tistory-series/__tests__/syncState.test.js (FR-002 `+09:00` 오프셋 포맷, FR-003 `cutoff = 실행 시작 시각 - 5분`, 파일 부재 시 기본 동작)
-- [ ] T009 [P] Unit tests for seriesFiles.js listing/matching in scripts/sync-tistory-series/__tests__/seriesFiles.test.js (FR-010 seriesId 일치 판정, 일치하는 파일이 없는 경우 판정)
+- [X] T002 [P] Implement sitemap fetch, `<url>` block parsing, post-path filtering, desktop/mobile ID merge in scripts/sync-tistory-series/sitemap.js (FR-001, FR-005, FR-006; research.md §2 — `^/(m/)?[0-9]+$` 패턴, `<loc>`/`<lastmod>` 정규식 추출, 커트라인 필터는 포함하지 않고 전체 게시글 목록을 반환; 주석은 한국어로, 구체적으로 작성 — Constitution II)
+- [X] T003 [P] Implement raw series name extraction and seriesId normalization in scripts/sync-tistory-series/seriesName.js (FR-008, FR-009; research.md §4 — `keyword_filename_formatter.html`과 동일한 공백 제거·소문자 변환·Windows 금지 문자 제거 로직 이식; 주석은 한국어로, 구체적으로 작성 — Constitution II)
+- [X] T004 [P] Implement sync state read/write and KST cutoff formatting in scripts/sync-tistory-series/syncState.js (FR-002, FR-003, FR-016; research.md §5, §7; data-model.md Sync State — `.github/sync-state.json`이 없으면 커트라인 없음으로 간주해 전체 sitemap을 대상으로 처리하는 기본 동작 포함; 주석은 한국어로, 구체적으로 작성 — Constitution II)
+- [X] T005 [P] Implement series file directory listing and seriesId matching (read-only) in scripts/sync-tistory-series/seriesFiles.js (FR-010, FR-017; data-model.md Series File — 저장소 루트 `*_series.json`을 모두 읽어 seriesId → 파일 매핑을 구성하는 함수만 우선 구현, 갱신/생성 함수는 US1·US2에서 추가; 주석은 한국어로, 구체적으로 작성 — Constitution II)
+- [X] T006 [P] Unit tests for sitemap.js in scripts/sync-tistory-series/__tests__/sitemap.test.js (FR-005 데스크톱/모바일 병합, FR-006 카테고리 페이지 등 비게시글 경로 제외)
+- [X] T007 [P] Unit tests for seriesName.js in scripts/sync-tistory-series/__tests__/seriesName.test.js (FR-008 마지막 `" - "` 기준 분리·대괄호 구간 제거·공백 정리, `" - "` 없는 제목의 추출 제외, FR-009 seriesId 정규화)
+- [X] T008 [P] Unit tests for syncState.js in scripts/sync-tistory-series/__tests__/syncState.test.js (FR-002 `+09:00` 오프셋 포맷, FR-003 `cutoff = 실행 시작 시각 - 5분`, 파일 부재 시 기본 동작)
+- [X] T009 [P] Unit tests for seriesFiles.js listing/matching in scripts/sync-tistory-series/__tests__/seriesFiles.test.js (FR-010 seriesId 일치 판정, 일치하는 파일이 없는 경우 판정)
 
 **Checkpoint**: 이 시점 이후 User Story 1과 2를 병렬로 시작할 수 있다.
 
@@ -68,13 +68,13 @@ description: "Task list template for feature implementation"
 
 ### Implementation for User Story 1
 
-- [ ] T010 [US1] Implement cutoff-based candidate filtering in scripts/sync-tistory-series/index.js (FR-004: sitemap.js가 반환한 전체 게시글과 syncState.js가 읽은 저장된 cutoff를 비교해 `lastmod`가 더 최신인 게시글만 후보로 선별; depends on T002, T004)
-- [ ] T011 [US1] Implement candidate post title fetch and HTML entity decoding in scripts/sync-tistory-series/index.js (FR-007; research.md §3 — `<title>([^<]*)<\/title>` 정규식, `&amp;`/`&lt;`/`&gt;`/`&quot;`/`&#39;` 다섯 개 엔티티만 방어적으로 치환; 엔티티 디코딩은 `decodeHtmlEntities(text)`처럼 별도 export 가능한 순수 함수로 작성해 단독 테스트가 가능하게 함; depends on T010)
-- [ ] T012 [P] [US1] Unit tests for `decodeHtmlEntities` in scripts/sync-tistory-series/__tests__/index.test.js (`&amp;`/`&lt;`/`&gt;`/`&quot;`/`&#39;` 각 엔티티 치환, 엔티티 없는 원문 그대로 유지, 여러 엔티티가 섞인 제목 처리; covers T011)
-- [ ] T013 [P] [US1] Implement append-to-existing-series function in scripts/sync-tistory-series/seriesFiles.js (FR-010, FR-011: seriesId가 일치하는 파일을 찾아 `items`에 동일 URL이 있으면 건너뛰고 없으면 배열 끝에 추가, 기존 순서 보존; 주석은 한국어로, 구체적으로 작성 — Constitution II; depends on T005)
-- [ ] T014 [P] [US1] Add append/match test cases to scripts/sync-tistory-series/__tests__/seriesFiles.test.js (중복 URL 건너뛰기, 신규 URL이 배열 끝에 추가되는지, 기존 항목 순서가 보존되는지; covers T013)
-- [ ] T015 [US1] Wire full orchestration in scripts/sync-tistory-series/index.js: sitemap 조회 → 커트라인 필터 → 제목 조회 → rawSeriesName/seriesId 계산 → 기존 파일 매칭 → 항목 추가 → syncState의 cutoff·processedPosts 갱신(FR-015는 스크립트가 아니라 워크플로우의 git push 시점으로 보장되므로 스크립트는 워킹 트리 파일만 갱신). `" - "`가 없어 rawSeriesName을 추출하지 못한 게시글도 processedPosts에는 `rawSeriesName: null`로 기록한다(FR-016 "처리한 모든 게시글"에 해당하며, 후속 제목 변경 감지 기능의 이력 기반이 됨); 주석은 한국어로, 구체적으로 작성 — Constitution II (depends on T010, T011, T012, T013, T014)
-- [ ] T016 [US1] Create GitHub Actions workflow in .github/workflows/tistory-series-sync.yml (FR-014: cron 스케줄 + `workflow_dispatch` 트리거로 `node scripts/sync-tistory-series/index.js` 실행; job 권한을 `contents: write`로 설정; git 사용자를 `github-actions[bot]`으로 구성; `git status --porcelain`이 비어 있으면(변경 없음) 커밋·푸시 단계를 건너뛰고, 변경이 있으면 변경된 `*_series.json`과 `.github/sync-state.json`을 커밋해 기본 브랜치로 `git push` — 병합 검토 없이 즉시 반영(research.md §6); depends on T015)
+- [X] T010 [US1] Implement cutoff-based candidate filtering in scripts/sync-tistory-series/index.js (FR-004: sitemap.js가 반환한 전체 게시글과 syncState.js가 읽은 저장된 cutoff를 비교해 `lastmod`가 더 최신인 게시글만 후보로 선별; depends on T002, T004)
+- [X] T011 [US1] Implement candidate post title fetch and HTML entity decoding in scripts/sync-tistory-series/index.js (FR-007; research.md §3 — `<title>([^<]*)<\/title>` 정규식, `&amp;`/`&lt;`/`&gt;`/`&quot;`/`&#39;` 다섯 개 엔티티만 방어적으로 치환; 엔티티 디코딩은 `decodeHtmlEntities(text)`처럼 별도 export 가능한 순수 함수로 작성해 단독 테스트가 가능하게 함; depends on T010)
+- [X] T012 [P] [US1] Unit tests for `decodeHtmlEntities` in scripts/sync-tistory-series/__tests__/index.test.js (`&amp;`/`&lt;`/`&gt;`/`&quot;`/`&#39;` 각 엔티티 치환, 엔티티 없는 원문 그대로 유지, 여러 엔티티가 섞인 제목 처리; covers T011)
+- [X] T013 [P] [US1] Implement append-to-existing-series function in scripts/sync-tistory-series/seriesFiles.js (FR-010, FR-011: seriesId가 일치하는 파일을 찾아 `items`에 동일 URL이 있으면 건너뛰고 없으면 배열 끝에 추가, 기존 순서 보존; 주석은 한국어로, 구체적으로 작성 — Constitution II; depends on T005)
+- [X] T014 [P] [US1] Add append/match test cases to scripts/sync-tistory-series/__tests__/seriesFiles.test.js (중복 URL 건너뛰기, 신규 URL이 배열 끝에 추가되는지, 기존 항목 순서가 보존되는지; covers T013)
+- [X] T015 [US1] Wire full orchestration in scripts/sync-tistory-series/index.js: sitemap 조회 → 커트라인 필터 → 제목 조회 → rawSeriesName/seriesId 계산 → 기존 파일 매칭 → 항목 추가 → syncState의 cutoff·processedPosts 갱신(FR-015는 스크립트가 아니라 워크플로우의 git push 시점으로 보장되므로 스크립트는 워킹 트리 파일만 갱신). `" - "`가 없어 rawSeriesName을 추출하지 못한 게시글도 processedPosts에는 `rawSeriesName: null`로 기록한다(FR-016 "처리한 모든 게시글"에 해당하며, 후속 제목 변경 감지 기능의 이력 기반이 됨); 주석은 한국어로, 구체적으로 작성 — Constitution II (depends on T010, T011, T012, T013, T014)
+- [X] T016 [US1] Create GitHub Actions workflow in .github/workflows/tistory-series-sync.yml (FR-014: cron 스케줄 + `workflow_dispatch` 트리거로 `node scripts/sync-tistory-series/index.js` 실행; job 권한을 `contents: write`로 설정; git 사용자를 `github-actions[bot]`으로 구성; `git status --porcelain`이 비어 있으면(변경 없음) 커밋·푸시 단계를 건너뛰고, 변경이 있으면 변경된 `*_series.json`과 `.github/sync-state.json`을 커밋해 기본 브랜치로 `git push` — 병합 검토 없이 즉시 반영(research.md §6); depends on T015)
 
 **Checkpoint**: 이 시점에서 User Story 1은 완전히 동작하며 quickstart.md 시나리오 1로 독립적으로
 검증 가능하다.
@@ -92,10 +92,10 @@ description: "Task list template for feature implementation"
 
 ### Implementation for User Story 2
 
-- [ ] T017 [US2] Implement cross-run sibling counting in scripts/sync-tistory-series/seriesFiles.js (FR-012: 이번 실행에서 매칭 실패한 후보들 중 같은 seriesId를 공유하는 것들과, syncState.js의 `processedPosts`에 기록된 같은 seriesId 이력 중 현재 sitemap(T002 결과)에도 여전히 존재하는(공개된) 게시글을 합산해 "현재 sitemap에 존재하는 공개 게시글" 수를 셈; data-model.md 상태 전이 참고; 주석은 한국어로, 구체적으로 작성 — Constitution II; depends on T013)
-- [ ] T018 [US2] Implement create-new-series-file function in scripts/sync-tistory-series/seriesFiles.js (FR-012 임계치 2개 이상, FR-013 `listName`은 가장 먼저 발견된 게시글의 rawSeriesName, `items`는 `lastmod` 오름차순(발행 순서), FR-017 기존 스키마 준수; 주석은 한국어로, 구체적으로 작성 — Constitution II; depends on T017)
-- [ ] T019 [P] [US2] Add creation-threshold test cases to scripts/sync-tistory-series/__tests__/seriesFiles.test.js (같은 seriesId 공개 게시글이 1개면 파일 미생성 확인 SC-005, 2개 이상이면 파일 생성·`listName`·발행 순서 확인; covers T017, T018)
-- [ ] T020 [US2] Extend orchestration in scripts/sync-tistory-series/index.js to branch into the create-new-file path when no existing series file matches (주석은 한국어로, 구체적으로 작성 — Constitution II; depends on T015, T017, T018, T019)
+- [X] T017 [US2] Implement cross-run sibling counting in scripts/sync-tistory-series/seriesFiles.js (FR-012: 이번 실행에서 매칭 실패한 후보들 중 같은 seriesId를 공유하는 것들과, syncState.js의 `processedPosts`에 기록된 같은 seriesId 이력 중 현재 sitemap(T002 결과)에도 여전히 존재하는(공개된) 게시글을 합산해 "현재 sitemap에 존재하는 공개 게시글" 수를 셈; data-model.md 상태 전이 참고; 주석은 한국어로, 구체적으로 작성 — Constitution II; depends on T013)
+- [X] T018 [US2] Implement create-new-series-file function in scripts/sync-tistory-series/seriesFiles.js (FR-012 임계치 2개 이상, FR-013 `listName`은 가장 먼저 발견된 게시글의 rawSeriesName, `items`는 `lastmod` 오름차순(발행 순서), FR-017 기존 스키마 준수; 주석은 한국어로, 구체적으로 작성 — Constitution II; depends on T017)
+- [X] T019 [P] [US2] Add creation-threshold test cases to scripts/sync-tistory-series/__tests__/seriesFiles.test.js (같은 seriesId 공개 게시글이 1개면 파일 미생성 확인 SC-005, 2개 이상이면 파일 생성·`listName`·발행 순서 확인; covers T017, T018)
+- [X] T020 [US2] Extend orchestration in scripts/sync-tistory-series/index.js to branch into the create-new-file path when no existing series file matches (주석은 한국어로, 구체적으로 작성 — Constitution II; depends on T015, T017, T018, T019)
 
 **Checkpoint**: 이 시점에서 User Story 1과 2가 모두 독립적으로 동작한다.
 
@@ -105,8 +105,8 @@ description: "Task list template for feature implementation"
 
 **Purpose**: 여러 User Story에 걸친 마무리 작업
 
-- [ ] T021 Add fetch-failure and git-push-failure error handling with specific Korean log messages (sitemap 조회 실패, 게시글 제목 조회 실패, 두 실행이 겹쳐 push가 거부된 경우 각각 어떤 URL/단계에서 어떤 이유로 실패했는지 로그에 남기고, push 실패 시 자동 재시도 없이 워크플로우를 실패로 종료) in scripts/sync-tistory-series/index.js and .github/workflows/tistory-series-sync.yml (주석은 한국어로, 구체적으로 작성 — Constitution II; depends on T015, T016, T020)
-- [ ] T022 [P] Run full unit test suite `node --test scripts/sync-tistory-series` and fix any failures across scripts/sync-tistory-series/__tests__/
+- [X] T021 Add fetch-failure and git-push-failure error handling with specific Korean log messages (sitemap 조회 실패, 게시글 제목 조회 실패, 두 실행이 겹쳐 push가 거부된 경우 각각 어떤 URL/단계에서 어떤 이유로 실패했는지 로그에 남기고, push 실패 시 자동 재시도 없이 워크플로우를 실패로 종료) in scripts/sync-tistory-series/index.js and .github/workflows/tistory-series-sync.yml (주석은 한국어로, 구체적으로 작성 — Constitution II; depends on T015, T016, T020)
+- [X] T022 [P] Run full unit test suite `node --test scripts/sync-tistory-series` and fix any failures across scripts/sync-tistory-series/__tests__/
 - [ ] T023 Execute quickstart.md 시나리오 1–4 end-to-end validation against a real branch (depends on T021, T022)
 
 ---
