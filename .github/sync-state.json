@@ -1,5 +1,5 @@
 {
-  "cutoff": "2026-07-31T17:47:26+09:00",
+  "cutoff": "2026-08-01T22:19:54+09:00",
   "processedPosts": [
     {
       "url": "https://kenel.tistory.com/418",
@@ -1640,6 +1640,11 @@
       "url": "https://kenel.tistory.com/426",
       "rawSeriesName": null,
       "processedAt": "2026-07-31T17:52:26+09:00"
+    },
+    {
+      "url": "https://kenel.tistory.com/423",
+      "rawSeriesName": "468371",
+      "processedAt": "2026-08-01T22:24:54+09:00"
     }
   ]
 }
