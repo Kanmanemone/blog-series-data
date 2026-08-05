@@ -1,5 +1,5 @@
 {
-  "cutoff": "2026-08-05T11:35:19+09:00",
+  "cutoff": "2026-08-04T17:34:38+09:00",
   "processedPosts": [
     {
       "url": "https://kenel.tistory.com/418",
@@ -1655,11 +1655,6 @@
       "url": "https://kenel.tistory.com/425",
       "rawSeriesName": "Now in Android",
       "processedAt": "2026-08-03T18:49:32+09:00"
-    },
-    {
-      "url": "https://kenel.tistory.com/432",
-      "rawSeriesName": "(작성 중)  42895",
-      "processedAt": "2026-08-05T11:40:19+09:00"
     }
   ]
 }
