@@ -28,6 +28,10 @@
     {
       "title": "[Android] Dagger2 - Hilt로 마이그레이션",
       "url": "https://kenel.tistory.com/174"
+    },
+    {
+      "title": "[Android] Dagger2 - 여러 구현체 한꺼번에 주입 (@IntoSet)",
+      "url": "https://kenel.tistory.com/431"
     }
   ]
 }

@@ -1,5 +1,5 @@
 {
-  "cutoff": "2026-08-07T16:13:25+09:00",
+  "cutoff": "2026-08-08T03:54:36+09:00",
   "processedPosts": [
     {
       "url": "https://kenel.tistory.com/418",
@@ -1660,6 +1660,11 @@
       "url": "https://kenel.tistory.com/432",
       "rawSeriesName": "(작성 중)  42895",
       "processedAt": "2026-08-05T17:38:21+09:00"
+    },
+    {
+      "url": "https://kenel.tistory.com/431",
+      "rawSeriesName": "Dagger2",
+      "processedAt": "2026-08-08T03:59:36+09:00"
     }
   ]
 }
