@@ -1,5 +1,5 @@
 {
-  "cutoff": "2026-08-08T03:54:36+09:00",
+  "cutoff": "2026-08-08T21:46:32+09:00",
   "processedPosts": [
     {
       "url": "https://kenel.tistory.com/418",
@@ -1665,6 +1665,11 @@
       "url": "https://kenel.tistory.com/431",
       "rawSeriesName": "Dagger2",
       "processedAt": "2026-08-08T03:59:36+09:00"
+    },
+    {
+      "url": "https://kenel.tistory.com/427",
+      "rawSeriesName": "Swemo",
+      "processedAt": "2026-08-08T21:51:32+09:00"
     }
   ]
 }
