@@ -34,7 +34,8 @@
     "posts": [
       {
         "url": "https://kenel.tistory.com/378",
-        "title": "Swemo - Nutri Capture 게시글 시리즈로 이동"
+        "title": "Swemo - Nutri Capture 게시글 시리즈로 이동",
+        "publishedAt": "2025-12-09T05:40:00.000Z"
       },
       {
         "url": "https://kenel.tistory.com/384",
@@ -136,15 +137,317 @@
       },
       {
         "url": "https://kenel.tistory.com/298",
-        "title": "디베이터 - 관계"
+        "title": "디베이터 - 관계",
+        "publishedAt": "2025-06-04T15:08:00.000Z"
       },
       {
         "url": "https://kenel.tistory.com/343",
-        "title": "디베이터 - 테크놀로지"
+        "title": "디베이터 - 테크놀로지",
+        "publishedAt": "2025-07-21T12:28:00.000Z"
       },
       {
         "url": "https://kenel.tistory.com/345",
         "title": "디베이터 - 토론은 어떻게 확산되는가?"
+      }
+    ]
+  },
+  "nutricapture": {
+    "listName": "Nutri Capture",
+    "posts": [
+      {
+        "url": "https://kenel.tistory.com/59",
+        "title": "Nutri Capture - 앱의 리팩토링 및 업그레이드",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/60",
+        "title": "Nutri Capture - 앱의 목적, 유스케이스 다이어그램",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/62",
+        "title": "Nutri Capture - ERD",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/63",
+        "title": "Nutri Capture - UI 스케치",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/209",
+        "title": "Nutri Capture - 살아남는 앱이 되려면",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/220",
+        "title": "Nutri Capture - Scaffold",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/221",
+        "title": "Nutri Capture - NavHost",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/226",
+        "title": "Nutri Capture - NavigationBar 컴포넌트",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/223",
+        "title": "Nutri Capture - 고유인지감각, 새 UI 스케치",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/228",
+        "title": "Nutri Capture - NutrientScreen 구조 잡기",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/230",
+        "title": "Nutri Capture - NutrientScreen의 무한 스크롤",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/231",
+        "title": "Nutri Capture - 무한 스크롤 로직 분리",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/232",
+        "title": "Nutri Capture - 역방향 무한 스크롤",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/233",
+        "title": "Nutri Capture - requestScrollToItem()을 이용한 깔끔한 역방향 무한 스크롤",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/234",
+        "title": "Nutri Capture - 스크롤 로직 View에 일임",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/235",
+        "title": "Nutri Capture - Card 컴포넌트",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/236",
+        "title": "Nutri Capture - 새 ERD와 Room의 @Entity 정의",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/237",
+        "title": "Nutri Capture - Room의 @DAO, @Database 구현",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/239",
+        "title": "Nutri Capture - ViewModel에 데이터베이스 Model을 생성자 주입",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/240",
+        "title": "Nutri Capture - View에서 데이터베이스의 INSERT 동작 트리거",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/249",
+        "title": "Nutri Capture - 채팅 UI",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/254",
+        "title": "Nutri Capture - Room 가상 테이블",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/256",
+        "title": "Nutri Capture - Room 가상 테이블의 레코드를 필요한 만큼만 가져오기",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/258",
+        "title": "Nutri Capture - 채팅UI 구조 잡기",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/259",
+        "title": "Nutri Capture - Room 무결성 보완",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/260",
+        "title": "Nutri Capture - 무한 스크롤 로직 리팩토링",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/262",
+        "title": "Nutri Capture - DAO 속 논리적 오류 수정",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/264",
+        "title": "Nutri Capture - DeleteDayMeal 이벤트 추가",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/265",
+        "title": "Nutri Capture - INSERT 및 DELETE 버튼 구현",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/269",
+        "title": "Nutri Capture - item 추가ㆍ제거 애니메이션",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/270",
+        "title": "Nutri Capture - 이진 탐색 적용",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/271",
+        "title": "Nutri Capture - bottomBar에 들어갈 컴포넌트의 동적 변경",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/274",
+        "title": "Nutri Capture - Typography",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/275",
+        "title": "Nutri Capture - Dimens와 함께 ChatBar 만들기",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/277",
+        "title": "Nutri Capture - 개발 일정표 (1차)",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/278",
+        "title": "Nutri Capture - ChatBar에 ViewModel 연결",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/280",
+        "title": "Nutri Capture - StateFlow로 전환",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/281",
+        "title": "Nutri Capture - 아이콘 제작 (1차)",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/285",
+        "title": "Nutri Capture - 코드 정리",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/286",
+        "title": "Nutri Capture - windowInsetsPadding() 사용",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/287",
+        "title": "Nutri Capture - Hilt 도입",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/320",
+        "title": "Nutri Capture - '피자' 아이콘 구현",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/323",
+        "title": "Nutri Capture - '피자' 아이콘 임시 적용",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/324",
+        "title": "Nutri Capture - NutritionInfo (데이터베이스 모델) 리팩토링",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/325",
+        "title": "Nutri Capture - NutrientBottomSheet 부분 구현",
+        "publishedAt": "2025-03-26T12:51:00.000Z"
+      },
+      {
+        "url": "https://kenel.tistory.com/359",
+        "title": "Nutri Capture - 버전 카탈로그로 완전 전환",
+        "publishedAt": "2025-10-31T06:03:00.000Z"
+      },
+      {
+        "url": "https://kenel.tistory.com/360",
+        "title": "Nutri Capture - 프로젝트 모듈화 및 코드 재배치",
+        "publishedAt": "2025-10-31T06:03:00.000Z"
+      },
+      {
+        "url": "https://kenel.tistory.com/361",
+        "title": "Nutri Capture - Entry point를 Now in Android 스타일로 변경",
+        "publishedAt": "2025-10-31T06:03:00.000Z"
+      },
+      {
+        "url": "https://kenel.tistory.com/362",
+        "title": "Nutri Capture - ContentWithSwipeableBottomSheet() 도입",
+        "publishedAt": "2025-10-31T06:04:00.000Z"
+      },
+      {
+        "url": "https://kenel.tistory.com/363",
+        "title": "Nutri Capture - 버전 카탈로그 속 프로퍼티명을 Now in Android 스타일로 통일",
+        "publishedAt": "2025-10-31T06:04:00.000Z"
+      },
+      {
+        "url": "https://kenel.tistory.com/365",
+        "title": "Nutri Capture - 방향 재설계 (프로젝트 이름 변경)",
+        "publishedAt": "2025-12-02T04:12:00.000Z"
+      },
+      {
+        "url": "https://kenel.tistory.com/377",
+        "title": "Nutri Capture - Swemo 게시글 시리즈로 이동",
+        "publishedAt": "2025-12-09T05:40:00.000Z"
+      }
+    ]
+  },
+  "pointerinput": {
+    "listName": "Pointer input",
+    "posts": [
+      {
+        "url": "https://kenel.tistory.com/289",
+        "title": "[Android] Pointer input - PointerInputChange, PointerEvent",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/292",
+        "title": "[Android] Pointer input - AwaitPointerEventScope()의 메소드들",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/291",
+        "title": "[Android] Pointer input - Gesture",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/295",
+        "title": "[Android] Pointer input - Scroll",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/296",
+        "title": "[Android] Pointer input - Nested Scroll",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/322",
+        "title": "[Android] Pointer input - Drag",
+        "publishedAt": "2025-05-13T04:23:00.000Z"
       }
     ]
   }

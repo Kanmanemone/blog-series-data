@@ -1,5 +1,5 @@
 {
-  "cutoff": "2026-08-09T16:38:28+09:00",
+  "cutoff": "2026-08-10T03:37:55+09:00",
   "processedPosts": [
     {
       "url": "https://kenel.tistory.com/418",
@@ -32,9 +32,10 @@
     {
       "url": "https://kenel.tistory.com/412",
       "rawSeriesName": "2026 Build with AI: Hands-on Campus",
-      "processedAt": "2026-08-09T16:43:28+09:00",
-      "title": "2026 Build with AI: Hands-on Campus - 5월부터 과제는 에이전트에게 맡기고 대학생활 즐겨보기 (feat.Kotlin",
-      "lastMod": "2026-07-11T16:17:27.000Z"
+      "processedAt": "2026-08-10T03:42:55+09:00",
+      "title": "2026 Build with AI: Hands-on Campus - 5월부터 과제는 에이전트에게 맡기고 대학생활 즐겨보기 (feat.Kotlin)",
+      "lastMod": "2026-08-09T08:25:03.000Z",
+      "publishedAt": "2026-07-11T11:19:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/414",
@@ -214,152 +215,242 @@
     {
       "url": "https://kenel.tistory.com/385",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T03:42:55+09:00",
+      "title": "SCSS와 자동화",
+      "lastMod": "2025-12-24T14:39:20.000Z",
+      "publishedAt": "2025-12-23T06:44:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/382",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T03:42:55+09:00",
+      "title": "의존성 그래프(Dependency graph), 데이터 흐름도(Data-flow diagram)",
+      "lastMod": "2025-12-11T07:30:08.000Z",
+      "publishedAt": "2025-12-11T07:30:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/378",
       "rawSeriesName": "Swemo",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T03:42:55+09:00",
+      "title": "Swemo - Nutri Capture 게시글 시리즈로 이동",
+      "lastMod": "2025-12-09T05:40:47.000Z",
+      "publishedAt": "2025-12-09T05:40:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/377",
       "rawSeriesName": "Nutri Capture",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T03:42:55+09:00",
+      "title": "Nutri Capture - Swemo 게시글 시리즈로 이동",
+      "lastMod": "2025-12-09T05:40:35.000Z",
+      "publishedAt": "2025-12-09T05:40:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/381",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T03:42:55+09:00",
+      "title": "'열심히'의 함정",
+      "lastMod": "2025-12-10T00:08:42.000Z",
+      "publishedAt": "2025-12-08T08:00:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/365",
       "rawSeriesName": "Nutri Capture",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T03:42:55+09:00",
+      "title": "Nutri Capture - 방향 재설계 (프로젝트 이름 변경)",
+      "lastMod": "2025-12-02T04:30:13.000Z",
+      "publishedAt": "2025-12-02T04:12:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/375",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T03:42:55+09:00",
+      "title": "SOLID 원칙",
+      "lastMod": "2026-04-24T09:50:48.000Z",
+      "publishedAt": "2025-12-01T10:27:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/373",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T03:42:55+09:00",
+      "title": "Gradle, 버전 카탈로그",
+      "lastMod": "2025-12-18T04:41:02.000Z",
+      "publishedAt": "2025-11-26T09:38:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/372",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T03:42:55+09:00",
+      "title": "Maven, Artifact, GAV",
+      "lastMod": "2026-07-04T00:40:18.000Z",
+      "publishedAt": "2025-11-25T03:36:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/363",
       "rawSeriesName": "Nutri Capture",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T03:42:55+09:00",
+      "title": "Nutri Capture - 버전 카탈로그 속 프로퍼티명을 Now in Android 스타일로 통일",
+      "lastMod": "2025-10-31T06:04:10.000Z",
+      "publishedAt": "2025-10-31T06:04:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/362",
       "rawSeriesName": "Nutri Capture",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T03:42:55+09:00",
+      "title": "Nutri Capture - ContentWithSwipeableBottomSheet() 도입",
+      "lastMod": "2025-10-31T06:04:04.000Z",
+      "publishedAt": "2025-10-31T06:04:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/361",
       "rawSeriesName": "Nutri Capture",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T03:42:55+09:00",
+      "title": "Nutri Capture - Entry point를 Now in Android 스타일로 변경",
+      "lastMod": "2025-10-31T06:03:54.000Z",
+      "publishedAt": "2025-10-31T06:03:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/360",
       "rawSeriesName": "Nutri Capture",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T03:42:55+09:00",
+      "title": "Nutri Capture - 프로젝트 모듈화 및 코드 재배치",
+      "lastMod": "2025-10-31T06:03:45.000Z",
+      "publishedAt": "2025-10-31T06:03:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/359",
       "rawSeriesName": "Nutri Capture",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T03:42:55+09:00",
+      "title": "Nutri Capture - 버전 카탈로그로 완전 전환",
+      "lastMod": "2025-10-31T06:03:37.000Z",
+      "publishedAt": "2025-10-31T06:03:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/358",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T03:42:55+09:00",
+      "title": "내 프로젝트와 Now in Android의 버전 카탈로그 속 프로퍼티명 맞추기",
+      "lastMod": "2025-11-04T04:57:07.000Z",
+      "publishedAt": "2025-10-16T05:39:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/357",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T03:42:55+09:00",
+      "title": "[Android] Module 구조",
+      "lastMod": "2025-12-31T00:12:44.000Z",
+      "publishedAt": "2025-09-15T14:06:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/348",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T03:42:55+09:00",
+      "title": "ContentWithSwipeableBottomSheet()",
+      "lastMod": "2025-10-31T18:52:39.000Z",
+      "publishedAt": "2025-08-06T06:53:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/343",
       "rawSeriesName": "디베이터",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T03:42:55+09:00",
+      "title": "디베이터 - 테크놀로지",
+      "lastMod": "2025-12-09T03:18:16.000Z",
+      "publishedAt": "2025-07-21T12:28:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/298",
       "rawSeriesName": "디베이터",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T03:42:55+09:00",
+      "title": "디베이터 - 관계",
+      "lastMod": "2025-12-09T03:19:49.000Z",
+      "publishedAt": "2025-06-04T15:08:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/322",
       "rawSeriesName": "Pointer input",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T03:42:55+09:00",
+      "title": "[Android] Pointer input - Drag",
+      "lastMod": "2025-05-14T14:47:27.000Z",
+      "publishedAt": "2025-05-13T04:23:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/336",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T03:42:55+09:00",
+      "title": "[Android] Modifier.imePadding() 깔끔하게 사용하기",
+      "lastMod": "2025-05-06T05:23:32.000Z",
+      "publishedAt": "2025-05-03T04:54:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/334",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T03:42:55+09:00",
+      "title": "[백준] 26169 (세 번 이내에 사과를 먹자)",
+      "lastMod": "2025-04-23T06:52:59.000Z",
+      "publishedAt": "2025-04-08T06:54:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/333",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T03:42:55+09:00",
+      "title": "[백준] 7569 (토마토)",
+      "lastMod": "2025-04-05T14:46:49.000Z",
+      "publishedAt": "2025-04-04T08:07:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/332",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T03:42:55+09:00",
+      "title": "[백준] 2178 (미로 탐색)",
+      "lastMod": "2025-04-05T14:48:26.000Z",
+      "publishedAt": "2025-04-04T06:50:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/331",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T03:42:55+09:00",
+      "title": "[Android] BottomSheetScaffold의 BottomSheet가 사용자 입력으로는 숨겨지지 않지만, 프로그래밍적으로는 숨겨질 수 있게 만들기",
+      "lastMod": "2025-04-03T09:30:30.000Z",
+      "publishedAt": "2025-04-03T08:22:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/330",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T03:42:55+09:00",
+      "title": "[백준] 11659 (구간 합 구하기 4)",
+      "lastMod": "2025-04-04T04:14:38.000Z",
+      "publishedAt": "2025-04-03T06:08:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/329",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T03:42:55+09:00",
+      "title": "[백준] 11726 (2&times;n 타일링)",
+      "lastMod": "2025-04-04T04:14:58.000Z",
+      "publishedAt": "2025-04-03T05:19:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/328",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T03:42:55+09:00",
+      "title": "[백준] 1697 (숨바꼭질)",
+      "lastMod": "2025-04-04T07:08:14.000Z",
+      "publishedAt": "2025-04-03T04:01:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/327",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T03:42:55+09:00",
+      "title": "Pagination 인터페이스ㆍ구현ㆍ검증용 앱",
+      "lastMod": "2025-04-04T08:13:59.000Z",
+      "publishedAt": "2025-04-02T05:47:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/325",
       "rawSeriesName": "Nutri Capture",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T03:42:55+09:00",
+      "title": "Nutri Capture - NutrientBottomSheet 부분 구현",
+      "lastMod": "2025-10-17T01:07:21.000Z",
+      "publishedAt": "2025-03-26T12:51:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/324",
