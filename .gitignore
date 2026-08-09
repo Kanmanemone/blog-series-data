@@ -5,3 +5,7 @@ node_modules/
 .env.*
 .DS_Store
 Thumbs.db
+
+# 002-post-drift-detection: 동기화 스크립트가 실행 중에만 만드는 커밋 메시지
+# CUD 요약. 워크플로우의 커밋 스텝이 읽고 삭제하므로 저장소에 커밋되지 않는다.
+.sync-commit-summary.txt

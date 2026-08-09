@@ -2,7 +2,14 @@
 
 const test = require("node:test");
 const assert = require("node:assert/strict");
-const { decodeHtmlEntities, filterCandidates } = require("../index.js");
+const {
+  decodeHtmlEntities,
+  filterCandidates,
+  selectDriftCandidates,
+  MAX_UNKNOWN_LASTMOD_REFETCH_PER_RUN,
+  buildNewPostCud,
+  renderCommitSummary,
+} = require("../index.js");
 
 test("다섯 개 기본 HTML 엔티티를 원문 문자로 치환한다(FR-007)", () => {
   assert.equal(decodeHtmlEntities("A &amp; B"), "A & B");
@@ -38,4 +45,127 @@ test("filterCandidates는 cutoff가 null이면(최초 실행) 전체를 후보�
   ];
 
   assert.equal(filterCandidates(posts, null).length, 1);
+});
+
+test("selectDriftCandidates는 lastMod가 변하지 않은 게시글은 재조회 후보로 잡지 않는다(FR-005 음성 케이스)", () => {
+  const processedPosts = [
+    { url: "https://kenel.tistory.com/104", title: "Coroutines - 기초", lastMod: "2026-07-21T05:00:00.000Z" },
+  ];
+  const sitemapByUrl = new Map([
+    ["https://kenel.tistory.com/104", { canonicalUrl: "https://kenel.tistory.com/104", lastmod: new Date("2026-07-21T05:00:00.000Z") }],
+  ]);
+
+  const { toRefetch, toMarkDeleted } = selectDriftCandidates(processedPosts, sitemapByUrl);
+
+  assert.deepEqual(toRefetch, []);
+  assert.deepEqual(toMarkDeleted, []);
+});
+
+test("selectDriftCandidates는 lastMod 필드가 없는 기존 레코드를 항상 후보로 잡는다(변경 여부 불명)", () => {
+  const processedPosts = [
+    { url: "https://kenel.tistory.com/104", title: "옛 방식 기록" },
+  ];
+  const sitemapByUrl = new Map([
+    ["https://kenel.tistory.com/104", { canonicalUrl: "https://kenel.tistory.com/104", lastmod: new Date("2020-01-01T00:00:00Z") }],
+  ]);
+
+  const { toRefetch } = selectDriftCandidates(processedPosts, sitemapByUrl);
+
+  assert.deepEqual(toRefetch, ["https://kenel.tistory.com/104"]);
+});
+
+test("selectDriftCandidates는 lastMod 없는 레코드를 회당 상한까지만 후보로 잡는다(마이그레이션 버스트 완화, `/speckit-converge` T022)", () => {
+  const total = MAX_UNKNOWN_LASTMOD_REFETCH_PER_RUN + 5; // 상한보다 5건 많게 준비
+  const processedPosts = [];
+  const sitemapByUrl = new Map();
+  for (let i = 0; i < total; i += 1) {
+    const url = `https://kenel.tistory.com/${i}`;
+    processedPosts.push({ url, title: `제목 ${i}` }); // lastMod 없음 = 마이그레이션 이전 레코드
+    sitemapByUrl.set(url, { canonicalUrl: url, lastmod: new Date("2020-01-01T00:00:00Z") });
+  }
+
+  const { toRefetch } = selectDriftCandidates(processedPosts, sitemapByUrl);
+
+  assert.equal(toRefetch.length, MAX_UNKNOWN_LASTMOD_REFETCH_PER_RUN);
+  // 남은 5건은 이번 실행에서 건너뛰어야 다음 실행에서 처리될 여지가 생긴다.
+  assert.deepEqual(toRefetch, processedPosts.slice(0, MAX_UNKNOWN_LASTMOD_REFETCH_PER_RUN).map((r) => r.url));
+});
+
+test("selectDriftCandidates는 lastMod가 있는 진짜 드리프트 후보는 상한과 무관하게 모두 포함한다", () => {
+  const processedPosts = [];
+  const sitemapByUrl = new Map();
+  // lastMod 있는(마이그레이션 완료된) 레코드가 상한보다 많아도, 실제로 바뀐 것만 후보가 된다.
+  for (let i = 0; i < MAX_UNKNOWN_LASTMOD_REFETCH_PER_RUN + 5; i += 1) {
+    const url = `https://kenel.tistory.com/${i}`;
+    processedPosts.push({ url, title: `제목 ${i}`, lastMod: "2026-01-01T00:00:00.000Z" });
+    sitemapByUrl.set(url, { canonicalUrl: url, lastmod: new Date("2026-02-01T00:00:00Z") }); // 전부 실제로 갱신됨
+  }
+
+  const { toRefetch } = selectDriftCandidates(processedPosts, sitemapByUrl);
+
+  assert.equal(toRefetch.length, processedPosts.length); // 상한에 걸리지 않고 전부 포함
+});
+
+test("selectDriftCandidates는 sitemap에 없는 URL을 즉시 삭제 확정 대상으로 분류한다(FR-005)", () => {
+  const processedPosts = [
+    { url: "https://kenel.tistory.com/104", title: "제목", lastMod: "2026-07-21T05:00:00.000Z" },
+  ];
+  const sitemapByUrl = new Map(); // 이 URL이 더 이상 sitemap에 없음
+
+  const { toRefetch, toMarkDeleted } = selectDriftCandidates(processedPosts, sitemapByUrl);
+
+  assert.deepEqual(toRefetch, []);
+  assert.deepEqual(toMarkDeleted, ["https://kenel.tistory.com/104"]);
+});
+
+test("selectDriftCandidates는 이미 삭제 확정된 레코드는 두 목록 어디에도 넣지 않는다(FR-013)", () => {
+  const processedPosts = [
+    { url: "https://kenel.tistory.com/104", title: "제목", deletedAt: "2026-07-25T00:00:00+09:00" },
+  ];
+  const sitemapByUrl = new Map(); // 여전히 sitemap에 없더라도
+
+  const { toRefetch, toMarkDeleted } = selectDriftCandidates(processedPosts, sitemapByUrl);
+
+  assert.deepEqual(toRefetch, []);
+  assert.deepEqual(toMarkDeleted, []);
+});
+
+test("buildNewPostCud는 신규 생성 파일과 기존 파일에 항목이 추가된 경우를 구분한다(FR-012, SC-007)", () => {
+  const createdFile = { seriesId: "newseries", data: { items: [{}, {}] } }; // 2건
+  const appendedFile = { seriesId: "coroutines", data: { items: [{}, {}, {}] } };
+  const changedFiles = new Set([createdFile, appendedFile]);
+  const appendCountsByFile = new Map([[appendedFile, 2]]); // createdFile은 이 Map에 없음 = 신규 생성
+
+  const cud = buildNewPostCud(changedFiles, appendCountsByFile);
+
+  assert.equal(cud.length, 2);
+  assert.deepEqual(
+    cud.find((e) => e.seriesId === "newseries"),
+    { type: "created", seriesId: "newseries", detail: "2건" },
+  );
+  assert.deepEqual(
+    cud.find((e) => e.seriesId === "coroutines"),
+    { type: "updated", seriesId: "coroutines", detail: "항목 추가 2건" },
+  );
+});
+
+test("buildNewPostCud는 변경된 파일이 없으면 빈 배열을 반환한다", () => {
+  assert.deepEqual(buildNewPostCud(new Set(), new Map()), []);
+});
+
+test("renderCommitSummary는 CUD 목록을 사람이 읽는 텍스트로 렌더링한다(research.md §6)", () => {
+  const text = renderCommitSummary([
+    { type: "created", seriesId: "coroutines", detail: "2건" },
+    { type: "updated", seriesId: "flow", detail: "제목 갱신 1건, 항목 추가 1건" },
+    { type: "deleted", seriesId: "legacy", detail: "항목 부족으로 파일 삭제" },
+  ]);
+
+  assert.equal(
+    text,
+    [
+      "Created: coroutines_series.json (2건)",
+      "Updated: flow_series.json (제목 갱신 1건, 항목 추가 1건)",
+      "Deleted: legacy_series.json (항목 부족으로 파일 삭제)",
+    ].join("\n"),
+  );
 });

@@ -2,7 +2,7 @@
 
 const fs = require("node:fs");
 const path = require("node:path");
-const { toSeriesId } = require("./seriesName.js");
+const { toSeriesId, extractRawSeriesName } = require("./seriesName.js");
 
 const SERIES_FILE_SUFFIX = "_series.json";
 
@@ -63,8 +63,16 @@ function collectSiblingCandidates(seriesId, thisRunSiblings, processedPosts, all
   const historicalOnlyRefs = [];
 
   for (const record of processedPosts) {
-    if (!record.rawSeriesName) continue;
-    if (toSeriesId(record.rawSeriesName) !== seriesId) continue;
+    // 002-post-drift-detection이 processedPosts 레코드를 rawSeriesName 대신 title
+    // 전체를 보유하도록 확장했다(specs/002-post-drift-detection/data-model.md
+    // "Processed Post"). 이 함수는 001의 신규 시리즈 생성 판단에 계속 쓰이므로
+    // 건드리지 않되, title만 있는 새 레코드도 인식하도록 이 한 줄만 보강한다 —
+    // title이 있으면 그 자리에서 rawSeriesName을 다시 추출하고, 없으면(이 기능
+    // 배포 이전 레코드) 기존처럼 저장된 rawSeriesName을 그대로 쓴다.
+    const rawSeriesName = record.title !== undefined ? extractRawSeriesName(record.title) : record.rawSeriesName;
+    if (!rawSeriesName) continue;
+    if (toSeriesId(rawSeriesName) !== seriesId) continue;
+    if (record.deletedAt) continue; // 삭제·비공개 전환이 이미 확정된 게시글은 형제로 세지 않는다(002 FR-013과 일관)
     if (knownUrls.has(record.url)) continue;
 
     const currentPost = currentPostsByUrl.get(record.url);
@@ -75,7 +83,7 @@ function collectSiblingCandidates(seriesId, thisRunSiblings, processedPosts, all
       id: currentPost.id,
       canonicalUrl: currentPost.canonicalUrl,
       lastmod: currentPost.lastmod,
-      rawSeriesName: record.rawSeriesName,
+      rawSeriesName,
     });
   }
 

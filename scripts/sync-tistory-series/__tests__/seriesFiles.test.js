@@ -152,3 +152,32 @@ test("collectSiblingCandidates는 과거 이력 중 지금도 공개된 것만 �
   assert.equal(historicalOnlyRefs.length, 1);
   assert.equal(historicalOnlyRefs[0].canonicalUrl, "https://kenel.tistory.com/299");
 });
+
+test("collectSiblingCandidates는 002가 확장한 title 전용 레코드에서도 rawSeriesName을 다시 추출해 인식한다", () => {
+  const thisRunSiblings = [
+    { canonicalUrl: "https://kenel.tistory.com/300", lastmod: new Date("2026-07-10T00:00:00+09:00") },
+  ];
+  // 002-post-drift-detection 배포 이후 기록된 레코드는 rawSeriesName 대신 title을 갖는다.
+  const processedPosts = [
+    { url: "https://kenel.tistory.com/299", title: "NewSeries - 이전 글", lastMod: "2026-06-01T00:00:00.000Z", processedAt: "2026-06-01T00:00:00+09:00" },
+    { url: "https://kenel.tistory.com/298", title: "OtherSeries - 이전 글", lastMod: "2026-06-01T00:00:00.000Z", processedAt: "2026-06-01T00:00:00+09:00" },
+    // 삭제 확정된 레코드는 형제로 세지 않는다.
+    { url: "https://kenel.tistory.com/296", title: "NewSeries - 삭제된 글", lastMod: "2026-06-01T00:00:00.000Z", processedAt: "2026-06-01T00:00:00+09:00", deletedAt: "2026-07-01T00:00:00+09:00" },
+  ];
+  const allSitemapPosts = [
+    { id: "300", canonicalUrl: "https://kenel.tistory.com/300", lastmod: new Date("2026-07-10T00:00:00+09:00") },
+    { id: "299", canonicalUrl: "https://kenel.tistory.com/299", lastmod: new Date("2026-06-01T00:00:00+09:00") },
+    { id: "296", canonicalUrl: "https://kenel.tistory.com/296", lastmod: new Date("2026-06-01T00:00:00+09:00") },
+  ];
+
+  const { historicalOnlyRefs } = collectSiblingCandidates(
+    "newseries",
+    thisRunSiblings,
+    processedPosts,
+    allSitemapPosts,
+  );
+
+  assert.equal(historicalOnlyRefs.length, 1);
+  assert.equal(historicalOnlyRefs[0].canonicalUrl, "https://kenel.tistory.com/299");
+  assert.equal(historicalOnlyRefs[0].rawSeriesName, "NewSeries");
+});

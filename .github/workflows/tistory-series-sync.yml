@@ -30,7 +30,20 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add -- '*_series.json' .github/sync-state.json
-          git commit -m "chore: 티스토리 시리즈 목차 동기화"
+          if [ -f .github/series-assignments.json ]; then
+            git add .github/series-assignments.json
+          fi
+
+          # 002-post-drift-detection: 스크립트가 이번 실행에서 실제로 생성·갱신·
+          # 삭제한 내역을 커밋 메시지 본문에 담는다(FR-012, SC-007). 요약 파일이
+          # 없으면(드리프트 반영 없이 001의 신규 게시글 처리만 있었던 실행) 제목
+          # 줄만 사용한다 — 커밋 메시지가 매번 똑같은 고정 문구로 남지 않는다.
+          if [ -f .sync-commit-summary.txt ]; then
+            git commit -m "chore: 티스토리 시리즈 목차 동기화" -m "$(cat .sync-commit-summary.txt)"
+            rm -f .sync-commit-summary.txt
+          else
+            git commit -m "chore: 티스토리 시리즈 목차 동기화"
+          fi
 
           # 병합 검토 없이 기본 브랜치로 즉시 push한다(spec.md Clarifications Session 2026-07-22).
           # 다른 실행과 겹쳐 push가 거부되면 자동 재시도 없이 이 스텝을 실패로 종료한다 —
