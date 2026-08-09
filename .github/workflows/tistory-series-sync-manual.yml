@@ -1,10 +1,8 @@
-name: 티스토리 시리즈 목차 동기화 (예약 실행)
+name: 티스토리 시리즈 목차 동기화 (수동 실행)
 
 on:
-  # 6시간마다 실행. 처리 대상은 마지막 커트라인 이후 변경분만이라 부담이 크지 않다(plan.md Performance Goals).
-  # 수동 실행은 tistory-series-sync-manual.yml로 분리되어 있다(동작은 동일, 트리거만 다름).
-  schedule:
-    - cron: "0 */6 * * *"
+  # 예약 실행은 tistory-series-sync.yml로 분리되어 있다(동작은 동일, 트리거만 다름).
+  workflow_dispatch: {}
 
 permissions:
   contents: write
