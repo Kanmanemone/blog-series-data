@@ -1,155 +1,215 @@
 {
-  "cutoff": "2026-08-04T17:34:38+09:00",
+  "cutoff": "2026-08-09T16:38:28+09:00",
   "processedPosts": [
     {
       "url": "https://kenel.tistory.com/418",
       "rawSeriesName": "Spec Kit",
-      "processedAt": "2026-07-26T11:56:45+09:00"
+      "processedAt": "2026-08-09T16:43:28+09:00",
+      "title": "Spec Kit - \"assess\" 익스텐션",
+      "lastMod": "2026-07-26T00:43:42.000Z"
     },
     {
       "url": "https://kenel.tistory.com/416",
       "rawSeriesName": null,
-      "processedAt": "2026-07-26T11:56:45+09:00"
+      "processedAt": "2026-08-09T16:43:28+09:00",
+      "title": "운석은 어떻게 방향을 트는가",
+      "lastMod": "2026-07-26T00:44:34.000Z"
     },
     {
       "url": "https://kenel.tistory.com/417",
       "rawSeriesName": "Spec Kit",
-      "processedAt": "2026-08-04T17:39:38+09:00"
+      "processedAt": "2026-08-09T16:43:28+09:00",
+      "title": "Spec Kit - 개요",
+      "lastMod": "2026-08-04T04:24:07.000Z"
     },
     {
       "url": "https://kenel.tistory.com/415",
       "rawSeriesName": "355184",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-09T16:43:28+09:00",
+      "title": "[구름] 355184 - 삼각형 접기",
+      "lastMod": "2026-07-12T14:24:30.000Z"
     },
     {
       "url": "https://kenel.tistory.com/412",
       "rawSeriesName": "2026 Build with AI: Hands-on Campus",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-09T16:43:28+09:00",
+      "title": "2026 Build with AI: Hands-on Campus - 5월부터 과제는 에이전트에게 맡기고 대학생활 즐겨보기 (feat.Kotlin",
+      "lastMod": "2026-07-11T16:17:27.000Z"
     },
     {
       "url": "https://kenel.tistory.com/414",
       "rawSeriesName": "2026 Build with AI: Hands-on Campus",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-09T16:43:28+09:00",
+      "title": "2026 Build with AI: Hands-on Campus - 내 GitHub 프로젝트 저장소를 분석하고 정리하는 AI 에이전트 만들기",
+      "lastMod": "2026-07-11T12:14:28.000Z"
     },
     {
       "url": "https://kenel.tistory.com/406",
       "rawSeriesName": "2026 Build with AI: Hands-on Campus",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-09T16:43:28+09:00",
+      "title": "[콘퍼런스] 2026 Build with AI: Hands-on Campus - 참석 후기",
+      "lastMod": "2026-07-11T12:09:41.000Z"
     },
     {
       "url": "https://kenel.tistory.com/411",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-09T16:43:28+09:00",
+      "title": "[구름] 175194 (구름 스퀘어)",
+      "lastMod": "2026-07-05T15:03:21.000Z"
     },
     {
       "url": "https://kenel.tistory.com/410",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-09T16:43:28+09:00",
+      "title": "[구름] 355187 (최고의 검)",
+      "lastMod": "2026-07-05T05:32:29.000Z"
     },
     {
       "url": "https://kenel.tistory.com/409",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-09T16:43:28+09:00",
+      "title": "IntelliJ 콘솔 창 한글 깨짐 현상의 원인과 해결 방법",
+      "lastMod": "2026-07-04T00:32:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/407",
       "rawSeriesName": "How To Think",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-09T16:43:28+09:00",
+      "title": "How To Think - 서론",
+      "lastMod": "2026-06-29T07:39:31.000Z"
     },
     {
       "url": "https://kenel.tistory.com/402",
       "rawSeriesName": null,
-      "processedAt": "2026-07-23T11:54:11+09:00"
+      "processedAt": "2026-08-09T16:43:28+09:00",
+      "title": "하네스 엔지니어링 실습",
+      "lastMod": "2026-07-23T00:48:22.000Z"
     },
     {
       "url": "https://kenel.tistory.com/400",
       "rawSeriesName": "Swemo",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-09T16:43:28+09:00",
+      "title": "Swemo - Iteration 6: MVP 1 구현 (3/3)",
+      "lastMod": "2026-06-25T09:45:15.000Z"
     },
     {
       "url": "https://kenel.tistory.com/401",
       "rawSeriesName": null,
-      "processedAt": "2026-07-23T11:54:11+09:00"
+      "processedAt": "2026-08-09T16:43:28+09:00",
+      "title": "2023 ~ 2026년 AI 사용법의 진화",
+      "lastMod": "2026-07-23T00:48:19.000Z"
     },
     {
       "url": "https://kenel.tistory.com/399",
       "rawSeriesName": "Swemo",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-09T16:43:28+09:00",
+      "title": "Swemo - Iteration 5: MVP 1 구현 (2/3)",
+      "lastMod": "2026-04-21T09:40:52.000Z"
     },
     {
       "url": "https://kenel.tistory.com/398",
       "rawSeriesName": "Swemo",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-09T16:43:28+09:00",
+      "title": "Swemo - Iteration 4: MVP 1 구현 (1/3)",
+      "lastMod": "2026-04-09T13:03:37.000Z"
     },
     {
       "url": "https://kenel.tistory.com/396",
       "rawSeriesName": null,
-      "processedAt": "2026-07-23T11:54:11+09:00"
+      "processedAt": "2026-08-09T16:43:28+09:00",
+      "title": "AI 혁신 뒤에 남는 것",
+      "lastMod": "2026-07-23T00:46:32.000Z"
     },
     {
       "url": "https://kenel.tistory.com/395",
       "rawSeriesName": "Swemo",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-09T16:43:28+09:00",
+      "title": "Swemo - Iteration 3: 메모 화면의 State & Event 체계 정리",
+      "lastMod": "2026-04-08T11:29:58.000Z"
     },
     {
       "url": "https://kenel.tistory.com/355",
       "rawSeriesName": "최소한의 행동경제학",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-09T16:43:28+09:00",
+      "title": "최소한의 행동경제학 - 행복",
+      "lastMod": "2026-02-06T06:22:10.000Z"
     },
     {
       "url": "https://kenel.tistory.com/354",
       "rawSeriesName": "최소한의 행동경제학",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-09T16:43:28+09:00",
+      "title": "최소한의 행동경제학 - 돈",
+      "lastMod": "2026-02-06T06:17:44.000Z"
     },
     {
       "url": "https://kenel.tistory.com/353",
       "rawSeriesName": "최소한의 행동경제학",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-09T16:43:28+09:00",
+      "title": "최소한의 행동경제학 - 선택",
+      "lastMod": "2026-02-06T06:05:10.000Z"
     },
     {
       "url": "https://kenel.tistory.com/352",
       "rawSeriesName": "최소한의 행동경제학",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-09T16:43:28+09:00",
+      "title": "최소한의 행동경제학 - 목표",
+      "lastMod": "2026-02-06T06:02:06.000Z"
     },
     {
       "url": "https://kenel.tistory.com/351",
       "rawSeriesName": "최소한의 행동경제학",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-09T16:43:28+09:00",
+      "title": "최소한의 행동경제학 - 대화",
+      "lastMod": "2026-02-06T05:59:22.000Z"
     },
     {
       "url": "https://kenel.tistory.com/350",
       "rawSeriesName": "최소한의 행동경제학",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-09T16:43:28+09:00",
+      "title": "최소한의 행동경제학 - 관계",
+      "lastMod": "2026-02-06T05:58:30.000Z"
     },
     {
       "url": "https://kenel.tistory.com/349",
       "rawSeriesName": "최소한의 행동경제학",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-09T16:43:28+09:00",
+      "title": "최소한의 행동경제학 - 서론",
+      "lastMod": "2026-02-06T06:25:14.000Z"
     },
     {
       "url": "https://kenel.tistory.com/345",
       "rawSeriesName": "디베이터",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-09T16:43:28+09:00",
+      "title": "디베이터 - 토론은 어떻게 확산되는가?",
+      "lastMod": "2026-01-14T23:25:39.000Z"
     },
     {
       "url": "https://kenel.tistory.com/392",
       "rawSeriesName": "Swemo",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-09T16:43:28+09:00",
+      "title": "Swemo - Iteration 2: UI 디자인 방향 탐색(Exploration)",
+      "lastMod": "2026-02-23T03:09:09.000Z"
     },
     {
       "url": "https://kenel.tistory.com/390",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-09T16:43:28+09:00",
+      "title": "컴파일, 바이너리, 바이트 이야기",
+      "lastMod": "2026-05-03T07:00:31.000Z"
     },
     {
       "url": "https://kenel.tistory.com/389",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-09T16:43:28+09:00",
+      "title": "[Gradle] Type-safe Project Accessors 도입 배경 및 사용법",
+      "lastMod": "2025-12-31T04:59:27.000Z"
     },
     {
       "url": "https://kenel.tistory.com/384",
       "rawSeriesName": "Swemo",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-09T16:43:28+09:00",
+      "title": "Swemo - Iteration 1: 메모 앱의 청사진(기초)",
+      "lastMod": "2026-01-17T10:12:42.000Z"
     },
     {
       "url": "https://kenel.tistory.com/385",
@@ -934,7 +994,9 @@
     {
       "url": "https://kenel.tistory.com/157",
       "rawSeriesName": "Dagger2",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-09T16:43:28+09:00",
+      "title": "[Android] Dagger2 - 기초",
+      "lastMod": "2026-08-07T01:28:38.000Z"
     },
     {
       "url": "https://kenel.tistory.com/156",
@@ -1324,7 +1386,9 @@
     {
       "url": "https://kenel.tistory.com/73",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-09T16:43:28+09:00",
+      "title": "동적 프로그래밍 (Dynamic Programming), 상향식(Bottom-up) 및 하향식(Top-down) 접근",
+      "lastMod": "2026-08-09T05:48:20.000Z"
     },
     {
       "url": "https://kenel.tistory.com/72",
@@ -1655,6 +1719,18 @@
       "url": "https://kenel.tistory.com/425",
       "rawSeriesName": "Now in Android",
       "processedAt": "2026-08-03T18:49:32+09:00"
+    },
+    {
+      "url": "https://kenel.tistory.com/427",
+      "title": "Swemo - Iteration 7: 점검과 정리 1",
+      "lastMod": "2026-08-08T08:26:08.000Z",
+      "processedAt": "2026-08-09T16:43:28+09:00"
+    },
+    {
+      "url": "https://kenel.tistory.com/431",
+      "title": "[Android] Dagger2 - 여러 구현체 한꺼번에 주입 (@IntoSet)",
+      "lastMod": "2026-08-07T15:22:21.000Z",
+      "processedAt": "2026-08-09T16:43:28+09:00"
     }
   ]
 }

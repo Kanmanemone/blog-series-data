@@ -1,0 +1,151 @@
+{
+  "speckit": {
+    "listName": "Spec Kit",
+    "posts": [
+      {
+        "url": "https://kenel.tistory.com/417",
+        "title": "Spec Kit - 개요"
+      },
+      {
+        "url": "https://kenel.tistory.com/418",
+        "title": "Spec Kit - \"assess\" 익스텐션"
+      }
+    ]
+  },
+  "2026buildwithaihands-oncampus": {
+    "listName": "2026 Build with AI: Hands-on Campus",
+    "posts": [
+      {
+        "url": "https://kenel.tistory.com/406",
+        "title": "[콘퍼런스] 2026 Build with AI: Hands-on Campus - 참석 후기"
+      },
+      {
+        "url": "https://kenel.tistory.com/412",
+        "title": "2026 Build with AI: Hands-on Campus - 5월부터 과제는 에이전트에게 맡기고 대학생활 즐겨보기 (feat.Kotlin"
+      },
+      {
+        "url": "https://kenel.tistory.com/414",
+        "title": "2026 Build with AI: Hands-on Campus - 내 GitHub 프로젝트 저장소를 분석하고 정리하는 AI 에이전트 만들기"
+      }
+    ]
+  },
+  "swemo": {
+    "listName": "Swemo",
+    "posts": [
+      {
+        "url": "https://kenel.tistory.com/378",
+        "title": "Swemo - Nutri Capture 게시글 시리즈로 이동"
+      },
+      {
+        "url": "https://kenel.tistory.com/384",
+        "title": "Swemo - Iteration 1: 메모 앱의 청사진(기초)"
+      },
+      {
+        "url": "https://kenel.tistory.com/392",
+        "title": "Swemo - Iteration 2: UI 디자인 방향 탐색(Exploration)"
+      },
+      {
+        "url": "https://kenel.tistory.com/395",
+        "title": "Swemo - Iteration 3: 메모 화면의 State & Event 체계 정리"
+      },
+      {
+        "url": "https://kenel.tistory.com/398",
+        "title": "Swemo - Iteration 4: MVP 1 구현 (1/3)"
+      },
+      {
+        "url": "https://kenel.tistory.com/399",
+        "title": "Swemo - Iteration 5: MVP 1 구현 (2/3)"
+      },
+      {
+        "url": "https://kenel.tistory.com/400",
+        "title": "Swemo - Iteration 6: MVP 1 구현 (3/3)"
+      },
+      {
+        "url": "https://kenel.tistory.com/427",
+        "title": "Swemo - Iteration 7: 점검과 정리 1"
+      }
+    ]
+  },
+  "최소한의행동경제학": {
+    "listName": "최소한의 행동경제학",
+    "posts": [
+      {
+        "url": "https://kenel.tistory.com/349",
+        "title": "최소한의 행동경제학 - 서론"
+      },
+      {
+        "url": "https://kenel.tistory.com/350",
+        "title": "최소한의 행동경제학 - 관계"
+      },
+      {
+        "url": "https://kenel.tistory.com/351",
+        "title": "최소한의 행동경제학 - 대화"
+      },
+      {
+        "url": "https://kenel.tistory.com/352",
+        "title": "최소한의 행동경제학 - 목표"
+      },
+      {
+        "url": "https://kenel.tistory.com/353",
+        "title": "최소한의 행동경제학 - 선택"
+      },
+      {
+        "url": "https://kenel.tistory.com/354",
+        "title": "최소한의 행동경제학 - 돈"
+      },
+      {
+        "url": "https://kenel.tistory.com/355",
+        "title": "최소한의 행동경제학 - 행복"
+      }
+    ]
+  },
+  "디베이터": {
+    "listName": "디베이터(Debater)",
+    "posts": [
+      {
+        "url": "https://kenel.tistory.com/210",
+        "title": "디베이터 - 서론"
+      },
+      {
+        "url": "https://kenel.tistory.com/219",
+        "title": "디베이터 - 논제"
+      },
+      {
+        "url": "https://kenel.tistory.com/227",
+        "title": "디베이터 - 논증"
+      },
+      {
+        "url": "https://kenel.tistory.com/238",
+        "title": "디베이터 - 반론"
+      },
+      {
+        "url": "https://kenel.tistory.com/266",
+        "title": "디베이터 - 수사법"
+      },
+      {
+        "url": "https://kenel.tistory.com/268",
+        "title": "디베이터 - 침묵"
+      },
+      {
+        "url": "https://kenel.tistory.com/279",
+        "title": "디베이터 - 자기방어"
+      },
+      {
+        "url": "https://kenel.tistory.com/290",
+        "title": "디베이터 - 교육"
+      },
+      {
+        "url": "https://kenel.tistory.com/298",
+        "title": "디베이터 - 관계"
+      },
+      {
+        "url": "https://kenel.tistory.com/343",
+        "title": "디베이터 - 테크놀로지"
+      },
+      {
+        "url": "https://kenel.tistory.com/345",
+        "title": "디베이터 - 토론은 어떻게 확산되는가?"
+      }
+    ]
+  }
+}
