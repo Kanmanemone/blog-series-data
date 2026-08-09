@@ -49,11 +49,12 @@ function writeSyncState(state, filePath = DEFAULT_STATE_PATH) {
  * 있으면 전달된 필드(url 제외)만 덮어쓰고 나머지 필드(예: deletedAt)는 보존한다 —
  * 002가 markDeleted로 설정한 deletedAt이 001의 원래 새 게시글 처리 경로에서 이
  * 함수를 다시 호출했다고 지워지면 안 되기 때문이다. 새 URL이면 전달된 필드만으로
- * 새 레코드를 만든다.
+ * 새 레코드를 만든다. publishedAt은 게시글 상세 페이지에 노출되는 공개 시각으로,
+ * sitemap 기반 lastMod(최종 수정 시각)와는 별개의 값이다(`/speckit-converge` T024).
  */
-function upsertProcessedPost(processedPosts, { url, title, lastMod, processedAt }) {
+function upsertProcessedPost(processedPosts, { url, title, lastMod, publishedAt, processedAt }) {
   const existingIndex = processedPosts.findIndex((record) => record.url === url);
-  const patch = { title, lastMod, processedAt };
+  const patch = { title, lastMod, publishedAt, processedAt };
   if (existingIndex === -1) {
     processedPosts.push({ url, ...patch });
   } else {

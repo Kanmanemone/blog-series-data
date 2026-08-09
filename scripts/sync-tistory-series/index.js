@@ -43,18 +43,55 @@ function decodeHtmlEntities(text) {
   return text.replace(/&amp;|&lt;|&gt;|&quot;|&#39;/g, (entity) => HTML_ENTITIES[entity]);
 }
 
-// 게시글 페이지를 fetch해 <title> 태그 원문을 읽는다(FR-007).
-async function fetchPostTitle(url) {
+// 게시글 페이지 HTML을 fetch한다(FR-007).
+async function fetchPostHtml(url) {
   const response = await fetch(url);
   if (!response.ok) {
-    throw new Error(`게시글 제목 조회 실패: ${url} (HTTP ${response.status})`);
+    throw new Error(`게시글 조회 실패: ${url} (HTTP ${response.status})`);
   }
-  const html = await response.text();
+  return response.text();
+}
+
+function extractTitle(html, url) {
   const titleMatch = /<title>([^<]*)<\/title>/.exec(html);
   if (!titleMatch) {
     throw new Error(`게시글 제목 조회 실패: ${url} (<title> 태그를 찾을 수 없음)`);
   }
   return decodeHtmlEntities(titleMatch[1]);
+}
+
+/**
+ * 게시글 상세 페이지에 노출되는 공개 시각(예: "2025. 12. 9. 14:40")을 파싱한다.
+ * sitemap의 lastMod(최종 수정 시각)와 별개로, 페이지 자체가 `<span class="date">`로
+ * 사람이 읽는 발행 시각을 보여준다(2026-08-09 실측 — kenel.tistory.com의 서로 다른
+ * 발행연도·시리즈 게시글 4건에서 동일 마크업 확인, `/speckit-converge` T024). 앞자리
+ * 0이 없는 "YYYY. M. D. HH:MM" 형식이며 초 단위가 없다. KST(+09:00) 로컬 시각으로
+ * 간주해 UTC ISO 문자열로 변환한다. 마크업을 찾지 못하거나(테마 변경 등) 형식이
+ * 다르면 null을 반환하고 실행을 중단하지 않는다 — 순서 계산 시 이 값이 없는 항목은
+ * 항상 배열 끝에 배치된다(seriesAssignments.js insertByPublishedAt).
+ */
+function extractPublishedAt(html) {
+  const dateMatch = /<span class="date">([^<]*)<\/span>/.exec(html);
+  if (!dateMatch) return null;
+  const parts = /^(\d{4})\.\s*(\d{1,2})\.\s*(\d{1,2})\.\s*(\d{1,2}):(\d{2})$/.exec(dateMatch[1].trim());
+  if (!parts) return null;
+  const [year, month, day, hour, minute] = parts.slice(1).map(Number);
+  const utcMs = Date.UTC(year, month - 1, day, hour, minute) - 9 * 60 * 60 * 1000;
+  return new Date(utcMs).toISOString();
+}
+
+// 게시글 페이지에서 <title> 태그 원문만 읽는다(FR-007). 001의 형제 게시글 재조회
+// (collectSiblingCandidates 경로)처럼 공개 시각이 필요 없는 호출부가 쓴다.
+async function fetchPostTitle(url) {
+  const html = await fetchPostHtml(url);
+  return extractTitle(html, url);
+}
+
+// 같은 HTML 응답 하나로 제목과 공개 시각을 함께 읽는다(추가 HTTP 요청 없음, SC-004 취지
+// 유지). 001의 신규 게시글 처리 루프와 002의 드리프트 재확인 루프가 쓴다(T024).
+async function fetchPostDetails(url) {
+  const html = await fetchPostHtml(url);
+  return { title: extractTitle(html, url), publishedAt: extractPublishedAt(html) };
 }
 
 // 저장된 cutoff보다 lastmod가 최신인 게시글만 후보로 선별한다(FR-004).
@@ -175,16 +212,16 @@ async function run() {
   // 개별 게시글 조회가 실패해도 그 게시글만 건너뛰고 나머지는 계속 처리한다.
   const processedCandidates = [];
   for (const post of candidates) {
-    let title;
+    let title, publishedAt;
     try {
-      title = await fetchPostTitle(post.canonicalUrl);
+      ({ title, publishedAt } = await fetchPostDetails(post.canonicalUrl));
     } catch (error) {
       console.error(`[sync] ${post.canonicalUrl} 제목 조회 실패, 이 게시글은 건너뜁니다: ${error.message}`);
       continue;
     }
     const rawSeriesName = extractRawSeriesName(title);
     const seriesId = rawSeriesName ? toSeriesId(rawSeriesName) : null;
-    processedCandidates.push({ ...post, title, rawSeriesName, seriesId });
+    processedCandidates.push({ ...post, title, publishedAt, rawSeriesName, seriesId });
   }
 
   const changedFiles = new Set();
@@ -260,6 +297,7 @@ async function run() {
         url: post.canonicalUrl,
         title: post.title,
         lastMod: post.lastmod.toISOString(),
+        publishedAt: post.publishedAt,
         processedAt: runProcessedAt,
       });
     }
@@ -278,9 +316,9 @@ async function run() {
   const driftTouchedUrls = [...toMarkDeleted];
 
   for (const url of toRefetch) {
-    let newTitle;
+    let newTitle, publishedAt;
     try {
-      newTitle = await fetchPostTitle(url);
+      ({ title: newTitle, publishedAt } = await fetchPostDetails(url));
     } catch (error) {
       console.error(`[sync] ${url} 드리프트 재확인용 제목 조회 실패, 이번 실행에서는 건너뜁니다: ${error.message}`);
       continue;
@@ -290,6 +328,7 @@ async function run() {
       url,
       title: newTitle,
       lastMod: currentPost.lastmod.toISOString(),
+      publishedAt,
       processedAt: runProcessedAtForDrift,
     });
     driftTouchedUrls.push(url);
@@ -330,12 +369,12 @@ async function run() {
       const newSeriesId = rawSeriesName ? toSeriesId(rawSeriesName) : null;
 
       if (!newSeriesId || newSeriesId === oldSeriesId) {
-        updateAssignmentForPost(assignments, { url, title: record.title, oldSeriesId });
+        updateAssignmentForPost(assignments, { url, title: record.title, oldSeriesId, publishedAt: record.publishedAt });
         continue;
       }
 
       ensureGroupSeeded(assignments, newSeriesId, findMatchingFile(seriesFilesForAssignment, newSeriesId));
-      reclassifyCandidates.push({ url, title: record.title, oldSeriesId, newSeriesId });
+      reclassifyCandidates.push({ url, title: record.title, oldSeriesId, newSeriesId, publishedAt: record.publishedAt });
     }
 
     resolveReclassifyBatches(assignments, reclassifyCandidates);
@@ -376,6 +415,7 @@ if (require.main === module) {
 module.exports = {
   decodeHtmlEntities,
   fetchPostTitle,
+  extractPublishedAt,
   filterCandidates,
   selectDriftCandidates,
   MAX_UNKNOWN_LASTMOD_REFETCH_PER_RUN,

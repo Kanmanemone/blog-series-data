@@ -9,6 +9,7 @@ const {
   readAssignments,
   writeAssignments,
   ensureGroupSeeded,
+  insertByPublishedAt,
   updateAssignmentForPost,
   resolveReclassifyBatches,
 } = require("../seriesAssignments.js");
@@ -61,9 +62,10 @@ test("ensureGroupSeeded는 없는 그룹을 실제 시리즈 파일 내용으로
     },
   });
   assert.equal(assignments.coroutines.listName, "Coroutines");
+  // *_series.json은 {title, url}만 가지므로 시드된 항목엔 publishedAt이 null이다(T024).
   assert.deepEqual(assignments.coroutines.posts, [
-    { url: "https://kenel.tistory.com/104", title: "Coroutines - 기초" },
-    { url: "https://kenel.tistory.com/110", title: "Coroutines - 취소" },
+    { url: "https://kenel.tistory.com/104", title: "Coroutines - 기초", publishedAt: null },
+    { url: "https://kenel.tistory.com/110", title: "Coroutines - 취소", publishedAt: null },
   ]);
 });
 
@@ -209,4 +211,85 @@ test("updateAssignmentForPost는 oldSeriesId가 null인 삭제 확정 요청을 
       oldSeriesId: null,
     });
   });
+});
+
+// --- T024: 게시글 공개 시각(publishedAt) 기준 삽입 순서 보존 ---
+
+test("insertByPublishedAt은 새 항목을 publishedAt 기준 올바른 위치에 삽입하고 기존 항목 순서는 그대로 둔다", () => {
+  const posts = [
+    { url: "a", title: "A", publishedAt: "2024-01-01T00:00:00.000Z" },
+    { url: "c", title: "C", publishedAt: "2024-03-01T00:00:00.000Z" },
+  ];
+  insertByPublishedAt(posts, { url: "b", title: "B", publishedAt: "2024-02-01T00:00:00.000Z" });
+  assert.deepEqual(posts.map((p) => p.url), ["a", "b", "c"]);
+});
+
+test("insertByPublishedAt은 사용자가 임의로 재배열해 publishedAt 순서와 어긋난 기존 항목들의 상대 순서를 건드리지 않는다", () => {
+  // 사용자가 series-assignments.json에서 손으로 c를 맨 앞으로 옮겨둔 상태(발행순 아님).
+  const posts = [
+    { url: "c", title: "C", publishedAt: "2024-03-01T00:00:00.000Z" },
+    { url: "a", title: "A", publishedAt: "2024-01-01T00:00:00.000Z" },
+  ];
+  insertByPublishedAt(posts, { url: "b", title: "B", publishedAt: "2024-02-01T00:00:00.000Z" });
+  // b는 자신보다 publishedAt이 늦은 첫 항목(c) 앞에 삽입되고, c·a의 상대 순서는 그대로다.
+  assert.deepEqual(posts.map((p) => p.url), ["b", "c", "a"]);
+});
+
+test("insertByPublishedAt은 새 항목에 publishedAt이 없으면 배열 끝에 삽입한다", () => {
+  const posts = [{ url: "a", title: "A", publishedAt: "2024-01-01T00:00:00.000Z" }];
+  insertByPublishedAt(posts, { url: "z", title: "Z", publishedAt: null });
+  assert.deepEqual(posts.map((p) => p.url), ["a", "z"]);
+});
+
+test("insertByPublishedAt은 비교 대상 항목에 publishedAt이 없으면(레거시) 건너뛰고 배열 끝에 삽입한다", () => {
+  const posts = [{ url: "legacy", title: "Legacy", publishedAt: null }];
+  insertByPublishedAt(posts, { url: "new", title: "New", publishedAt: "2024-01-01T00:00:00.000Z" });
+  assert.deepEqual(posts.map((p) => p.url), ["legacy", "new"]);
+});
+
+test("updateAssignmentForPost는 publishedAt을 전달하지 않으면 기존에 기록된 publishedAt을 지우지 않는다", () => {
+  const assignments = {
+    coroutines: {
+      listName: "Coroutines",
+      posts: [{ url: "https://kenel.tistory.com/104", title: "Coroutines - 기초", publishedAt: "2024-01-01T00:00:00.000Z" }],
+    },
+  };
+  updateAssignmentForPost(assignments, {
+    url: "https://kenel.tistory.com/104",
+    title: "Coroutines - 기초(개정판)",
+    oldSeriesId: "coroutines",
+  });
+  assert.equal(assignments.coroutines.posts[0].publishedAt, "2024-01-01T00:00:00.000Z");
+});
+
+test("resolveReclassifyBatches로 새 그룹에 편입되는 게시글은 publishedAt 기준 위치에 삽입되고 기존 항목 순서는 그대로다(T024)", () => {
+  const assignments = {
+    coroutines: {
+      listName: "Coroutines",
+      posts: [{ url: "https://kenel.tistory.com/104", title: "Coroutines - 기초", publishedAt: "2024-05-01T00:00:00.000Z" }],
+    },
+    flow: {
+      listName: "Flow",
+      posts: [
+        { url: "https://kenel.tistory.com/200", title: "Flow - 기초", publishedAt: "2024-01-01T00:00:00.000Z" },
+        { url: "https://kenel.tistory.com/210", title: "Flow - 심화", publishedAt: "2024-06-01T00:00:00.000Z" },
+      ],
+    },
+  };
+
+  resolveReclassifyBatches(assignments, [
+    {
+      url: "https://kenel.tistory.com/104",
+      title: "Flow - 중급",
+      oldSeriesId: "coroutines",
+      newSeriesId: "flow",
+      publishedAt: "2024-03-01T00:00:00.000Z",
+    },
+  ]);
+
+  assert.deepEqual(assignments.flow.posts.map((p) => p.url), [
+    "https://kenel.tistory.com/200",
+    "https://kenel.tistory.com/104",
+    "https://kenel.tistory.com/210",
+  ]);
 });

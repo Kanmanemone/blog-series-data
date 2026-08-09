@@ -4,6 +4,7 @@ const test = require("node:test");
 const assert = require("node:assert/strict");
 const {
   decodeHtmlEntities,
+  extractPublishedAt,
   filterCandidates,
   selectDriftCandidates,
   MAX_UNKNOWN_LASTMOD_REFETCH_PER_RUN,
@@ -16,6 +17,25 @@ test("다섯 개 기본 HTML 엔티티를 원문 문자로 치환한다(FR-007)"
   assert.equal(decodeHtmlEntities("&lt;tag&gt;"), "<tag>");
   assert.equal(decodeHtmlEntities("&quot;quoted&quot;"), '"quoted"');
   assert.equal(decodeHtmlEntities("It&#39;s"), "It's");
+});
+
+test("extractPublishedAt은 <span class=\"date\">의 공개 시각을 KST 기준 ISO 문자열로 변환한다(T024, 2026-08-09 kenel.tistory.com 실측 형식)", () => {
+  const html = '<div class="box-info"><span class="writer">interfacer_han</span><span class="date">2025. 12. 9. 14:40</span></div>';
+  // "2025. 12. 9. 14:40"은 KST(+09:00) 기준이므로 UTC로는 9시간 이전인 05:40.
+  assert.equal(extractPublishedAt(html), "2025-12-09T05:40:00.000Z");
+});
+
+test("extractPublishedAt은 앞자리 0 없는 한 자리 월·일도 정확히 파싱한다", () => {
+  const html = '<span class="date">2026. 8. 7. 22:15</span>';
+  assert.equal(extractPublishedAt(html), "2026-08-07T13:15:00.000Z");
+});
+
+test("extractPublishedAt은 마크업을 찾지 못하면 null을 반환한다(테마 변경 등, 실행 중단 없음)", () => {
+  assert.equal(extractPublishedAt("<html><body>no date here</body></html>"), null);
+});
+
+test("extractPublishedAt은 형식이 예상과 다르면 null을 반환한다", () => {
+  assert.equal(extractPublishedAt('<span class="date">2025-12-09</span>'), null);
 });
 
 test("엔티티가 없는 원문은 그대로 유지한다", () => {

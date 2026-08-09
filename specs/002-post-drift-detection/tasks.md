@@ -263,3 +263,20 @@ Node.js 설치 후 실제 테스트 실행 과정에서 사고로 드러난 실�
 실제 코드를 재검토해 발견한 간극.
 
 - [X] T023 커밋 메시지 제목 줄에 총 변경 건수를 포함하고 본문 각 줄 앞에 "- " 불릿을 붙이도록 scripts/sync-tistory-series/index.js의 renderCommitSummary와 .github/workflows/tistory-series-sync.yml의 커밋 스텝을 수정 per FR-012 (partial) — 사용자가 이번 세션에서 "chore: 티스토리 시리즈 목차 동기화 (총 4건)" 제목 줄과 "- Updated: swemo_series.json (항목 추가 1건)" 형태의 불릿 본문을 원하는 형식으로 직접 제시했으나, 현재 renderCommitSummary(scripts/sync-tistory-series/index.js:117-121)는 각 CUD 항목을 "Label: file (detail)" 줄로만 개행 연결할 뿐 불릿을 붙이지 않고, .github/workflows/tistory-series-sync.yml:42의 커밋 스텝은 제목 줄을 고정 문구 `chore: 티스토리 시리즈 목차 동기화`로만 써서 총 건수가 드러나지 않는다. renderCommitSummary가 각 줄 앞에 `- `를 붙이도록 수정하고, 커밋 스텝이 `.sync-commit-summary.txt`의 줄 수(현재 렌더링 방식상 CUD 항목 수와 1:1 대응)를 세어 제목 줄에 `(총 N건)`을 추가하도록 수정(건수를 세는 구체적 위치 — 워크플로우 셸에서 줄 수를 세는 방식이든 index.js가 별도로 함께 기록하는 방식이든 — 은 구현 단계 재량). scripts/sync-tistory-series/__tests__/index.test.js의 renderCommitSummary 테스트(현재 불릿 없는 형식을 기대, index.test.js:156-171)를 새 형식에 맞게 갱신.
+
+---
+
+## Phase 9: Convergence (4차)
+
+`/speckit-converge`가 이번 세션에서 사용자가 직접 지정한 게시글 순서 보존 요구사항 대비
+실제 코드를 재검토해 발견한 간극.
+
+- [X] T024 CRITICAL — 시리즈 내 게시글 순서가 Constitution I("items는 게시글이 발행된 순서대로 정렬한다", MUST)을 어길 수 있는 문제를 고치고, 이미 존재하는 순서(사용자가 series-assignments.json에서 임의로 재배열한 순서 포함)는 신규 삽입 시에도 건드리지 않도록 수정 per Constitution I, data-model.md "Series Assignment" (contradicts) — `scripts/sync-tistory-series/seriesAssignments.js:41-52`의 `upsertInGroup`은 새로 편입되는 게시글(`resolveReclassifyBatches`가 재분류로 새 seriesId 그룹에 처음 넣는 경우)을 항상 `group.posts` 배열 끝에 push하기만 하고 시각 기준 위치를 계산하지 않는다. 정렬 기준으로 삼을 수 있는 기존 필드 `lastMod`는 sitemap의 "최종 수정 시각"이라 발행 순서와 다르다 — 드리프트 감지로 제목이 편집된 오래된 게시글은 lastMod가 최근으로 갱신되므로 발행 순서 정렬 기준으로 쓰면 부정확하다. 실제 게시글 페이지(예: `https://kenel.tistory.com/378`, 2026-08-09 실측)를 확인한 결과 `<span class="date">2025. 12. 9. 14:40</span>` 형태로 lastMod와 별개인, 사람이 읽는 공개 시각이 페이지 자체에 노출되어 있다(형식: `YYYY. M. D. HH:MM`, 앞자리 0 없음, 초 단위 없음, KST 기준 — `<title>` 추출에 쓰는 것과 같은 정규식 기반 파싱으로 `fetchPostTitle`이 이미 받아온 동일 HTML 응답에서 함께 추출 가능하므로 추가 HTTP 요청 없이 구현 가능, SC-004 취지 유지).
+
+  **구현 지침**:
+  1. `scripts/sync-tistory-series/index.js`의 게시글 상세 페이지 fetch 경로(001의 신규 게시글 처리 루프, 002의 드리프트 재확인 루프 — 둘 다 `fetchPostTitle` 호출 지점)에서 같은 응답 HTML로부터 `<span class="date">([^<]*)<\/span>` 패턴의 공개 시각 텍스트도 함께 추출해, `syncState.js`의 `upsertProcessedPost`가 받는 필드에 `publishedAt`(가칭, `lastMod`·`deletedAt`과 같은 네이밍 규칙)으로 저장한다. `lastMod` 필드는 그대로 유지한다(드리프트 재확인 후보 판정에는 계속 sitemap lastMod를 쓴다 — 이 필드의 역할 자체는 바뀌지 않는다).
+  2. `.github/series-assignments.json`의 `posts[]` 항목 스키마를 `{url, title}`에서 `{url, title, publishedAt}`로 확장한다(data-model.md 갱신은 이 태스크 범위 밖이므로 구현 시점에 함께 반영).
+  3. `seriesAssignments.js`의 `upsertInGroup`을 수정해, `index === -1`(신규 진입)인 경우 `group.posts`를 `publishedAt` 기준으로 스캔해 올바른 위치에 `splice` 삽입한다. **이미 배열에 있는 항목들의 상대 순서는 그대로 두고, 오직 새로 들어오는 항목의 삽입 위치만 계산한다** — 사용자가 명시적으로 요구한 제약("이미 존재하는 순서는 고치지마"). `publishedAt`이 없는 기존 항목(마이그레이션 이전 데이터)과 비교할 때는 안전하게 배열 끝에 삽입한다. `index !== -1`(기존 항목의 제목 갱신)이나 삭제(`removeFromGroup`) 경로는 이미 순서를 건드리지 않으므로 변경 불필요.
+  4. `resolveReclassifyBatches`가 `upsertInGroup`을 호출하는 지점에서 재분류 대상 게시글의 `publishedAt`도 함께 전달하도록 연동한다.
+  5. `scripts/sync-tistory-series/__tests__/seriesAssignments.test.js`에 회귀 테스트 추가: 신규 진입 게시글이 `publishedAt` 기준으로 중간에 삽입되는지, 기존 항목들의 순서가 삽입 전후로 그대로인지(핵심 요구사항), `publishedAt` 없는 레거시 항목과 섞였을 때 끝에 삽입되는지.
+  6. 사용자가 함께 언급한 "`*_series.json`은 선언적 산출물이라 삭제해도 무방하다"는 이미 현재 `reconcile()` 동작과 일치하므로(파일이 없으면 배치 결정만으로 재생성, [reconcile.js:68-79](scripts/sync-tistory-series/reconcile.js#L68-L79)) 별도 구현이 필요 없다.

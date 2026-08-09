@@ -101,6 +101,21 @@ test("upsertProcessedPost는 새 URL이면 배열 끝에 추가한다", () => {
   assert.equal(processedPosts[1].url, "https://kenel.tistory.com/105");
 });
 
+test("upsertProcessedPost는 publishedAt을 lastMod와 별개 필드로 저장한다(T024)", () => {
+  const processedPosts = [];
+  upsertProcessedPost(processedPosts, {
+    url: "https://kenel.tistory.com/104",
+    title: "Coroutines - 기초",
+    lastMod: "2026-07-21T05:00:00.000Z",
+    publishedAt: "2024-01-01T05:00:00.000Z",
+    processedAt: "2026-07-21T15:00:03+09:00",
+  });
+
+  assert.equal(processedPosts[0].publishedAt, "2024-01-01T05:00:00.000Z");
+  // lastMod(최종 수정 시각)와 publishedAt(공개 시각)은 서로 다른 값이어야 한다.
+  assert.notEqual(processedPosts[0].publishedAt, processedPosts[0].lastMod);
+});
+
 test("markDeleted는 일치하는 URL의 레코드에 deletedAt을 설정한다(FR-005)", () => {
   const processedPosts = [
     { url: "https://kenel.tistory.com/104", title: "Coroutines - 기초", lastMod: "2026-07-21T05:00:00.000Z", processedAt: "2026-07-21T15:00:03+09:00" },

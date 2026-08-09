@@ -27,15 +27,38 @@ function writeAssignments(assignments, filePath = DEFAULT_ASSIGNMENTS_PATH) {
  * seriesId 그룹이 배치 결정에 처음 등장할 때 그 시리즈에 이미 있던 다른 게시글들을
  * 시드해 두지 않으면, 재조정(reconcile.js)이 "배치 결정에 posts가 1개뿐"이라고
  * 오판해 아직 멀쩡한 시리즈 파일을 통째로 지워버린다. seriesFile이 없으면(아직
- * 목차에 없던 시리즈) 빈 상태로 새로 시작한다.
+ * 목차에 없던 시리즈) 빈 상태로 새로 시작한다. *_series.json은 {title, url}만
+ * 가지므로 시드되는 항목엔 publishedAt이 없다(null) — insertByPublishedAt이 이런
+ * 항목은 순서 비교에서 제외하고 건드리지 않는다(T024).
  */
 function ensureGroupSeeded(assignments, seriesId, seriesFile) {
   if (assignments[seriesId]) return;
   if (!seriesFile) return;
   assignments[seriesId] = {
     listName: seriesFile.data.listName,
-    posts: seriesFile.data.items.map((item) => ({ url: item.url, title: item.title })),
+    posts: seriesFile.data.items.map((item) => ({ url: item.url, title: item.title, publishedAt: null })),
   };
+}
+
+/**
+ * 새 게시글 항목을 publishedAt(공개 시각, ISO 문자열) 오름차순 위치에 삽입한다.
+ * 이미 배열에 있는 항목들의 상대 순서는 절대 건드리지 않고 새 항목이 들어갈 자리만
+ * 계산한다 — 사용자가 series-assignments.json에서 임의로 재배열한 순서를 신규
+ * 게시글 추가만으로 흐트러뜨리지 않기 위한 명시적 요구사항(`/speckit-converge`
+ * T024). entry나 비교 대상 항목에 publishedAt이 없으면(레거시 데이터, 추출 실패)
+ * 순서를 판단할 근거가 없으므로 배열 끝에 둔다.
+ */
+function insertByPublishedAt(posts, entry) {
+  if (!entry.publishedAt) {
+    posts.push(entry);
+    return;
+  }
+  const index = posts.findIndex((p) => p.publishedAt && p.publishedAt > entry.publishedAt);
+  if (index === -1) {
+    posts.push(entry);
+  } else {
+    posts.splice(index, 0, entry);
+  }
 }
 
 function upsertInGroup(assignments, seriesId, post, listNameIfCreating) {
@@ -45,9 +68,16 @@ function upsertInGroup(assignments, seriesId, post, listNameIfCreating) {
   const group = assignments[seriesId];
   const index = group.posts.findIndex((p) => p.url === post.url);
   if (index === -1) {
-    group.posts.push({ url: post.url, title: post.title });
+    insertByPublishedAt(group.posts, { url: post.url, title: post.title, publishedAt: post.publishedAt ?? null });
   } else {
-    group.posts[index] = { url: post.url, title: post.title };
+    // 기존 위치를 그대로 유지하며 값만 갱신한다(순서 불변). publishedAt이 이번
+    // 호출에서 전달되지 않았거나(undefined) 추출 실패(null)면 기존에 알고 있던
+    // 값을 덮어쓰지 않는다.
+    group.posts[index] = {
+      ...group.posts[index],
+      title: post.title,
+      ...(post.publishedAt ? { publishedAt: post.publishedAt } : {}),
+    };
   }
 }
 
@@ -74,12 +104,12 @@ function removeFromGroup(assignments, seriesId, url) {
  * "이미 목차에 반영된" 게시글만 다루므로(spec.md Edge Cases) 호출자는 그 경우
  * 이 함수를 호출하지 않아야 한다(삭제 확정 경로는 예외 — null이어도 안전하게 no-op).
  */
-function updateAssignmentForPost(assignments, { url, title, deletedAt, oldSeriesId }) {
+function updateAssignmentForPost(assignments, { url, title, deletedAt, oldSeriesId, publishedAt }) {
   if (deletedAt) {
     if (oldSeriesId) removeFromGroup(assignments, oldSeriesId, url);
     return;
   }
-  if (oldSeriesId) upsertInGroup(assignments, oldSeriesId, { url, title });
+  if (oldSeriesId) upsertInGroup(assignments, oldSeriesId, { url, title, publishedAt });
 }
 
 /**
@@ -94,8 +124,12 @@ function updateAssignmentForPost(assignments, { url, title, deletedAt, oldSeries
  * 전체를 함께 세야만 실현된다). 배치를 합쳐도 2개 미만이면 전원 이동을
  * 보류하고 있던 자리에서 제목만 갱신한다(시나리오 5와 동일한 규칙).
  *
- * candidates는 `[{url, title, oldSeriesId, newSeriesId}]` 배열이며, newSeriesId는
- * 호출자가 이미 계산해 전달한다(oldSeriesId와 달라야 하고, null이 아니어야 함).
+ * candidates는 `[{url, title, oldSeriesId, newSeriesId, publishedAt}]` 배열이며,
+ * newSeriesId는 호출자가 이미 계산해 전달한다(oldSeriesId와 달라야 하고, null이
+ * 아니어야 함). 이동이 확정되면(willMove) 새 그룹 안에서의 위치는 publishedAt
+ * 기준으로 계산된다(upsertInGroup → insertByPublishedAt, T024) — 재분류 자체는
+ * "순서"와 무관한 사건이지만, 새 그룹에 처음 들어가는 항목이라 삽입 위치는
+ * 필요하다.
  */
 function resolveReclassifyBatches(assignments, candidates) {
   const byNewSeriesId = new Map();
@@ -108,12 +142,12 @@ function resolveReclassifyBatches(assignments, candidates) {
     const existingSize = assignments[newSeriesId] ? assignments[newSeriesId].posts.length : 0;
     const willMove = existingSize + movers.length >= 2;
 
-    for (const { url, title, oldSeriesId } of movers) {
+    for (const { url, title, oldSeriesId, publishedAt } of movers) {
       if (willMove) {
         if (oldSeriesId) removeFromGroup(assignments, oldSeriesId, url);
-        upsertInGroup(assignments, newSeriesId, { url, title }, extractRawSeriesName(title));
+        upsertInGroup(assignments, newSeriesId, { url, title, publishedAt }, extractRawSeriesName(title));
       } else if (oldSeriesId) {
-        upsertInGroup(assignments, oldSeriesId, { url, title });
+        upsertInGroup(assignments, oldSeriesId, { url, title, publishedAt });
       }
     }
   }
@@ -124,6 +158,7 @@ module.exports = {
   readAssignments,
   writeAssignments,
   ensureGroupSeeded,
+  insertByPublishedAt,
   updateAssignmentForPost,
   resolveReclassifyBatches,
 };

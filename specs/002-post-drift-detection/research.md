@@ -11,7 +11,16 @@ spec.md의 Clarifications 세션이 이미 3계층 구조(처리 이력 → 배�
 
 **Decision**: `.github/series-assignments.json`을 신규로 둔다. `seriesId`를 키로 하는
 객체이며, 각 항목은 `{ listName, posts: [{ url, title }] }`을 갖는다. `posts`는
-001의 `*_series.json` 정렬 규칙과 동일하게 발행 순서(lastMod 오름차순)로 정렬한다.
+001의 `*_series.json` 정렬 규칙과 동일하게 발행 순서로 정렬한다.
+
+**갱신(`/speckit-converge` T024)**: 위 "발행 순서(lastMod 오름차순)"는 실측 결과 부정확한
+설계였다 — `lastMod`는 sitemap의 "최종 수정 시각"이라, 드리프트 감지로 편집된 오래된
+게시글은 `lastMod`가 최근으로 갱신되어 발행 순서와 어긋난다. 게시글 상세 페이지 자체가
+노출하는 별도의 공개 시각(`publishedAt`, `<span class="date">`)을 기준으로 바꾸고, `posts`
+스키마도 `{ url, title, publishedAt }`로 확장했다. 또한 "정렬한다"는 전체 재정렬을
+뜻하지 않는다 — `posts`는 사용자가 직접 재배열할 수 있는 값이라, 실제로는 새로 편입되는
+항목의 삽입 위치만 `publishedAt` 기준으로 계산하고 기존 항목의 상대 순서는 건드리지
+않는다(data-model.md "삽입 순서 규칙" 참고).
 
 **Rationale**: spec.md Clarifications가 "새로 만들어"라고 명시했고, 이 파일은 순수하게
 자동화 내부 상태(재조정의 입력)이지 사용자 대상 콘텐츠가 아니므로 Constitution I(시리즈

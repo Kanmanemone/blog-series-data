@@ -15,6 +15,7 @@
 | `url` | string | Post.canonicalUrl(001과 동일) |
 | `title` | string | 마지막으로 확인한 게시글 제목 전체(신규 — 기존 `rawSeriesName`을 대체). `rawSeriesName`·`seriesId`가 필요하면 이 값에서 그때그때 재계산한다(research.md §2) |
 | `lastMod` | string \| undefined | 마지막으로 확인한 sitemap `<lastmod>` 값(ISO 8601, sitemap이 제공하는 원본 오프셋 그대로 파싱한 `Date`의 `toISOString()`). 이 기능 배포 이전 레코드는 이 필드가 없으며, 없으면 "변경 여부 불명"으로 취급한다(research.md §2) |
+| `publishedAt` | string \| null | 게시글 상세 페이지 자체가 노출하는 공개 시각(`<span class="date">`)을 KST로 해석해 UTC ISO 8601로 변환한 값. `lastMod`(sitemap의 최종 **수정** 시각)와는 별개다 — 편집된 게시글은 `lastMod`만 최신으로 갱신되고 `publishedAt`은 원래 공개 시각을 유지한다. 마크업을 찾지 못하면 `null`(`/speckit-converge` T024) |
 | `processedAt` | string | 처리 시각, `+09:00` 오프셋 ISO 8601 문자열(001과 동일) |
 | `deletedAt` | string \| null | 삭제·비공개 전환이 확정된 시각(`+09:00` 오프셋 ISO 8601). 확정 전에는 `null`이거나 필드 자체가 없음(신규) |
 
@@ -39,16 +40,27 @@ new Date(record.lastMod)` 이고 `record.deletedAt`이 없을 때 후보로 선�
 | 필드 | 타입 | 설명 |
 |---|---|---|
 | (최상위) | object | `seriesId`를 키로 하는 맵 |
-| `<seriesId>.listName` | string | 001의 FR-013과 동일한 규칙 — 이 seriesId에 속한 posts 중 가장 먼저 발행된(lastMod 가장 이른) 게시글의 원시 시리즈명 |
-| `<seriesId>.posts` | array | 이 seriesId에 배치된 게시글 목록, 발행 순서(lastMod 오름차순) |
+| `<seriesId>.listName` | string | 001의 FR-013과 동일한 규칙 — 이 seriesId에 속한 posts 중 가장 먼저 발행된(publishedAt 가장 이른) 게시글의 원시 시리즈명 |
+| `<seriesId>.posts` | array | 이 seriesId에 배치된 게시글 목록. 순서 자체는 사람이 임의로 재배열할 수 있는 값이며(아래 "삽입 순서 규칙" 참고), 시스템은 새로 편입되는 항목의 삽입 위치만 계산할 뿐 기존 항목의 상대 순서는 절대 바꾸지 않는다 |
 | `<seriesId>.posts[].url` | string | Post.canonicalUrl |
 | `<seriesId>.posts[].title` | string | 배치 결정 시점의 게시글 제목 전체 |
+| `<seriesId>.posts[].publishedAt` | string \| null | 처리 이력의 `publishedAt`을 그대로 옮겨온 값. `*_series.json`에서 seed된 레거시 항목(이 필드를 몰랐던 시점의 데이터)은 `null`(`/speckit-converge` T024) |
 
 **부분 갱신 규칙** (FR-006, research.md §3): 이번 실행에서 `title`/`lastMod`가 새로
 갱신됐거나 `deletedAt`이 새로 설정된 처리 이력 레코드에 대해서만, 해당 게시글의 배치
 위치를 재계산한다. 삭제 확정 게시글은 어떤 `posts` 배열에서도 제거되고 어디에도
 다시 추가되지 않는다(FR-007). 재분류 대상이 새 seriesId 그룹에서 2개 미만이 되는
 경우, 이동을 보류하고 기존 위치에 남긴다(옛 seriesId 아래, 새 `title`로).
+
+**삽입 순서 규칙** (`/speckit-converge` T024): `posts` 배열은 사용자가
+`series-assignments.json`을 직접 편집해 임의로 재배열할 수 있는, 순서의 유일한 진실
+공급원이다(`*_series.json`은 재조정 때마다 이 순서로 다시 쓰이는 산출물일 뿐이며, 삭제해도
+다음 실행에 이 파일 기준으로 재생성된다). 기존 항목의 갱신(제목 변경, 삭제 확정)은
+위치를 바꾸지 않는다. 새 항목이 그룹에 처음 편입될 때만(재분류로 새 seriesId에 들어가는
+경우) `publishedAt` 오름차순 기준으로 삽입 위치를 계산한다 — `publishedAt`이 더 늦은
+첫 기존 항목 앞에 끼워 넣고, 그 외 기존 항목들의 상대 순서는 건드리지 않는다. 새
+항목이나 비교 대상 항목에 `publishedAt`이 없으면 위치를 판단할 근거가 없으므로 배열
+끝에 둔다.
 
 **예시**:
 
@@ -57,8 +69,8 @@ new Date(record.lastMod)` 이고 `record.deletedAt`이 없을 때 후보로 선�
   "coroutines": {
     "listName": "Coroutines",
     "posts": [
-      { "url": "https://kenel.tistory.com/104", "title": "Coroutines - 1. 시작" },
-      { "url": "https://kenel.tistory.com/110", "title": "Coroutines - 2. 취소" }
+      { "url": "https://kenel.tistory.com/104", "title": "Coroutines - 1. 시작", "publishedAt": "2024-01-10T02:00:00.000Z" },
+      { "url": "https://kenel.tistory.com/110", "title": "Coroutines - 2. 취소", "publishedAt": "2024-02-05T09:30:00.000Z" }
     ]
   }
 }
