@@ -104,7 +104,7 @@ scripts/
     ├── index.js                  # 확장: 001의 기존 흐름 뒤에 재확인 후보 선별 → 배치 결정 갱신 → 재조정 → CUD 요약 생성을 이어붙임
     ├── sitemap.js                 # 변경 없음(lastmod 파싱은 이미 제공)
     ├── seriesName.js               # 변경 없음(extractRawSeriesName/toSeriesId 재사용)
-    ├── seriesFiles.js             # 변경: collectSiblingCandidates 제거(research.md §5), 001의 파일 나열·쓰기 유틸(listSeriesFiles, writeSeriesFile)은 reconcile.js가 재사용
+    ├── seriesFiles.js             # 변경 없음 — collectSiblingCandidates는 001의 신규 시리즈 생성 흐름이 계속 사용하므로 유지(research.md §5); listSeriesFiles·writeSeriesFile은 reconcile.js가 재사용
     ├── syncState.js               # 확장: processedPosts 필드 확장, 재확인 후보 판정·삭제 확정 헬퍼 추가
     ├── seriesAssignments.js       # 신규: series-assignments.json 읽기/쓰기, 배치 결정 부분 갱신(research.md §3)
     ├── reconcile.js               # 신규: 배치 결정 vs 실제 *_series.json 비교·반영, CUD 요약 생성(research.md §4)

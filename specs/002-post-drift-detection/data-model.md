@@ -18,6 +18,13 @@
 | `processedAt` | string | 처리 시각, `+09:00` 오프셋 ISO 8601 문자열(001과 동일) |
 | `deletedAt` | string \| null | 삭제·비공개 전환이 확정된 시각(`+09:00` 오프셋 ISO 8601). 확정 전에는 `null`이거나 필드 자체가 없음(신규) |
 
+**케이싱 참고**: 001의 sitemap 파싱 결과(Post 엔티티)는 필드명이 소문자 `lastmod`다
+(sitemap.js가 `<lastmod>` 태그명을 그대로 따름). 이 문서의 `processedPosts[].lastMod`는
+그와 별개로 "마지막으로 **확인**한" 값을 뜻하는 처리 이력 필드라는 걸 구분하기 위해
+의도적으로 다른 케이싱(대문자 M)을 쓴다 — 오타가 아니다. 구현 시 두 값을 비교하는
+코드(`sitemapPost.lastmod` vs `record.lastMod`)에서 이름이 비슷해 보여도 서로 다른
+엔티티의 필드임을 주석으로 명시한다(`/speckit-analyze` 발견 사항 I3).
+
 **재확인 후보 판정** (FR-002): `!record.lastMod || currentSitemapPost.lastmod >
 new Date(record.lastMod)` 이고 `record.deletedAt`이 없을 때 후보로 선별한다. 이미
 `deletedAt`이 설정된 레코드는 후보에서 제외한다(FR-013 — 재확인하지 않음).
@@ -77,10 +84,15 @@ Constitution I 스키마를 그대로 유지한다(001과 동일, 이 기능은 
   FR-009, FR-010) — url 기준 누락 항목 추가, 더 이상 없는 항목 제거, title 다른 항목 갱신.
   diff가 없으면 파일을 쓰지 않는다(SC-006).
 
-## Commit Change Summary (커밋 변경 요약, 영속화되지 않음)
+## Commit Change Summary (커밋 변경 요약, 임시 파일)
 
-재조정 단계(§ Series File)가 만드는 CUD 목록을 실행 안에서만 메모리에 들고 있다가
-커밋 메시지 생성에 쓴다. 별도 파일로 저장하지 않는다.
+재조정 단계(§ Series File)가 만드는 CUD 목록을 스크립트 실행 안에서는 메모리에 들고
+있다가, 실행이 끝날 때 변경이 있는 경우에만 저장소 루트의 git 추적 대상이 아닌 임시
+파일(`.sync-commit-summary.txt`)에 사람이 읽는 텍스트로 써낸다. 워크플로우의 스크립트
+실행 스텝과 커밋 스텝은 같은 job 안의 서로 다른 프로세스(`run:` 블록)라 메모리를
+직접 공유할 수 없고, 같은 job의 작업 디렉터리(워크스페이스)만 공유하기 때문이다
+(research.md §6 "전달 방식"). 커밋 스텝이 이 파일을 읽어 커밋 메시지 본문을 구성한 뒤
+삭제한다.
 
 | 필드 | 타입 | 설명 |
 |---|---|---|
@@ -88,8 +100,8 @@ Constitution I 스키마를 그대로 유지한다(001과 동일, 이 기능은 
 | `seriesId` | string | 대상 파일의 seriesId |
 | `detail` | string | 사람이 읽는 요약(예: "제목 갱신 1건, 항목 추가 1건") |
 
-**사용처**: FR-012 — 워크플로우의 커밋 스텝이 이 목록을 받아 커밋 메시지 본문을 구성한다
-(research.md §6, 전달 방식은 tasks 단계에서 확정).
+**사용처**: FR-012 — 스크립트가 이 목록을 `.sync-commit-summary.txt`에 렌더링하고,
+워크플로우의 커밋 스텝이 그 파일을 커밋 메시지 본문으로 사용한다(research.md §6).
 
 ## 상태 전이
 

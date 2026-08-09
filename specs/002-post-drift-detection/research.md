@@ -143,16 +143,28 @@ post의 title로부터 추출한다.
 
 ## §5. 기존 `collectSiblingCandidates` 재사용 여부
 
-**Decision**: 재사용하지 않고 대체한다. `seriesFiles.js`의 `collectSiblingCandidates`는
-001의 "이번 실행 후보 + 과거 이력 중 살아있는 것"을 합쳐 임계값을 세는 1회성 로직이라,
-이번 기능의 "배치 결정 전체를 유지하며 부분 갱신"이라는 지속적 상태 모델과 책임이 다르다.
-다만 그 함수가 하던 계산(sitemap 결측 = 삭제 신호)은 이번 기능의 FR-005 삭제 확정
-로직으로 흡수되므로, 로직 자체가 사라지는 것이 아니라 처리 이력 갱신 경로로 이동한다.
+**Decision**: 건드리지 않는다 — 확장하지도, 제거하지도 않는다. `seriesFiles.js`의
+`collectSiblingCandidates`는 `index.js:123`에서 001의 "매칭되는 기존 파일이 없는
+seriesId는 형제 게시글이 2개 이상일 때만 새 파일 생성"이라는 **여전히 살아있는, 이번
+기능과 무관한** 로직(001 FR-012/013 — 아직 한 번도 목차에 반영되지 않은 신규 게시글을
+대상으로 함)에 계속 쓰이고 있다. 이번 기능은 "이미 목차에 반영된" 게시글만 다루므로
+(spec.md Edge Cases 첫 항목), 이 함수의 책임과는 애초에 겹치지 않는다 — 새 모듈
+(`seriesAssignments.js`, `reconcile.js`)로 분리해 별도로 구현하며, `collectSiblingCandidates`는
+그대로 남긴다.
 
-**Rationale**: `collectSiblingCandidates`를 이번 기능에 맞게 확장하려 하면 "이번 실행
-후보"와 "배치 결정 파일" 두 가지 서로 다른 입력을 받아야 해서 함수 책임이 불명확해진다.
-새 모듈(`seriesAssignments.js`, `reconcile.js`)로 분리하는 편이 001의 기존 함수를
-건드리지 않아 001의 동작(신규 시리즈 생성)에 대한 회귀 위험도 없다.
+**Rationale**: 이 함수가 계산하는 "sitemap 결측"은 001의 신규 시리즈 임계값 판단이라는
+전혀 다른 목적으로 쓰이는 것이지, 이번 기능의 FR-005 삭제 확정 로직이 흡수하거나
+대체할 대상이 아니다(초안에서 이 둘을 같은 계산으로 오인해 제거를 검토했으나, 재확인
+결과 서로 다른 책임임을 확인했다 — `/speckit-analyze` 발견 사항 I1). 새 모듈로 분리하는
+편이 001의 기존 동작(신규 시리즈 생성)에 대한 회귀 위험이 없다는 점은 원래 판단과 같다.
+
+**Alternatives considered**:
+- `collectSiblingCandidates`를 이번 기능에 맞게 확장 — 기각. "이번 실행 후보"와 "배치
+  결정 파일" 두 가지 서로 다른 입력을 받아야 해서 함수 책임이 불명확해지고, 001의 신규
+  시리즈 생성 경로에도 영향을 줄 위험이 있다.
+- `collectSiblingCandidates`를 제거하고 그 계산을 이번 기능 쪽으로 이동 — 기각(최초
+  검토했던 안). `index.js`의 001 신규 시리즈 생성 호출부가 이 함수에 의존하고 있어
+  제거하면 그 경로가 즉시 깨진다.
 
 ## §6. 커밋 메시지 CUD 요약 형식
 
@@ -170,6 +182,14 @@ Deleted: legacy-topic_series.json (항목 부족으로 파일 삭제)
 변경 유형이 하나도 없으면(선별된 후보도 없고 배치 결정과 실제 파일이 이미 일치하면)
 커밋 자체를 만들지 않는다(001의 기존 `git status --porcelain` 판단과 동일, spec.md
 Assumptions).
+
+**전달 방식**: 동기화 스크립트 실행 스텝과 커밋 스텝은 `tistory-series-sync.yml` 안의
+서로 다른 `run:` 스텝(별도 프로세스)이라 메모리를 공유하지 않지만, 같은 job의 작업
+디렉터리(워크스페이스)는 공유한다. 따라서 스크립트가 변경이 있을 때만 저장소 루트에
+git 추적 대상이 아닌 임시 파일(`.sync-commit-summary.txt`)로 CUD 요약을 써 두고,
+커밋 스텝이 그 파일이 있으면 내용을 커밋 메시지 본문으로 쓴 뒤 삭제한다(tasks.md 참고).
+data-model.md "Commit Change Summary"의 "별도 파일로 저장하지 않는다"는 초기 서술은
+이 전달 방식과 모순되어 수정했다(`/speckit-analyze` 발견 사항 I2).
 
 **Rationale**: `.github/workflows/tistory-series-sync.yml`의 커밋 스텝은 지금
 `git status --porcelain`만으로 "변경이 있는지"를 판단하고 고정 문구를 쓴다. CUD 요약을
