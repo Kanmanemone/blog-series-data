@@ -153,7 +153,7 @@ test("buildNewPostCud는 변경된 파일이 없으면 빈 배열을 반환한�
   assert.deepEqual(buildNewPostCud(new Set(), new Map()), []);
 });
 
-test("renderCommitSummary는 CUD 목록을 사람이 읽는 텍스트로 렌더링한다(research.md §6)", () => {
+test("renderCommitSummary는 CUD 목록을 '- ' 불릿이 붙은 텍스트로 렌더링한다(research.md §6, /speckit-converge T023)", () => {
   const text = renderCommitSummary([
     { type: "created", seriesId: "coroutines", detail: "2건" },
     { type: "updated", seriesId: "flow", detail: "제목 갱신 1건, 항목 추가 1건" },
@@ -163,9 +163,9 @@ test("renderCommitSummary는 CUD 목록을 사람이 읽는 텍스트로 렌더�
   assert.equal(
     text,
     [
-      "Created: coroutines_series.json (2건)",
-      "Updated: flow_series.json (제목 갱신 1건, 항목 추가 1건)",
-      "Deleted: legacy_series.json (항목 부족으로 파일 삭제)",
+      "- Created: coroutines_series.json (2건)",
+      "- Updated: flow_series.json (제목 갱신 1건, 항목 추가 1건)",
+      "- Deleted: legacy_series.json (항목 부족으로 파일 삭제)",
     ].join("\n"),
   );
 });

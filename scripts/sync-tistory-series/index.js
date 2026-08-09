@@ -114,9 +114,11 @@ const COMMIT_SUMMARY_PATH = path.join(process.cwd(), ".sync-commit-summary.txt")
 const CUD_TYPE_LABEL = { created: "Created", updated: "Updated", deleted: "Deleted" };
 
 // reconcile()이 반환한 CUD 목록을 사람이 읽는 텍스트로 렌더링한다(research.md §6).
+// 각 줄은 "- "로 시작하는 불릿 목록이며, 커밋 스텝이 줄 수를 세어 커밋 제목의
+// 총 건수(예: "(총 4건)")를 계산할 수 있도록 항목당 정확히 한 줄을 유지한다(FR-012).
 function renderCommitSummary(cudSummary) {
   return cudSummary
-    .map((entry) => `${CUD_TYPE_LABEL[entry.type]}: ${entry.seriesId}_series.json (${entry.detail})`)
+    .map((entry) => `- ${CUD_TYPE_LABEL[entry.type]}: ${entry.seriesId}_series.json (${entry.detail})`)
     .join("\n");
 }
 

@@ -36,8 +36,11 @@ jobs:
           # 삭제한 내역을 커밋 메시지 본문에 담는다(FR-012, SC-007). 요약 파일이
           # 없으면(드리프트 반영 없이 001의 신규 게시글 처리만 있었던 실행) 제목
           # 줄만 사용한다 — 커밋 메시지가 매번 똑같은 고정 문구로 남지 않는다.
+          # 요약 파일이 있으면(items 1건당 1줄, renderCommitSummary) 줄 수를 세어
+          # 제목 줄에 총 건수를 덧붙이고, 본문은 그 줄들(각 줄 "- " 불릿)을 그대로 쓴다.
           if [ -f .sync-commit-summary.txt ]; then
-            git commit -m "chore: 티스토리 시리즈 목차 동기화" -m "$(cat .sync-commit-summary.txt)"
+            change_count=$(wc -l < .sync-commit-summary.txt)
+            git commit -m "chore: 티스토리 시리즈 목차 동기화 (총 ${change_count}건)" -m "$(cat .sync-commit-summary.txt)"
             rm -f .sync-commit-summary.txt
           else
             git commit -m "chore: 티스토리 시리즈 목차 동기화"
