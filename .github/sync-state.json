@@ -455,152 +455,242 @@
     {
       "url": "https://kenel.tistory.com/324",
       "rawSeriesName": "Nutri Capture",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T10:56:15+09:00",
+      "title": "Nutri Capture - NutritionInfo (데이터베이스 모델) 리팩토링",
+      "lastMod": "2025-10-17T02:51:01.000Z",
+      "publishedAt": "2025-03-26T12:43:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/323",
       "rawSeriesName": "Nutri Capture",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T10:56:15+09:00",
+      "title": "Nutri Capture - '피자' 아이콘 임시 적용",
+      "lastMod": "2025-10-17T01:06:32.000Z",
+      "publishedAt": "2025-03-25T09:59:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/321",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T10:56:15+09:00",
+      "title": "[백준] 7576 (토마토)",
+      "lastMod": "2025-04-02T07:40:46.000Z",
+      "publishedAt": "2025-03-21T08:56:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/320",
       "rawSeriesName": "Nutri Capture",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T10:56:15+09:00",
+      "title": "Nutri Capture - '피자' 아이콘 구현",
+      "lastMod": "2025-10-17T01:06:11.000Z",
+      "publishedAt": "2025-03-20T08:24:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/318",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T10:56:15+09:00",
+      "title": "[백준] 11724 (연결 요소의 개수)",
+      "lastMod": "2025-03-19T10:18:44.000Z",
+      "publishedAt": "2025-03-18T07:56:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/317",
       "rawSeriesName": "불안한 완벽주의자를 위한 책",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T10:56:15+09:00",
+      "title": "불안한 완벽주의자를 위한 책 - 선택할 용기",
+      "lastMod": "2025-12-09T03:22:21.000Z",
+      "publishedAt": "2025-03-15T09:46:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/316",
       "rawSeriesName": "불안한 완벽주의자를 위한 책",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T10:56:15+09:00",
+      "title": "불안한 완벽주의자를 위한 책 - 실패를 책임지는 방법",
+      "lastMod": "2026-01-15T23:51:34.000Z",
+      "publishedAt": "2025-03-15T09:46:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/315",
       "rawSeriesName": "불안한 완벽주의자를 위한 책",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T10:56:15+09:00",
+      "title": "불안한 완벽주의자를 위한 책 - 자기친절의 쓸모",
+      "lastMod": "2025-12-09T03:22:53.000Z",
+      "publishedAt": "2025-03-15T09:46:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/314",
       "rawSeriesName": "불안한 완벽주의자를 위한 책",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T10:56:15+09:00",
+      "title": "불안한 완벽주의자를 위한 책 - 인생은 결과가 아닌 과정이다",
+      "lastMod": "2025-12-09T03:23:00.000Z",
+      "publishedAt": "2025-03-15T09:46:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/313",
       "rawSeriesName": "불안한 완벽주의자를 위한 책",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T10:56:15+09:00",
+      "title": "불안한 완벽주의자를 위한 책 - 가치를 설정해야 하는 이유",
+      "lastMod": "2025-12-09T03:23:05.000Z",
+      "publishedAt": "2025-03-15T09:46:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/312",
       "rawSeriesName": "불안한 완벽주의자를 위한 책",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T10:56:15+09:00",
+      "title": "불안한 완벽주의자를 위한 책 - 자기비판의 현실",
+      "lastMod": "2025-12-09T03:23:12.000Z",
+      "publishedAt": "2025-03-15T09:45:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/311",
       "rawSeriesName": "불안한 완벽주의자를 위한 책",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T10:56:15+09:00",
+      "title": "불안한 완벽주의자를 위한 책 - 완벽하지 않은 나로 살아간다는 것",
+      "lastMod": "2025-12-09T03:23:17.000Z",
+      "publishedAt": "2025-03-15T09:45:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/310",
       "rawSeriesName": "불안한 완벽주의자를 위한 책",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T10:56:15+09:00",
+      "title": "불안한 완벽주의자를 위한 책 - 두려움을 다루는 법",
+      "lastMod": "2025-12-09T03:23:24.000Z",
+      "publishedAt": "2025-03-15T09:45:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/309",
       "rawSeriesName": "불안한 완벽주의자를 위한 책",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T10:56:15+09:00",
+      "title": "불안한 완벽주의자를 위한 책 - 성공을 향해 나아간다는 착각",
+      "lastMod": "2025-12-09T03:23:30.000Z",
+      "publishedAt": "2025-03-15T09:45:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/308",
       "rawSeriesName": "불안한 완벽주의자를 위한 책",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T10:56:15+09:00",
+      "title": "불안한 완벽주의자를 위한 책 - 완벽주의, 언제나 지는 게임",
+      "lastMod": "2025-12-09T03:23:36.000Z",
+      "publishedAt": "2025-03-15T09:45:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/307",
       "rawSeriesName": "불안한 완벽주의자를 위한 책",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T10:56:15+09:00",
+      "title": "불안한 완벽주의자를 위한 책 - 서론",
+      "lastMod": "2025-12-09T03:23:42.000Z",
+      "publishedAt": "2025-03-15T09:45:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/302",
       "rawSeriesName": "App layout",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T10:56:15+09:00",
+      "title": "[Android] App layout - Custom layouts",
+      "lastMod": "2025-10-31T18:44:12.000Z",
+      "publishedAt": "2025-02-27T03:06:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/301",
       "rawSeriesName": "UI architecture",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T10:56:15+09:00",
+      "title": "[Android] UI architecture - Phase와 State",
+      "lastMod": "2025-03-01T07:54:29.000Z",
+      "publishedAt": "2025-02-27T03:06:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/300",
       "rawSeriesName": "UI architecture",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T10:56:15+09:00",
+      "title": "[Android] UI architecture - Phases",
+      "lastMod": "2025-12-16T01:49:24.000Z",
+      "publishedAt": "2025-02-27T03:06:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/299",
       "rawSeriesName": "App layout",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T10:56:15+09:00",
+      "title": "[Android] App layout - 기초",
+      "lastMod": "2025-02-27T03:06:10.000Z",
+      "publishedAt": "2025-02-27T03:06:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/290",
       "rawSeriesName": "디베이터",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T10:56:15+09:00",
+      "title": "디베이터 - 교육",
+      "lastMod": "2025-12-09T03:19:41.000Z",
+      "publishedAt": "2025-02-18T11:11:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/296",
       "rawSeriesName": "Pointer input",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T10:56:15+09:00",
+      "title": "[Android] Pointer input - Nested Scroll",
+      "lastMod": "2025-03-01T07:55:32.000Z",
+      "publishedAt": "2025-02-18T09:52:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/295",
       "rawSeriesName": "Pointer input",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T10:56:15+09:00",
+      "title": "[Android] Pointer input - Scroll",
+      "lastMod": "2025-03-01T07:55:49.000Z",
+      "publishedAt": "2025-02-17T14:54:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/293",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T10:56:15+09:00",
+      "title": "[콘퍼런스] AI SEOUL 2025 참석 후기",
+      "lastMod": "2026-01-02T00:42:51.000Z",
+      "publishedAt": "2025-02-12T06:58:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/291",
       "rawSeriesName": "Pointer input",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T10:56:15+09:00",
+      "title": "[Android] Pointer input - Gesture",
+      "lastMod": "2025-03-01T07:57:59.000Z",
+      "publishedAt": "2025-02-08T08:56:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/292",
       "rawSeriesName": "Pointer input",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T10:56:15+09:00",
+      "title": "[Android] Pointer input - AwaitPointerEventScope()의 메소드들",
+      "lastMod": "2025-02-13T07:14:56.000Z",
+      "publishedAt": "2025-02-08T07:50:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/289",
       "rawSeriesName": "Pointer input",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T10:56:15+09:00",
+      "title": "[Android] Pointer input - PointerInputChange, PointerEvent",
+      "lastMod": "2025-03-01T07:47:17.000Z",
+      "publishedAt": "2025-02-07T10:14:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/279",
       "rawSeriesName": "디베이터",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T10:56:15+09:00",
+      "title": "디베이터 - 자기방어",
+      "lastMod": "2026-01-15T00:20:53.000Z",
+      "publishedAt": "2025-02-04T14:31:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/287",
       "rawSeriesName": "Nutri Capture",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T10:56:15+09:00",
+      "title": "Nutri Capture - Hilt 도입",
+      "lastMod": "2025-12-11T08:48:08.000Z",
+      "publishedAt": "2025-02-01T09:30:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/288",
       "rawSeriesName": "Hilt",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T10:56:15+09:00",
+      "title": "[Android] Hilt -  java.lang.RuntimeException: Unable to instantiate application",
+      "lastMod": "2025-03-01T07:50:40.000Z",
+      "publishedAt": "2025-02-01T06:23:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/286",

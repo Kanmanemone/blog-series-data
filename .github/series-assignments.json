@@ -129,11 +129,13 @@
       },
       {
         "url": "https://kenel.tistory.com/279",
-        "title": "디베이터 - 자기방어"
+        "title": "디베이터 - 자기방어",
+        "publishedAt": "2025-02-04T14:31:00.000Z"
       },
       {
         "url": "https://kenel.tistory.com/290",
-        "title": "디베이터 - 교육"
+        "title": "디베이터 - 교육",
+        "publishedAt": "2025-02-18T11:11:00.000Z"
       },
       {
         "url": "https://kenel.tistory.com/298",
@@ -357,22 +359,22 @@
       {
         "url": "https://kenel.tistory.com/287",
         "title": "Nutri Capture - Hilt 도입",
-        "publishedAt": null
+        "publishedAt": "2025-02-01T09:30:00.000Z"
       },
       {
         "url": "https://kenel.tistory.com/320",
         "title": "Nutri Capture - '피자' 아이콘 구현",
-        "publishedAt": null
+        "publishedAt": "2025-03-20T08:24:00.000Z"
       },
       {
         "url": "https://kenel.tistory.com/323",
         "title": "Nutri Capture - '피자' 아이콘 임시 적용",
-        "publishedAt": null
+        "publishedAt": "2025-03-25T09:59:00.000Z"
       },
       {
         "url": "https://kenel.tistory.com/324",
         "title": "Nutri Capture - NutritionInfo (데이터베이스 모델) 리팩토링",
-        "publishedAt": null
+        "publishedAt": "2025-03-26T12:43:00.000Z"
       },
       {
         "url": "https://kenel.tistory.com/325",
@@ -422,32 +424,122 @@
       {
         "url": "https://kenel.tistory.com/289",
         "title": "[Android] Pointer input - PointerInputChange, PointerEvent",
-        "publishedAt": null
+        "publishedAt": "2025-02-07T10:14:00.000Z"
       },
       {
         "url": "https://kenel.tistory.com/292",
         "title": "[Android] Pointer input - AwaitPointerEventScope()의 메소드들",
-        "publishedAt": null
+        "publishedAt": "2025-02-08T07:50:00.000Z"
       },
       {
         "url": "https://kenel.tistory.com/291",
         "title": "[Android] Pointer input - Gesture",
-        "publishedAt": null
+        "publishedAt": "2025-02-08T08:56:00.000Z"
       },
       {
         "url": "https://kenel.tistory.com/295",
         "title": "[Android] Pointer input - Scroll",
-        "publishedAt": null
+        "publishedAt": "2025-02-17T14:54:00.000Z"
       },
       {
         "url": "https://kenel.tistory.com/296",
         "title": "[Android] Pointer input - Nested Scroll",
-        "publishedAt": null
+        "publishedAt": "2025-02-18T09:52:00.000Z"
       },
       {
         "url": "https://kenel.tistory.com/322",
         "title": "[Android] Pointer input - Drag",
         "publishedAt": "2025-05-13T04:23:00.000Z"
+      }
+    ]
+  },
+  "불안한완벽주의자를위한책": {
+    "listName": "불안한 완벽주의자를 위한 책",
+    "posts": [
+      {
+        "url": "https://kenel.tistory.com/307",
+        "title": "불안한 완벽주의자를 위한 책 - 서론",
+        "publishedAt": "2025-03-15T09:45:00.000Z"
+      },
+      {
+        "url": "https://kenel.tistory.com/308",
+        "title": "불안한 완벽주의자를 위한 책 - 완벽주의, 언제나 지는 게임",
+        "publishedAt": "2025-03-15T09:45:00.000Z"
+      },
+      {
+        "url": "https://kenel.tistory.com/309",
+        "title": "불안한 완벽주의자를 위한 책 - 성공을 향해 나아간다는 착각",
+        "publishedAt": "2025-03-15T09:45:00.000Z"
+      },
+      {
+        "url": "https://kenel.tistory.com/310",
+        "title": "불안한 완벽주의자를 위한 책 - 두려움을 다루는 법",
+        "publishedAt": "2025-03-15T09:45:00.000Z"
+      },
+      {
+        "url": "https://kenel.tistory.com/311",
+        "title": "불안한 완벽주의자를 위한 책 - 완벽하지 않은 나로 살아간다는 것",
+        "publishedAt": "2025-03-15T09:45:00.000Z"
+      },
+      {
+        "url": "https://kenel.tistory.com/312",
+        "title": "불안한 완벽주의자를 위한 책 - 자기비판의 현실",
+        "publishedAt": "2025-03-15T09:45:00.000Z"
+      },
+      {
+        "url": "https://kenel.tistory.com/313",
+        "title": "불안한 완벽주의자를 위한 책 - 가치를 설정해야 하는 이유",
+        "publishedAt": "2025-03-15T09:46:00.000Z"
+      },
+      {
+        "url": "https://kenel.tistory.com/314",
+        "title": "불안한 완벽주의자를 위한 책 - 인생은 결과가 아닌 과정이다",
+        "publishedAt": "2025-03-15T09:46:00.000Z"
+      },
+      {
+        "url": "https://kenel.tistory.com/315",
+        "title": "불안한 완벽주의자를 위한 책 - 자기친절의 쓸모",
+        "publishedAt": "2025-03-15T09:46:00.000Z"
+      },
+      {
+        "url": "https://kenel.tistory.com/316",
+        "title": "불안한 완벽주의자를 위한 책 - 실패를 책임지는 방법",
+        "publishedAt": "2025-03-15T09:46:00.000Z"
+      },
+      {
+        "url": "https://kenel.tistory.com/317",
+        "title": "불안한 완벽주의자를 위한 책 - 선택할 용기",
+        "publishedAt": "2025-03-15T09:46:00.000Z"
+      }
+    ]
+  },
+  "applayout": {
+    "listName": "App layout",
+    "posts": [
+      {
+        "url": "https://kenel.tistory.com/299",
+        "title": "[Android] App layout - 기초",
+        "publishedAt": "2025-02-27T03:06:00.000Z"
+      },
+      {
+        "url": "https://kenel.tistory.com/302",
+        "title": "[Android] App layout - Custom layouts",
+        "publishedAt": "2025-02-27T03:06:00.000Z"
+      }
+    ]
+  },
+  "uiarchitecture": {
+    "listName": "UI architecture",
+    "posts": [
+      {
+        "url": "https://kenel.tistory.com/300",
+        "title": "[Android] UI architecture - Phases",
+        "publishedAt": "2025-02-27T03:06:00.000Z"
+      },
+      {
+        "url": "https://kenel.tistory.com/301",
+        "title": "[Android] UI architecture - Phase와 State",
+        "publishedAt": "2025-02-27T03:06:00.000Z"
       }
     ]
   }
