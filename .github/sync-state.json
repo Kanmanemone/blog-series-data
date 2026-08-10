@@ -695,152 +695,242 @@
     {
       "url": "https://kenel.tistory.com/286",
       "rawSeriesName": "Nutri Capture",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T16:45:10+09:00",
+      "title": "Nutri Capture - windowInsetsPadding() 사용",
+      "lastMod": "2025-10-17T01:05:37.000Z",
+      "publishedAt": "2025-01-29T12:25:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/285",
       "rawSeriesName": "Nutri Capture",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T16:45:10+09:00",
+      "title": "Nutri Capture - 코드 정리",
+      "lastMod": "2025-03-01T07:51:05.000Z",
+      "publishedAt": "2025-01-29T07:52:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/284",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T16:45:10+09:00",
+      "title": "앞으로의 App 개발 일지 작성",
+      "lastMod": "2025-03-01T07:51:21.000Z",
+      "publishedAt": "2025-01-29T05:37:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/283",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T16:45:10+09:00",
+      "title": "일론 머스크의 사고법",
+      "lastMod": "2026-02-24T05:54:17.000Z",
+      "publishedAt": "2025-01-24T12:35:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/281",
       "rawSeriesName": "Nutri Capture",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T16:45:10+09:00",
+      "title": "Nutri Capture - 아이콘 제작 (1차)",
+      "lastMod": "2025-10-17T01:04:27.000Z",
+      "publishedAt": "2025-01-12T14:09:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/280",
       "rawSeriesName": "Nutri Capture",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T16:45:10+09:00",
+      "title": "Nutri Capture - StateFlow로 전환",
+      "lastMod": "2025-10-17T01:04:44.000Z",
+      "publishedAt": "2025-01-02T11:12:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/278",
       "rawSeriesName": "Nutri Capture",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T16:45:10+09:00",
+      "title": "Nutri Capture - ChatBar에 ViewModel 연결",
+      "lastMod": "2025-10-17T02:40:53.000Z",
+      "publishedAt": "2025-01-02T06:45:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/277",
       "rawSeriesName": "Nutri Capture",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T16:45:10+09:00",
+      "title": "Nutri Capture - 개발 일정표 (1차)",
+      "lastMod": "2025-10-17T01:03:30.000Z",
+      "publishedAt": "2024-12-30T19:13:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/275",
       "rawSeriesName": "Nutri Capture",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T16:45:10+09:00",
+      "title": "Nutri Capture - Dimens와 함께 ChatBar 만들기",
+      "lastMod": "2025-10-17T02:39:54.000Z",
+      "publishedAt": "2024-12-30T16:25:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/274",
       "rawSeriesName": "Nutri Capture",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T16:45:10+09:00",
+      "title": "Nutri Capture - Typography",
+      "lastMod": "2025-10-17T01:02:44.000Z",
+      "publishedAt": "2024-12-28T03:08:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/271",
       "rawSeriesName": "Nutri Capture",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T16:45:10+09:00",
+      "title": "Nutri Capture - bottomBar에 들어갈 컴포넌트의 동적 변경",
+      "lastMod": "2025-10-17T01:02:24.000Z",
+      "publishedAt": "2024-12-18T03:15:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/268",
       "rawSeriesName": "디베이터",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T16:45:10+09:00",
+      "title": "디베이터 - 침묵",
+      "lastMod": "2025-12-09T03:19:24.000Z",
+      "publishedAt": "2024-12-17T08:25:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/270",
       "rawSeriesName": "Nutri Capture",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T16:45:10+09:00",
+      "title": "Nutri Capture - 이진 탐색 적용",
+      "lastMod": "2025-10-17T01:01:45.000Z",
+      "publishedAt": "2024-12-17T01:31:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/269",
       "rawSeriesName": "Nutri Capture",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T16:45:10+09:00",
+      "title": "Nutri Capture - item 추가ㆍ제거 애니메이션",
+      "lastMod": "2025-10-17T02:31:10.000Z",
+      "publishedAt": "2024-12-15T05:04:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/266",
       "rawSeriesName": "디베이터",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T16:45:10+09:00",
+      "title": "디베이터 - 수사법",
+      "lastMod": "2025-12-09T03:19:14.000Z",
+      "publishedAt": "2024-12-10T08:29:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/238",
       "rawSeriesName": "디베이터",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T16:45:10+09:00",
+      "title": "디베이터 - 반론",
+      "lastMod": "2025-12-09T03:19:07.000Z",
+      "publishedAt": "2024-11-30T11:24:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/265",
       "rawSeriesName": "Nutri Capture",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T16:45:10+09:00",
+      "title": "Nutri Capture - INSERT 및 DELETE 버튼 구현",
+      "lastMod": "2025-10-17T02:27:35.000Z",
+      "publishedAt": "2024-11-28T09:24:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/264",
       "rawSeriesName": "Nutri Capture",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T16:45:10+09:00",
+      "title": "Nutri Capture - DeleteDayMeal 이벤트 추가",
+      "lastMod": "2025-10-17T01:00:47.000Z",
+      "publishedAt": "2024-11-28T08:59:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/263",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T16:45:10+09:00",
+      "title": "[백준] 10026 (적록색약)",
+      "lastMod": "2024-11-27T15:08:02.000Z",
+      "publishedAt": "2024-11-26T16:07:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/262",
       "rawSeriesName": "Nutri Capture",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T16:45:10+09:00",
+      "title": "Nutri Capture - DAO 속 논리적 오류 수정",
+      "lastMod": "2025-10-17T01:00:28.000Z",
+      "publishedAt": "2024-11-26T10:58:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/261",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T16:45:10+09:00",
+      "title": "[백준] 15829 (Hashing)",
+      "lastMod": "2024-11-16T17:46:41.000Z",
+      "publishedAt": "2024-11-16T17:40:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/260",
       "rawSeriesName": "Nutri Capture",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T16:45:10+09:00",
+      "title": "Nutri Capture - 무한 스크롤 로직 리팩토링",
+      "lastMod": "2025-10-17T02:21:39.000Z",
+      "publishedAt": "2024-11-15T16:34:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/259",
       "rawSeriesName": "Nutri Capture",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T16:45:10+09:00",
+      "title": "Nutri Capture - Room 무결성 보완",
+      "lastMod": "2025-10-17T00:59:30.000Z",
+      "publishedAt": "2024-11-14T15:06:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/258",
       "rawSeriesName": "Nutri Capture",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T16:45:10+09:00",
+      "title": "Nutri Capture - 채팅UI 구조 잡기",
+      "lastMod": "2025-10-17T02:17:49.000Z",
+      "publishedAt": "2024-11-13T15:01:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/257",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T16:45:10+09:00",
+      "title": "[백준] 14940 (쉬운 최단거리)",
+      "lastMod": "2024-11-13T06:15:39.000Z",
+      "publishedAt": "2024-11-12T15:01:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/256",
       "rawSeriesName": "Nutri Capture",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T16:45:10+09:00",
+      "title": "Nutri Capture - Room 가상 테이블의 레코드를 필요한 만큼만 가져오기",
+      "lastMod": "2025-10-17T00:58:51.000Z",
+      "publishedAt": "2024-11-11T15:08:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/255",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T16:45:10+09:00",
+      "title": "[백준] 11047 (동전 0)",
+      "lastMod": "2024-11-12T15:10:15.000Z",
+      "publishedAt": "2024-11-10T15:47:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/254",
       "rawSeriesName": "Nutri Capture",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T16:45:10+09:00",
+      "title": "Nutri Capture - Room 가상 테이블",
+      "lastMod": "2025-10-17T00:58:28.000Z",
+      "publishedAt": "2024-11-10T07:18:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/252",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T16:45:10+09:00",
+      "title": "[백준] 18870 (좌표 압축)",
+      "lastMod": "2024-11-10T03:44:04.000Z",
+      "publishedAt": "2024-11-09T13:57:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/249",
       "rawSeriesName": "Nutri Capture",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T16:45:10+09:00",
+      "title": "Nutri Capture - 채팅 UI",
+      "lastMod": "2025-10-17T00:58:05.000Z",
+      "publishedAt": "2024-11-08T08:02:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/248",
