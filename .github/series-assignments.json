@@ -105,15 +105,18 @@
     "posts": [
       {
         "url": "https://kenel.tistory.com/210",
-        "title": "디베이터 - 서론"
+        "title": "디베이터 - 서론",
+        "publishedAt": "2024-09-26T10:37:00.000Z"
       },
       {
         "url": "https://kenel.tistory.com/219",
-        "title": "디베이터 - 논제"
+        "title": "디베이터 - 논제",
+        "publishedAt": "2024-09-28T18:33:00.000Z"
       },
       {
         "url": "https://kenel.tistory.com/227",
-        "title": "디베이터 - 논증"
+        "title": "디베이터 - 논증",
+        "publishedAt": "2024-10-17T12:22:00.000Z"
       },
       {
         "url": "https://kenel.tistory.com/238",
@@ -182,82 +185,82 @@
       {
         "url": "https://kenel.tistory.com/209",
         "title": "Nutri Capture - 살아남는 앱이 되려면",
-        "publishedAt": null
+        "publishedAt": "2024-09-22T09:04:00.000Z"
       },
       {
         "url": "https://kenel.tistory.com/220",
         "title": "Nutri Capture - Scaffold",
-        "publishedAt": null
+        "publishedAt": "2024-09-25T06:59:00.000Z"
       },
       {
         "url": "https://kenel.tistory.com/221",
         "title": "Nutri Capture - NavHost",
-        "publishedAt": null
+        "publishedAt": "2024-09-26T09:59:00.000Z"
       },
       {
         "url": "https://kenel.tistory.com/226",
         "title": "Nutri Capture - NavigationBar 컴포넌트",
-        "publishedAt": null
+        "publishedAt": "2024-09-28T08:20:00.000Z"
       },
       {
         "url": "https://kenel.tistory.com/223",
         "title": "Nutri Capture - 고유인지감각, 새 UI 스케치",
-        "publishedAt": null
+        "publishedAt": "2024-10-03T09:38:00.000Z"
       },
       {
         "url": "https://kenel.tistory.com/228",
         "title": "Nutri Capture - NutrientScreen 구조 잡기",
-        "publishedAt": null
+        "publishedAt": "2024-10-04T08:20:00.000Z"
       },
       {
         "url": "https://kenel.tistory.com/230",
         "title": "Nutri Capture - NutrientScreen의 무한 스크롤",
-        "publishedAt": null
+        "publishedAt": "2024-10-10T17:46:00.000Z"
       },
       {
         "url": "https://kenel.tistory.com/231",
         "title": "Nutri Capture - 무한 스크롤 로직 분리",
-        "publishedAt": null
+        "publishedAt": "2024-10-11T20:20:00.000Z"
       },
       {
         "url": "https://kenel.tistory.com/232",
         "title": "Nutri Capture - 역방향 무한 스크롤",
-        "publishedAt": null
+        "publishedAt": "2024-10-11T20:30:00.000Z"
       },
       {
         "url": "https://kenel.tistory.com/233",
         "title": "Nutri Capture - requestScrollToItem()을 이용한 깔끔한 역방향 무한 스크롤",
-        "publishedAt": null
+        "publishedAt": "2024-10-16T00:36:00.000Z"
       },
       {
         "url": "https://kenel.tistory.com/234",
         "title": "Nutri Capture - 스크롤 로직 View에 일임",
-        "publishedAt": null
+        "publishedAt": "2024-10-16T14:07:00.000Z"
       },
       {
         "url": "https://kenel.tistory.com/235",
         "title": "Nutri Capture - Card 컴포넌트",
-        "publishedAt": null
+        "publishedAt": "2024-10-16T17:29:00.000Z"
       },
       {
         "url": "https://kenel.tistory.com/236",
         "title": "Nutri Capture - 새 ERD와 Room의 @Entity 정의",
-        "publishedAt": null
+        "publishedAt": "2024-10-23T02:58:00.000Z"
       },
       {
         "url": "https://kenel.tistory.com/237",
         "title": "Nutri Capture - Room의 @DAO, @Database 구현",
-        "publishedAt": null
+        "publishedAt": "2024-10-23T03:26:00.000Z"
       },
       {
         "url": "https://kenel.tistory.com/239",
         "title": "Nutri Capture - ViewModel에 데이터베이스 Model을 생성자 주입",
-        "publishedAt": null
+        "publishedAt": "2024-10-23T05:36:00.000Z"
       },
       {
         "url": "https://kenel.tistory.com/240",
         "title": "Nutri Capture - View에서 데이터베이스의 INSERT 동작 트리거",
-        "publishedAt": null
+        "publishedAt": "2024-10-23T06:11:00.000Z"
       },
       {
         "url": "https://kenel.tistory.com/249",
@@ -543,6 +546,111 @@
         "url": "https://kenel.tistory.com/301",
         "title": "[Android] UI architecture - Phase와 State",
         "publishedAt": "2025-02-27T03:06:00.000Z"
+      }
+    ]
+  },
+  "그래프": {
+    "listName": "그래프(Graph)",
+    "posts": [
+      {
+        "url": "https://kenel.tistory.com/78",
+        "title": "그래프 - 그래프의 종류와 표현",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/211",
+        "title": "그래프 - 너비 우선 탐색 (BFS, Breadth-First Search)",
+        "publishedAt": "2024-09-23T11:27:00.000Z"
+      },
+      {
+        "url": "https://kenel.tistory.com/212",
+        "title": "그래프 - 깊이 우선 탐색 (DFS, Depth-First Search)",
+        "publishedAt": "2024-09-23T11:27:00.000Z"
+      }
+    ]
+  },
+  "jetpackcompose": {
+    "listName": "Jetpack Compose",
+    "posts": [
+      {
+        "url": "https://kenel.tistory.com/175",
+        "title": "[Android] Jetpack Compose - 기초",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/176",
+        "title": "[Android] Jetpack Compose - Surface",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/177",
+        "title": "[Android] Jetpack Compose - Modifier",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/178",
+        "title": "[Android] Jetpack Compose - Layout, Arrangement, Alignment",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/179",
+        "title": "[Android] Jetpack Compose - Button",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/181",
+        "title": "[Android] Jetpack Compose - Lazy Column",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/184",
+        "title": "[Android] Jetpack Compose - State 기초",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/185",
+        "title": "[Android] Jetpack Compose - State Remembering",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/186",
+        "title": "[Android] Jetpack Compose - State Hoisting",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/187",
+        "title": "[Android] Jetpack Compose - ViewModel에서 State 사용하기",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/201",
+        "title": "[Android] Jetpack Compose - StateFlow와 SharedFlow",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/180",
+        "title": "[Android] Jetpack Compose - Scaffold",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/189",
+        "title": "[Android] Jetpack Compose - Side-effects",
+        "publishedAt": "2024-09-06T10:02:00.000Z"
+      },
+      {
+        "url": "https://kenel.tistory.com/192",
+        "title": "[Android] Jetpack Compose - 객체 지향적 UI 레이어 설계",
+        "publishedAt": "2024-09-11T08:54:00.000Z"
+      },
+      {
+        "url": "https://kenel.tistory.com/202",
+        "title": "[Android] Jetpack Compose - Navigation 기초",
+        "publishedAt": "2024-09-12T07:06:00.000Z"
+      },
+      {
+        "url": "https://kenel.tistory.com/203",
+        "title": "[Android] Jetpack Compose - Navigation의 Destination 간 데이터 전달 (NavBackStackEntry.",
+        "publishedAt": "2024-09-13T04:54:00.000Z"
       }
     ]
   }

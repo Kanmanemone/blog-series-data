@@ -935,152 +935,242 @@
     {
       "url": "https://kenel.tistory.com/248",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T22:12:17+09:00",
+      "title": "[백준] 11053 (가장 긴 증가하는 부분 수열)",
+      "lastMod": "2024-11-13T17:07:26.000Z",
+      "publishedAt": "2024-11-07T10:24:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/243",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T22:12:17+09:00",
+      "title": "그리디 알고리즘 (Greedy Algorithm)",
+      "lastMod": "2024-12-06T17:01:39.000Z",
+      "publishedAt": "2024-10-30T08:33:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/242",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T22:12:17+09:00",
+      "title": "[백준] 1931 (회의실 배정)",
+      "lastMod": "2024-10-30T08:33:24.000Z",
+      "publishedAt": "2024-10-30T08:33:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/241",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T22:12:17+09:00",
+      "title": "[백준] 1149 (RGB거리)",
+      "lastMod": "2024-10-27T10:51:48.000Z",
+      "publishedAt": "2024-10-27T10:49:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/240",
       "rawSeriesName": "Nutri Capture",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T22:12:17+09:00",
+      "title": "Nutri Capture - View에서 데이터베이스의 INSERT 동작 트리거",
+      "lastMod": "2025-10-17T00:57:47.000Z",
+      "publishedAt": "2024-10-23T06:11:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/239",
       "rawSeriesName": "Nutri Capture",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T22:12:17+09:00",
+      "title": "Nutri Capture - ViewModel에 데이터베이스 Model을 생성자 주입",
+      "lastMod": "2025-10-17T00:57:18.000Z",
+      "publishedAt": "2024-10-23T05:36:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/237",
       "rawSeriesName": "Nutri Capture",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T22:12:17+09:00",
+      "title": "Nutri Capture - Room의 @DAO, @Database 구현",
+      "lastMod": "2025-10-17T02:10:59.000Z",
+      "publishedAt": "2024-10-23T03:26:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/236",
       "rawSeriesName": "Nutri Capture",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T22:12:17+09:00",
+      "title": "Nutri Capture - 새 ERD와 Room의 @Entity 정의",
+      "lastMod": "2025-10-17T00:56:23.000Z",
+      "publishedAt": "2024-10-23T02:58:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/227",
       "rawSeriesName": "디베이터",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T22:12:17+09:00",
+      "title": "디베이터 - 논증",
+      "lastMod": "2025-12-09T03:18:57.000Z",
+      "publishedAt": "2024-10-17T12:22:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/235",
       "rawSeriesName": "Nutri Capture",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T22:12:17+09:00",
+      "title": "Nutri Capture - Card 컴포넌트",
+      "lastMod": "2025-10-17T00:56:01.000Z",
+      "publishedAt": "2024-10-16T17:29:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/234",
       "rawSeriesName": "Nutri Capture",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T22:12:17+09:00",
+      "title": "Nutri Capture - 스크롤 로직 View에 일임",
+      "lastMod": "2025-10-17T01:56:19.000Z",
+      "publishedAt": "2024-10-16T14:07:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/233",
       "rawSeriesName": "Nutri Capture",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T22:12:17+09:00",
+      "title": "Nutri Capture - requestScrollToItem()을 이용한 깔끔한 역방향 무한 스크롤",
+      "lastMod": "2025-10-17T00:55:17.000Z",
+      "publishedAt": "2024-10-16T00:36:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/232",
       "rawSeriesName": "Nutri Capture",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T22:12:17+09:00",
+      "title": "Nutri Capture - 역방향 무한 스크롤",
+      "lastMod": "2025-10-17T00:55:00.000Z",
+      "publishedAt": "2024-10-11T20:30:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/231",
       "rawSeriesName": "Nutri Capture",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T22:12:17+09:00",
+      "title": "Nutri Capture - 무한 스크롤 로직 분리",
+      "lastMod": "2025-10-17T00:54:22.000Z",
+      "publishedAt": "2024-10-11T20:20:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/230",
       "rawSeriesName": "Nutri Capture",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T22:12:17+09:00",
+      "title": "Nutri Capture - NutrientScreen의 무한 스크롤",
+      "lastMod": "2025-10-17T01:52:31.000Z",
+      "publishedAt": "2024-10-10T17:46:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/228",
       "rawSeriesName": "Nutri Capture",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T22:12:17+09:00",
+      "title": "Nutri Capture - NutrientScreen 구조 잡기",
+      "lastMod": "2025-10-17T01:50:10.000Z",
+      "publishedAt": "2024-10-04T08:20:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/223",
       "rawSeriesName": "Nutri Capture",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T22:12:17+09:00",
+      "title": "Nutri Capture - 고유인지감각, 새 UI 스케치",
+      "lastMod": "2025-10-17T00:53:00.000Z",
+      "publishedAt": "2024-10-03T09:38:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/219",
       "rawSeriesName": "디베이터",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T22:12:17+09:00",
+      "title": "디베이터 - 논제",
+      "lastMod": "2025-12-17T14:08:16.000Z",
+      "publishedAt": "2024-09-28T18:33:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/226",
       "rawSeriesName": "Nutri Capture",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T22:12:17+09:00",
+      "title": "Nutri Capture - NavigationBar 컴포넌트",
+      "lastMod": "2025-10-17T01:42:49.000Z",
+      "publishedAt": "2024-09-28T08:20:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/210",
       "rawSeriesName": "디베이터",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T22:12:17+09:00",
+      "title": "디베이터 - 서론",
+      "lastMod": "2025-12-09T03:18:30.000Z",
+      "publishedAt": "2024-09-26T10:37:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/221",
       "rawSeriesName": "Nutri Capture",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T22:12:17+09:00",
+      "title": "Nutri Capture - NavHost",
+      "lastMod": "2025-10-17T00:52:10.000Z",
+      "publishedAt": "2024-09-26T09:59:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/220",
       "rawSeriesName": "Nutri Capture",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T22:12:17+09:00",
+      "title": "Nutri Capture - Scaffold",
+      "lastMod": "2025-10-17T01:39:05.000Z",
+      "publishedAt": "2024-09-25T06:59:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/217",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T22:12:17+09:00",
+      "title": "[백준] 1260 (DFS와 BFS)",
+      "lastMod": "2024-09-26T14:13:34.000Z",
+      "publishedAt": "2024-09-24T04:09:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/212",
       "rawSeriesName": "그래프",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T22:12:17+09:00",
+      "title": "그래프 - 깊이 우선 탐색 (DFS, Depth-First Search)",
+      "lastMod": "2025-04-23T08:27:38.000Z",
+      "publishedAt": "2024-09-23T11:27:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/211",
       "rawSeriesName": "그래프",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T22:12:17+09:00",
+      "title": "그래프 - 너비 우선 탐색 (BFS, Breadth-First Search)",
+      "lastMod": "2025-04-04T06:24:09.000Z",
+      "publishedAt": "2024-09-23T11:27:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/209",
       "rawSeriesName": "Nutri Capture",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T22:12:17+09:00",
+      "title": "Nutri Capture - 살아남는 앱이 되려면",
+      "lastMod": "2025-10-17T00:51:06.000Z",
+      "publishedAt": "2024-09-22T09:04:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/203",
       "rawSeriesName": "Jetpack Compose",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T22:12:17+09:00",
+      "title": "[Android] Jetpack Compose - Navigation의 Destination 간 데이터 전달 (NavBackStackEntry.",
+      "lastMod": "2025-04-04T03:53:01.000Z",
+      "publishedAt": "2024-09-13T04:54:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/202",
       "rawSeriesName": "Jetpack Compose",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T22:12:17+09:00",
+      "title": "[Android] Jetpack Compose - Navigation 기초",
+      "lastMod": "2025-03-01T07:32:50.000Z",
+      "publishedAt": "2024-09-12T07:06:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/192",
       "rawSeriesName": "Jetpack Compose",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T22:12:17+09:00",
+      "title": "[Android] Jetpack Compose - 객체 지향적 UI 레이어 설계",
+      "lastMod": "2024-10-18T02:43:13.000Z",
+      "publishedAt": "2024-09-11T08:54:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/189",
       "rawSeriesName": "Jetpack Compose",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-10T22:12:17+09:00",
+      "title": "[Android] Jetpack Compose - Side-effects",
+      "lastMod": "2025-02-23T10:19:59.000Z",
+      "publishedAt": "2024-09-06T10:02:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/180",
