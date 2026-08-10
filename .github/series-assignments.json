@@ -575,62 +575,62 @@
       {
         "url": "https://kenel.tistory.com/175",
         "title": "[Android] Jetpack Compose - 기초",
-        "publishedAt": null
+        "publishedAt": "2024-07-21T15:42:00.000Z"
       },
       {
         "url": "https://kenel.tistory.com/176",
         "title": "[Android] Jetpack Compose - Surface",
-        "publishedAt": null
+        "publishedAt": "2024-07-21T16:32:00.000Z"
       },
       {
         "url": "https://kenel.tistory.com/177",
         "title": "[Android] Jetpack Compose - Modifier",
-        "publishedAt": null
+        "publishedAt": "2024-07-21T17:22:00.000Z"
       },
       {
         "url": "https://kenel.tistory.com/178",
         "title": "[Android] Jetpack Compose - Layout, Arrangement, Alignment",
-        "publishedAt": null
+        "publishedAt": "2024-07-22T02:48:00.000Z"
       },
       {
         "url": "https://kenel.tistory.com/179",
         "title": "[Android] Jetpack Compose - Button",
-        "publishedAt": null
+        "publishedAt": "2024-07-22T04:53:00.000Z"
       },
       {
         "url": "https://kenel.tistory.com/181",
         "title": "[Android] Jetpack Compose - Lazy Column",
-        "publishedAt": null
+        "publishedAt": "2024-07-22T05:44:00.000Z"
       },
       {
         "url": "https://kenel.tistory.com/184",
         "title": "[Android] Jetpack Compose - State 기초",
-        "publishedAt": null
+        "publishedAt": "2024-07-22T09:06:00.000Z"
       },
       {
         "url": "https://kenel.tistory.com/185",
         "title": "[Android] Jetpack Compose - State Remembering",
-        "publishedAt": null
+        "publishedAt": "2024-07-22T15:17:00.000Z"
       },
       {
         "url": "https://kenel.tistory.com/186",
         "title": "[Android] Jetpack Compose - State Hoisting",
-        "publishedAt": null
+        "publishedAt": "2024-07-22T16:55:00.000Z"
       },
       {
         "url": "https://kenel.tistory.com/187",
         "title": "[Android] Jetpack Compose - ViewModel에서 State 사용하기",
-        "publishedAt": null
+        "publishedAt": "2024-07-22T17:30:00.000Z"
       },
       {
         "url": "https://kenel.tistory.com/201",
         "title": "[Android] Jetpack Compose - StateFlow와 SharedFlow",
-        "publishedAt": null
+        "publishedAt": "2024-08-29T10:54:00.000Z"
       },
       {
         "url": "https://kenel.tistory.com/180",
         "title": "[Android] Jetpack Compose - Scaffold",
-        "publishedAt": null
+        "publishedAt": "2024-09-05T09:52:00.000Z"
       },
       {
         "url": "https://kenel.tistory.com/189",
@@ -651,6 +651,251 @@
         "url": "https://kenel.tistory.com/203",
         "title": "[Android] Jetpack Compose - Navigation의 Destination 간 데이터 전달 (NavBackStackEntry.",
         "publishedAt": "2024-09-13T04:54:00.000Z"
+      }
+    ]
+  },
+  "livedata": {
+    "listName": "LiveData",
+    "posts": [
+      {
+        "url": "https://kenel.tistory.com/84",
+        "title": "[Android] LiveData - 기초",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/87",
+        "title": "[Android] LiveData - 암시적으로 '관찰'하기",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/88",
+        "title": "[Android] LiveData - 양방향 데이터 바인딩의 3가지 방법",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/190",
+        "title": "[Android] LiveData - Flow로 마이그레이션",
+        "publishedAt": "2024-08-29T11:17:00.000Z"
+      }
+    ]
+  },
+  "coroutinesflow": {
+    "listName": "Coroutines Flow",
+    "posts": [
+      {
+        "url": "https://kenel.tistory.com/188",
+        "title": "[Kotlin] Coroutines Flow - 기초",
+        "publishedAt": "2024-08-01T10:09:00.000Z"
+      },
+      {
+        "url": "https://kenel.tistory.com/195",
+        "title": "[Android] Coroutines Flow - Jetpack Compose에서 사용하기",
+        "publishedAt": "2024-08-05T17:31:00.000Z"
+      },
+      {
+        "url": "https://kenel.tistory.com/194",
+        "title": "[Kotlin] Coroutines Flow - Cold Flow와 Hot Flow (SharedFlow)",
+        "publishedAt": "2024-08-06T23:57:00.000Z"
+      },
+      {
+        "url": "https://kenel.tistory.com/196",
+        "title": "[Kotlin] Coroutines Flow - Back pressure와 그 처리",
+        "publishedAt": "2024-08-15T04:30:00.000Z"
+      },
+      {
+        "url": "https://kenel.tistory.com/198",
+        "title": "[Kotlin] Coroutines Flow - Intermediate operator",
+        "publishedAt": "2024-08-15T18:03:00.000Z"
+      },
+      {
+        "url": "https://kenel.tistory.com/199",
+        "title": "[Kotlin] Coroutines Flow - StateFlow",
+        "publishedAt": "2024-08-16T19:42:00.000Z"
+      },
+      {
+        "url": "https://kenel.tistory.com/200",
+        "title": "[Kotlin] Coroutines Flow - Flow.combine()과 Flow.stateIn()",
+        "publishedAt": "2024-08-29T10:35:00.000Z"
+      }
+    ]
+  },
+  "coroutines": {
+    "listName": "Coroutines",
+    "posts": [
+      {
+        "url": "https://kenel.tistory.com/104",
+        "title": "[Kotlin] Coroutines - 기초",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/105",
+        "title": "[Kotlin] Coroutines - 동기 코드, 비동기 코드",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/106",
+        "title": "[Kotlin] Coroutines - Suspend vs Block",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/107",
+        "title": "[Kotlin] Coroutines - CoroutineScope, CoroutineContext",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/108",
+        "title": "[Kotlin] Coroutines - Coroutine builder",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/109",
+        "title": "[Kotlin] Coroutines - runBlocking",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/110",
+        "title": "[Kotlin] Coroutines - suspend 키워드",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/111",
+        "title": "[Kotlin] Couroutine - 스레드(Thread)와 스레드 풀(Thread Pool)",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/112",
+        "title": "[Kotlin] Coroutines - Structured Concurrency",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/113",
+        "title": "[Kotlin] Coroutines - Parallel Decomposition",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/114",
+        "title": "[Kotlin] Coroutines - 스레드 전환",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/115",
+        "title": "[Kotlin] Coroutines - ViewModelScope",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/116",
+        "title": "[Kotlin] Coroutines - LifecycleScope",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/118",
+        "title": "[Kotlin] Coroutines - LiveData Builder",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/193",
+        "title": "[Kotlin] Coroutines - 한 Scope 내에서의 계층 관계",
+        "publishedAt": "2024-07-30T15:43:00.000Z"
+      }
+    ]
+  },
+  "dagger2": {
+    "listName": "Dagger2",
+    "posts": [
+      {
+        "url": "https://kenel.tistory.com/157",
+        "title": "[Android] Dagger2 - 기초",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/158",
+        "title": "[Android] Dagger2 - @Provides",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/159",
+        "title": "[Android] Dagger2 - 매개변수 동적 할당",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/160",
+        "title": "[Android] Dagger2 - 인터페이스 구현체 주입 (@Binds)",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/161",
+        "title": "[Android] Dagger2 - Activity에 Dependency 주입",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/162",
+        "title": "[Android] Dagger2 - Application 활용하기",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/174",
+        "title": "[Android] Dagger2 - Hilt로 마이그레이션",
+        "publishedAt": "2024-07-12T07:50:00.000Z"
+      },
+      {
+        "url": "https://kenel.tistory.com/431",
+        "title": "[Android] Dagger2 - 여러 구현체 한꺼번에 주입 (@IntoSet)",
+        "publishedAt": null
+      }
+    ]
+  },
+  "databinding": {
+    "listName": "Data Binding",
+    "posts": [
+      {
+        "url": "https://kenel.tistory.com/80",
+        "title": "[Android] Data Binding - 기초",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/81",
+        "title": "[Android] Data Binding - View에 객체 전달",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/173",
+        "title": "[Android] Data Binding - View Binding",
+        "publishedAt": "2024-07-09T17:02:00.000Z"
+      }
+    ]
+  },
+  "unittesting": {
+    "listName": "Unit Testing",
+    "posts": [
+      {
+        "url": "https://kenel.tistory.com/164",
+        "title": "Unit Testing - Test double",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/165",
+        "title": "[Android] Unit Testing - 개요와 환경 설정",
+        "publishedAt": "2024-07-03T07:20:00.000Z"
+      },
+      {
+        "url": "https://kenel.tistory.com/168",
+        "title": "[Android] Unit Testing - 기초",
+        "publishedAt": "2024-07-08T02:25:00.000Z"
+      },
+      {
+        "url": "https://kenel.tistory.com/169",
+        "title": "[Android] Unit Testing - ViewModel",
+        "publishedAt": "2024-07-08T02:50:00.000Z"
+      },
+      {
+        "url": "https://kenel.tistory.com/170",
+        "title": "[Android] Unit Testing - Room과 LiveData",
+        "publishedAt": "2024-07-08T03:37:00.000Z"
+      },
+      {
+        "url": "https://kenel.tistory.com/171",
+        "title": "[Android] Unit Testing - Retrofit",
+        "publishedAt": "2024-07-08T03:56:00.000Z"
       }
     ]
   }

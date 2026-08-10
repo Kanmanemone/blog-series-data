@@ -1175,152 +1175,242 @@
     {
       "url": "https://kenel.tistory.com/180",
       "rawSeriesName": "Jetpack Compose",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-11T03:59:23+09:00",
+      "title": "[Android] Jetpack Compose - Scaffold",
+      "lastMod": "2024-10-26T16:57:27.000Z",
+      "publishedAt": "2024-09-05T09:52:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/190",
       "rawSeriesName": "LiveData",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-11T03:59:23+09:00",
+      "title": "[Android] LiveData - Flow로 마이그레이션",
+      "lastMod": "2024-11-29T15:36:55.000Z",
+      "publishedAt": "2024-08-29T11:17:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/201",
       "rawSeriesName": "Jetpack Compose",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-11T03:59:23+09:00",
+      "title": "[Android] Jetpack Compose - StateFlow와 SharedFlow",
+      "lastMod": "2024-09-17T10:46:15.000Z",
+      "publishedAt": "2024-08-29T10:54:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/200",
       "rawSeriesName": "Coroutines Flow",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-11T03:59:23+09:00",
+      "title": "[Kotlin] Coroutines Flow - Flow.combine()과 Flow.stateIn()",
+      "lastMod": "2024-10-27T01:33:48.000Z",
+      "publishedAt": "2024-08-29T10:35:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/199",
       "rawSeriesName": "Coroutines Flow",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-11T03:59:23+09:00",
+      "title": "[Kotlin] Coroutines Flow - StateFlow",
+      "lastMod": "2024-09-17T10:48:42.000Z",
+      "publishedAt": "2024-08-16T19:42:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/198",
       "rawSeriesName": "Coroutines Flow",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-11T03:59:23+09:00",
+      "title": "[Kotlin] Coroutines Flow - Intermediate operator",
+      "lastMod": "2024-09-17T10:48:36.000Z",
+      "publishedAt": "2024-08-15T18:03:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/196",
       "rawSeriesName": "Coroutines Flow",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-11T03:59:23+09:00",
+      "title": "[Kotlin] Coroutines Flow - Back pressure와 그 처리",
+      "lastMod": "2024-10-26T18:19:37.000Z",
+      "publishedAt": "2024-08-15T04:30:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/194",
       "rawSeriesName": "Coroutines Flow",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-11T03:59:23+09:00",
+      "title": "[Kotlin] Coroutines Flow - Cold Flow와 Hot Flow (SharedFlow)",
+      "lastMod": "2025-12-29T23:55:04.000Z",
+      "publishedAt": "2024-08-06T23:57:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/195",
       "rawSeriesName": "Coroutines Flow",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-11T03:59:23+09:00",
+      "title": "[Android] Coroutines Flow - Jetpack Compose에서 사용하기",
+      "lastMod": "2024-10-26T18:21:01.000Z",
+      "publishedAt": "2024-08-05T17:31:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/197",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-11T03:59:23+09:00",
+      "title": "어떻게 살아야 하는가?",
+      "lastMod": "2025-12-08T08:23:59.000Z",
+      "publishedAt": "2024-08-05T10:36:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/188",
       "rawSeriesName": "Coroutines Flow",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-11T03:59:23+09:00",
+      "title": "[Kotlin] Coroutines Flow - 기초",
+      "lastMod": "2025-12-30T23:22:34.000Z",
+      "publishedAt": "2024-08-01T10:09:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/193",
       "rawSeriesName": "Coroutines",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-11T03:59:23+09:00",
+      "title": "[Kotlin] Coroutines - 한 Scope 내에서의 계층 관계",
+      "lastMod": "2025-02-07T12:56:11.000Z",
+      "publishedAt": "2024-07-30T15:43:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/187",
       "rawSeriesName": "Jetpack Compose",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-11T03:59:23+09:00",
+      "title": "[Android] Jetpack Compose - ViewModel에서 State 사용하기",
+      "lastMod": "2024-12-04T21:43:47.000Z",
+      "publishedAt": "2024-07-22T17:30:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/186",
       "rawSeriesName": "Jetpack Compose",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-11T03:59:23+09:00",
+      "title": "[Android] Jetpack Compose - State Hoisting",
+      "lastMod": "2024-09-11T08:06:28.000Z",
+      "publishedAt": "2024-07-22T16:55:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/185",
       "rawSeriesName": "Jetpack Compose",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-11T03:59:23+09:00",
+      "title": "[Android] Jetpack Compose - State Remembering",
+      "lastMod": "2024-08-04T21:45:42.000Z",
+      "publishedAt": "2024-07-22T15:17:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/191",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-11T03:59:23+09:00",
+      "title": "[Kotlin] 위임 프로퍼티 (Delegated properties)",
+      "lastMod": "2024-07-22T13:58:24.000Z",
+      "publishedAt": "2024-07-22T13:45:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/184",
       "rawSeriesName": "Jetpack Compose",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-11T03:59:23+09:00",
+      "title": "[Android] Jetpack Compose - State 기초",
+      "lastMod": "2024-08-20T03:49:19.000Z",
+      "publishedAt": "2024-07-22T09:06:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/181",
       "rawSeriesName": "Jetpack Compose",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-11T03:59:23+09:00",
+      "title": "[Android] Jetpack Compose - Lazy Column",
+      "lastMod": "2024-10-02T08:37:09.000Z",
+      "publishedAt": "2024-07-22T05:44:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/179",
       "rawSeriesName": "Jetpack Compose",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-11T03:59:23+09:00",
+      "title": "[Android] Jetpack Compose - Button",
+      "lastMod": "2024-08-02T21:38:51.000Z",
+      "publishedAt": "2024-07-22T04:53:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/178",
       "rawSeriesName": "Jetpack Compose",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-11T03:59:23+09:00",
+      "title": "[Android] Jetpack Compose - Layout, Arrangement, Alignment",
+      "lastMod": "2024-08-23T03:13:41.000Z",
+      "publishedAt": "2024-07-22T02:48:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/177",
       "rawSeriesName": "Jetpack Compose",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-11T03:59:23+09:00",
+      "title": "[Android] Jetpack Compose - Modifier",
+      "lastMod": "2024-07-21T17:28:25.000Z",
+      "publishedAt": "2024-07-21T17:22:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/176",
       "rawSeriesName": "Jetpack Compose",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-11T03:59:23+09:00",
+      "title": "[Android] Jetpack Compose - Surface",
+      "lastMod": "2024-07-21T16:38:31.000Z",
+      "publishedAt": "2024-07-21T16:32:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/175",
       "rawSeriesName": "Jetpack Compose",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-11T03:59:23+09:00",
+      "title": "[Android] Jetpack Compose - 기초",
+      "lastMod": "2024-12-15T03:56:25.000Z",
+      "publishedAt": "2024-07-21T15:42:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/174",
       "rawSeriesName": "Dagger2",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-11T03:59:23+09:00",
+      "title": "[Android] Dagger2 - Hilt로 마이그레이션",
+      "lastMod": "2025-02-01T10:17:31.000Z",
+      "publishedAt": "2024-07-12T07:50:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/173",
       "rawSeriesName": "Data Binding",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-11T03:59:23+09:00",
+      "title": "[Android] Data Binding - View Binding",
+      "lastMod": "2024-09-17T10:41:49.000Z",
+      "publishedAt": "2024-07-09T17:02:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/171",
       "rawSeriesName": "Unit Testing",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-11T03:59:23+09:00",
+      "title": "[Android] Unit Testing - Retrofit",
+      "lastMod": "2024-12-06T16:21:39.000Z",
+      "publishedAt": "2024-07-08T03:56:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/170",
       "rawSeriesName": "Unit Testing",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-11T03:59:23+09:00",
+      "title": "[Android] Unit Testing - Room과 LiveData",
+      "lastMod": "2026-01-08T03:06:16.000Z",
+      "publishedAt": "2024-07-08T03:37:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/169",
       "rawSeriesName": "Unit Testing",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-11T03:59:23+09:00",
+      "title": "[Android] Unit Testing - ViewModel",
+      "lastMod": "2024-12-16T03:22:14.000Z",
+      "publishedAt": "2024-07-08T02:50:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/168",
       "rawSeriesName": "Unit Testing",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-11T03:59:23+09:00",
+      "title": "[Android] Unit Testing - 기초",
+      "lastMod": "2024-09-17T10:41:14.000Z",
+      "publishedAt": "2024-07-08T02:25:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/165",
       "rawSeriesName": "Unit Testing",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-11T03:59:23+09:00",
+      "title": "[Android] Unit Testing - 개요와 환경 설정",
+      "lastMod": "2024-12-16T03:11:01.000Z",
+      "publishedAt": "2024-07-03T07:20:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/164",
