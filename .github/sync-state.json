@@ -1,5 +1,5 @@
 {
-  "cutoff": "2026-08-11T22:03:59+09:00",
+  "cutoff": "2026-08-12T03:58:46+09:00",
   "processedPosts": [
     {
       "url": "https://kenel.tistory.com/418",
@@ -2150,152 +2150,242 @@
     {
       "url": "https://kenel.tistory.com/65",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-12T04:03:46+09:00",
+      "title": "[백준] 2606 (바이러스)",
+      "lastMod": "2024-09-20T01:24:00.000Z",
+      "publishedAt": "2023-12-26T05:43:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/64",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-12T04:03:46+09:00",
+      "title": "[백준] 1920 (수 찾기)",
+      "lastMod": "2024-09-24T04:08:49.000Z",
+      "publishedAt": "2023-12-25T06:05:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/63",
       "rawSeriesName": "Nutri Capture",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-12T04:03:46+09:00",
+      "title": "Nutri Capture - UI 스케치",
+      "lastMod": "2025-10-17T01:37:51.000Z",
+      "publishedAt": "2023-12-23T08:47:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/62",
       "rawSeriesName": "Nutri Capture",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-12T04:03:46+09:00",
+      "title": "Nutri Capture - ERD",
+      "lastMod": "2025-10-17T00:50:10.000Z",
+      "publishedAt": "2023-12-22T04:26:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/61",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-12T04:03:46+09:00",
+      "title": "[백준] 11723 (집합)",
+      "lastMod": "2024-09-20T01:24:13.000Z",
+      "publishedAt": "2023-12-21T12:48:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/60",
       "rawSeriesName": "Nutri Capture",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-12T04:03:46+09:00",
+      "title": "Nutri Capture - 앱의 목적, 유스케이스 다이어그램",
+      "lastMod": "2025-10-17T00:48:57.000Z",
+      "publishedAt": "2023-12-20T03:52:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/59",
       "rawSeriesName": "Nutri Capture",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-12T04:03:46+09:00",
+      "title": "Nutri Capture - 앱의 리팩토링 및 업그레이드",
+      "lastMod": "2025-10-17T00:48:20.000Z",
+      "publishedAt": "2023-12-19T05:30:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/58",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-12T04:03:46+09:00",
+      "title": "API (Application Programming Interface)",
+      "lastMod": "2024-01-11T11:29:32.000Z",
+      "publishedAt": "2023-12-18T03:55:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/57",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-12T04:03:46+09:00",
+      "title": "[Kotlin] 확장 함수(Extension functions)",
+      "lastMod": "2024-02-20T03:12:13.000Z",
+      "publishedAt": "2023-12-16T09:09:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/55",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-12T04:03:46+09:00",
+      "title": "[백준] 2108 (통계학)",
+      "lastMod": "2024-09-20T01:28:24.000Z",
+      "publishedAt": "2023-12-15T08:15:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/54",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-12T04:03:46+09:00",
+      "title": "[백준] 10845 (큐)",
+      "lastMod": "2024-09-20T01:33:20.000Z",
+      "publishedAt": "2023-12-14T07:35:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/53",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-12T04:03:46+09:00",
+      "title": "AndroidX (구 Support Library)",
+      "lastMod": "2024-06-11T19:51:52.000Z",
+      "publishedAt": "2023-12-13T02:33:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/52",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-12T04:03:46+09:00",
+      "title": "API, Framework, SDK, Tool, Project, Architecture, IDE, Library, Package의 관계",
+      "lastMod": "2024-03-04T07:11:19.000Z",
+      "publishedAt": "2023-12-12T08:29:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/51",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-12T04:03:46+09:00",
+      "title": "[백준] 28417 (스케이트보드)",
+      "lastMod": "2024-09-20T01:24:31.000Z",
+      "publishedAt": "2023-12-11T03:14:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/50",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-12T04:03:46+09:00",
+      "title": "[백준] 11866 (요세푸스 문제 0)",
+      "lastMod": "2024-09-20T03:32:08.000Z",
+      "publishedAt": "2023-12-09T08:55:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/49",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-12T04:03:46+09:00",
+      "title": "[Java] 설치, JRE와 JDK의 차이, 환경 변수 설정",
+      "lastMod": "2025-03-28T05:23:18.000Z",
+      "publishedAt": "2023-12-08T03:16:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/48",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-12T04:03:46+09:00",
+      "title": "[백준] 4949 (균형잡힌 세상)",
+      "lastMod": "2024-09-20T01:25:02.000Z",
+      "publishedAt": "2023-12-07T07:08:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/47",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-12T04:03:46+09:00",
+      "title": "display 속성 값 block, inline, inline-block의 차이",
+      "lastMod": "2024-01-05T06:40:39.000Z",
+      "publishedAt": "2023-12-06T06:56:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/46",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-12T04:03:46+09:00",
+      "title": "[백준] 27522 (카트라이더: 드리프트)",
+      "lastMod": "2024-09-20T01:25:19.000Z",
+      "publishedAt": "2023-12-05T04:13:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/45",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-12T04:03:46+09:00",
+      "title": "[백준] 2839 (설탕 배달)",
+      "lastMod": "2024-09-20T01:25:24.000Z",
+      "publishedAt": "2023-12-04T03:21:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/44",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-12T04:03:46+09:00",
+      "title": "[백준] 9076 (점수 집계)",
+      "lastMod": "2024-09-20T01:25:31.000Z",
+      "publishedAt": "2023-12-02T02:10:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/43",
       "rawSeriesName": "정렬",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-12T04:03:46+09:00",
+      "title": "정렬 - 퀵 정렬 (Quick Sort)",
+      "lastMod": "2024-09-24T04:00:55.000Z",
+      "publishedAt": "2023-12-01T03:46:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/42",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-12T04:03:46+09:00",
+      "title": "[백준] 4153 (직각삼각형)",
+      "lastMod": "2024-10-26T17:38:34.000Z",
+      "publishedAt": "2023-11-30T03:47:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/41",
       "rawSeriesName": "정렬",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-12T04:03:46+09:00",
+      "title": "정렬 - 삽입 정렬 (Insertion Sort)",
+      "lastMod": "2024-09-24T04:01:08.000Z",
+      "publishedAt": "2023-11-29T02:30:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/39",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-12T04:03:46+09:00",
+      "title": "미디어 쿼리 (Media Queries)",
+      "lastMod": "2024-02-08T07:51:44.000Z",
+      "publishedAt": "2023-11-28T05:59:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/38",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-12T04:03:46+09:00",
+      "title": "[백준] 11651 (좌표 정렬하기 2)",
+      "lastMod": "2024-09-20T01:32:43.000Z",
+      "publishedAt": "2023-11-28T05:08:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/37",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-12T04:03:46+09:00",
+      "title": "[백준] 8958 (OX퀴즈)",
+      "lastMod": "2024-09-20T01:25:50.000Z",
+      "publishedAt": "2023-11-27T06:10:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/36",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-12T04:03:46+09:00",
+      "title": "[백준] 10828 (스택)",
+      "lastMod": "2024-09-20T01:33:25.000Z",
+      "publishedAt": "2023-11-25T05:05:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/35",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-12T04:03:46+09:00",
+      "title": "[백준] 10818 (최소, 최대)",
+      "lastMod": "2024-09-20T01:26:01.000Z",
+      "publishedAt": "2023-11-24T05:32:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/34",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-12T04:03:46+09:00",
+      "title": "[백준] 10250 (ACM 호텔)",
+      "lastMod": "2024-09-20T01:26:06.000Z",
+      "publishedAt": "2023-11-23T05:19:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/33",
@@ -2446,19 +2536,24 @@
     {
       "url": "https://kenel.tistory.com/425",
       "rawSeriesName": "Now in Android",
-      "processedAt": "2026-08-03T18:49:32+09:00"
+      "processedAt": "2026-08-12T04:03:46+09:00",
+      "title": "Now in Android - Jetpack Navigation 2가 적용된 구조 분석",
+      "lastMod": "2026-08-11T13:26:14.000Z",
+      "publishedAt": "2026-08-03T05:52:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/427",
       "title": "Swemo - Iteration 7: 점검과 정리 1",
-      "lastMod": "2026-08-08T08:26:08.000Z",
-      "processedAt": "2026-08-09T16:43:28+09:00"
+      "lastMod": "2026-08-11T13:30:37.000Z",
+      "processedAt": "2026-08-12T04:03:46+09:00",
+      "publishedAt": "2026-08-08T08:26:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/431",
       "title": "[Android] Dagger2 - 여러 구현체 한꺼번에 주입 (@IntoSet)",
-      "lastMod": "2026-08-07T15:22:21.000Z",
-      "processedAt": "2026-08-09T16:43:28+09:00"
+      "lastMod": "2026-08-11T13:29:07.000Z",
+      "processedAt": "2026-08-12T04:03:46+09:00",
+      "publishedAt": "2026-08-07T13:15:00.000Z"
     }
   ]
 }

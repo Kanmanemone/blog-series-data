@@ -165,22 +165,22 @@
       {
         "url": "https://kenel.tistory.com/59",
         "title": "Nutri Capture - 앱의 리팩토링 및 업그레이드",
-        "publishedAt": null
+        "publishedAt": "2023-12-19T05:30:00.000Z"
       },
       {
         "url": "https://kenel.tistory.com/60",
         "title": "Nutri Capture - 앱의 목적, 유스케이스 다이어그램",
-        "publishedAt": null
+        "publishedAt": "2023-12-20T03:52:00.000Z"
       },
       {
         "url": "https://kenel.tistory.com/62",
         "title": "Nutri Capture - ERD",
-        "publishedAt": null
+        "publishedAt": "2023-12-22T04:26:00.000Z"
       },
       {
         "url": "https://kenel.tistory.com/63",
         "title": "Nutri Capture - UI 스케치",
-        "publishedAt": null
+        "publishedAt": "2023-12-23T08:47:00.000Z"
       },
       {
         "url": "https://kenel.tistory.com/209",
@@ -1086,6 +1086,41 @@
         "url": "https://kenel.tistory.com/94",
         "title": "[Android] Navigation - 애니메이션",
         "publishedAt": "2024-01-27T05:25:00.000Z"
+      }
+    ]
+  },
+  "정렬": {
+    "listName": "정렬(Sort)",
+    "posts": [
+      {
+        "url": "https://kenel.tistory.com/15",
+        "title": "정렬 - 선택 정렬 (Selection Sort)",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/24",
+        "title": "정렬 - 버블 정렬 (Bubble Sort)",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/41",
+        "title": "정렬 - 삽입 정렬 (Insertion Sort)",
+        "publishedAt": "2023-11-29T02:30:00.000Z"
+      },
+      {
+        "url": "https://kenel.tistory.com/26",
+        "title": "정렬 - 병합 정렬 (Merge Sort)",
+        "publishedAt": null
+      },
+      {
+        "url": "https://kenel.tistory.com/43",
+        "title": "정렬 - 퀵 정렬 (Quick Sort)",
+        "publishedAt": "2023-12-01T03:46:00.000Z"
+      },
+      {
+        "url": "https://kenel.tistory.com/31",
+        "title": "정렬 - 힙 정렬 (Heap Sort)",
+        "publishedAt": null
       }
     ]
   }
