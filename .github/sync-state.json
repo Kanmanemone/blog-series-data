@@ -1,5 +1,5 @@
 {
-  "cutoff": "2026-08-10T03:37:55+09:00",
+  "cutoff": "2026-08-11T22:03:59+09:00",
   "processedPosts": [
     {
       "url": "https://kenel.tistory.com/418",
@@ -25,9 +25,10 @@
     {
       "url": "https://kenel.tistory.com/415",
       "rawSeriesName": "355184",
-      "processedAt": "2026-08-09T16:43:28+09:00",
-      "title": "[구름] 355184 - 삼각형 접기",
-      "lastMod": "2026-07-12T14:24:30.000Z"
+      "processedAt": "2026-08-11T22:08:59+09:00",
+      "title": "[구름] 355184 (삼각형 접기)",
+      "lastMod": "2026-08-11T07:31:37.000Z",
+      "publishedAt": "2026-07-12T14:21:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/412",
@@ -1902,117 +1903,186 @@
     {
       "url": "https://kenel.tistory.com/98",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-11T22:08:59+09:00",
+      "title": "[Kotlin] 함수 타입(Fuction types) 표현식",
+      "lastMod": "2024-02-20T03:11:45.000Z",
+      "publishedAt": "2024-01-31T01:17:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/97",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-11T22:08:59+09:00",
+      "title": "[Kotlin] 함수형 인터페이스 (Single Abstract Method Interface)",
+      "lastMod": "2025-03-01T07:02:30.000Z",
+      "publishedAt": "2024-01-30T04:14:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/96",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-11T22:08:59+09:00",
+      "title": "[Kotlin] 연산자 오버로딩 (Operator overloading)",
+      "lastMod": "2024-07-22T13:45:19.000Z",
+      "publishedAt": "2024-01-29T02:47:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/94",
       "rawSeriesName": "Navigation",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-11T22:08:59+09:00",
+      "title": "[Android] Navigation - 애니메이션",
+      "lastMod": "2024-09-17T08:14:56.000Z",
+      "publishedAt": "2024-01-27T05:25:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/93",
       "rawSeriesName": "Navigation",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-11T22:08:59+09:00",
+      "title": "[Android] Navigation - 기초",
+      "lastMod": "2024-09-17T08:14:43.000Z",
+      "publishedAt": "2024-01-26T07:26:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/92",
       "rawSeriesName": "Navigation",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-11T22:08:59+09:00",
+      "title": "[Android] Navigation - 환경 설정",
+      "lastMod": "2024-10-26T17:48:40.000Z",
+      "publishedAt": "2024-01-25T04:01:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/91",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-11T22:08:59+09:00",
+      "title": "[Android] Fragment의 생명주기",
+      "lastMod": "2024-01-31T12:52:08.000Z",
+      "publishedAt": "2024-01-24T03:28:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/90",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-11T22:08:59+09:00",
+      "title": "[Android] Activity의 생명주기",
+      "lastMod": "2024-10-26T17:49:56.000Z",
+      "publishedAt": "2024-01-23T05:04:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/89",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-11T22:08:59+09:00",
+      "title": "[Android] MVVM 구조 한눈에 보기",
+      "lastMod": "2025-12-11T09:22:59.000Z",
+      "publishedAt": "2024-01-22T03:04:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/88",
       "rawSeriesName": "LiveData",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-11T22:08:59+09:00",
+      "title": "[Android] LiveData - 양방향 데이터 바인딩의 3가지 방법",
+      "lastMod": "2024-10-22T08:21:41.000Z",
+      "publishedAt": "2024-01-20T06:35:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/87",
       "rawSeriesName": "LiveData",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-11T22:08:59+09:00",
+      "title": "[Android] LiveData - 암시적으로 '관찰'하기",
+      "lastMod": "2024-09-17T08:12:32.000Z",
+      "publishedAt": "2024-01-19T06:11:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/86",
       "rawSeriesName": "ViewModel",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-11T22:08:59+09:00",
+      "title": "[Android] ViewModel - View에 객체(ViewModel) 전달",
+      "lastMod": "2024-09-17T08:12:16.000Z",
+      "publishedAt": "2024-01-18T09:33:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/85",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-11T22:08:59+09:00",
+      "title": "[Kotlin] 프로퍼티(Property)",
+      "lastMod": "2024-02-20T03:12:06.000Z",
+      "publishedAt": "2024-01-17T02:20:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/84",
       "rawSeriesName": "LiveData",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-11T22:08:59+09:00",
+      "title": "[Android] LiveData - 기초",
+      "lastMod": "2024-09-17T08:11:54.000Z",
+      "publishedAt": "2024-01-16T05:34:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/83",
       "rawSeriesName": "ViewModel",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-11T22:08:59+09:00",
+      "title": "[Android] ViewModel - 뷰 모델에 인자(Argument) 전달 (ViewModelFactory)",
+      "lastMod": "2025-03-01T06:57:13.000Z",
+      "publishedAt": "2024-01-15T07:24:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/82",
       "rawSeriesName": "ViewModel",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-11T22:08:59+09:00",
+      "title": "[Android] ViewModel - 기초",
+      "lastMod": "2025-03-01T06:55:27.000Z",
+      "publishedAt": "2024-01-13T07:22:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/81",
       "rawSeriesName": "Data Binding",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-11T22:08:59+09:00",
+      "title": "[Android] Data Binding - View에 객체 전달",
+      "lastMod": "2024-10-26T17:44:35.000Z",
+      "publishedAt": "2024-01-12T05:57:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/80",
       "rawSeriesName": "Data Binding",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-11T22:08:59+09:00",
+      "title": "[Android] Data Binding - 기초",
+      "lastMod": "2024-09-17T08:10:28.000Z",
+      "publishedAt": "2024-01-11T07:40:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/79",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-11T22:08:59+09:00",
+      "title": "[백준] 1676 (팩토리얼 0의 개수)",
+      "lastMod": "2024-09-25T07:27:20.000Z",
+      "publishedAt": "2024-01-10T07:22:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/78",
       "rawSeriesName": "그래프",
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-11T22:08:59+09:00",
+      "title": "그래프 - 그래프의 종류와 표현",
+      "lastMod": "2024-10-12T12:29:49.000Z",
+      "publishedAt": "2024-01-09T05:18:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/77",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-11T22:08:59+09:00",
+      "title": "[백준] 18110 (solved.ac)",
+      "lastMod": "2024-09-20T01:22:40.000Z",
+      "publishedAt": "2024-01-08T10:40:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/76",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-11T22:08:59+09:00",
+      "title": "[백준] 1874 (스택 수열)",
+      "lastMod": "2024-09-20T01:33:07.000Z",
+      "publishedAt": "2024-01-06T03:34:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/75",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-11T22:08:59+09:00",
+      "title": "[백준] 1966 (프린터 큐)",
+      "lastMod": "2024-09-20T01:33:01.000Z",
+      "publishedAt": "2024-01-05T06:43:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/73",
@@ -2024,37 +2094,58 @@
     {
       "url": "https://kenel.tistory.com/72",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-11T22:08:59+09:00",
+      "title": "[백준] 17626 (Four Squares)",
+      "lastMod": "2024-09-20T01:22:57.000Z",
+      "publishedAt": "2024-01-03T04:56:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/71",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-11T22:08:59+09:00",
+      "title": "[백준] 11399 (ATM)",
+      "lastMod": "2024-09-20T01:23:03.000Z",
+      "publishedAt": "2024-01-02T04:09:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/70",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-11T22:08:59+09:00",
+      "title": "[백준] 1012 (유기농 배추)",
+      "lastMod": "2024-09-20T01:23:09.000Z",
+      "publishedAt": "2024-01-01T05:24:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/69",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-11T22:08:59+09:00",
+      "title": "[백준] 9012 (괄호)",
+      "lastMod": "2024-09-20T01:33:14.000Z",
+      "publishedAt": "2023-12-30T08:53:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/68",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-11T22:08:59+09:00",
+      "title": "[백준] 9095 (1, 2, 3 더하기)",
+      "lastMod": "2024-09-20T01:31:18.000Z",
+      "publishedAt": "2023-12-29T06:27:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/67",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-11T22:08:59+09:00",
+      "title": "[백준] 18111 (마인크래프트)",
+      "lastMod": "2024-10-26T17:42:30.000Z",
+      "publishedAt": "2023-12-28T03:34:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/66",
       "rawSeriesName": null,
-      "processedAt": "2026-07-22T12:54:06+09:00"
+      "processedAt": "2026-08-11T22:08:59+09:00",
+      "title": "[백준] 2579 (계단 오르기)",
+      "lastMod": "2024-09-20T01:23:55.000Z",
+      "publishedAt": "2023-12-27T04:34:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/65",
@@ -2339,12 +2430,18 @@
     {
       "url": "https://kenel.tistory.com/423",
       "rawSeriesName": "468371",
-      "processedAt": "2026-08-02T17:26:29+09:00"
+      "processedAt": "2026-08-11T22:08:59+09:00",
+      "title": "[프로그래머스] 468371 (노란불 신호등)",
+      "lastMod": "2026-08-11T07:31:59.000Z",
+      "publishedAt": "2026-08-01T13:17:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/424",
       "rawSeriesName": "468370",
-      "processedAt": "2026-08-02T17:26:29+09:00"
+      "processedAt": "2026-08-11T22:08:59+09:00",
+      "title": "[프로그래머스] 468370 (중요한 단어를 스포 방지)",
+      "lastMod": "2026-08-11T07:32:09.000Z",
+      "publishedAt": "2026-08-02T07:18:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/425",

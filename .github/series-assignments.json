@@ -555,7 +555,7 @@
       {
         "url": "https://kenel.tistory.com/78",
         "title": "그래프 - 그래프의 종류와 표현",
-        "publishedAt": null
+        "publishedAt": "2024-01-09T05:18:00.000Z"
       },
       {
         "url": "https://kenel.tistory.com/211",
@@ -660,17 +660,17 @@
       {
         "url": "https://kenel.tistory.com/84",
         "title": "[Android] LiveData - 기초",
-        "publishedAt": null
+        "publishedAt": "2024-01-16T05:34:00.000Z"
       },
       {
         "url": "https://kenel.tistory.com/87",
         "title": "[Android] LiveData - 암시적으로 '관찰'하기",
-        "publishedAt": null
+        "publishedAt": "2024-01-19T06:11:00.000Z"
       },
       {
         "url": "https://kenel.tistory.com/88",
         "title": "[Android] LiveData - 양방향 데이터 바인딩의 3가지 방법",
-        "publishedAt": null
+        "publishedAt": "2024-01-20T06:35:00.000Z"
       },
       {
         "url": "https://kenel.tistory.com/190",
@@ -850,12 +850,12 @@
       {
         "url": "https://kenel.tistory.com/80",
         "title": "[Android] Data Binding - 기초",
-        "publishedAt": null
+        "publishedAt": "2024-01-11T07:40:00.000Z"
       },
       {
         "url": "https://kenel.tistory.com/81",
         "title": "[Android] Data Binding - View에 객체 전달",
-        "publishedAt": null
+        "publishedAt": "2024-01-12T05:57:00.000Z"
       },
       {
         "url": "https://kenel.tistory.com/173",
@@ -1050,22 +1050,42 @@
       {
         "url": "https://kenel.tistory.com/82",
         "title": "[Android] ViewModel - 기초",
-        "publishedAt": null
+        "publishedAt": "2024-01-13T07:22:00.000Z"
       },
       {
         "url": "https://kenel.tistory.com/83",
         "title": "[Android] ViewModel - 뷰 모델에 인자(Argument) 전달 (ViewModelFactory)",
-        "publishedAt": null
+        "publishedAt": "2024-01-15T07:24:00.000Z"
       },
       {
         "url": "https://kenel.tistory.com/86",
         "title": "[Android] ViewModel - View에 객체(ViewModel) 전달",
-        "publishedAt": null
+        "publishedAt": "2024-01-18T09:33:00.000Z"
       },
       {
         "url": "https://kenel.tistory.com/123",
         "title": "[Android] ViewModel - View에 Event 발생시키기",
         "publishedAt": "2024-02-27T05:20:00.000Z"
+      }
+    ]
+  },
+  "navigation": {
+    "listName": "Navigation",
+    "posts": [
+      {
+        "url": "https://kenel.tistory.com/92",
+        "title": "[Android] Navigation - 환경 설정",
+        "publishedAt": "2024-01-25T04:01:00.000Z"
+      },
+      {
+        "url": "https://kenel.tistory.com/93",
+        "title": "[Android] Navigation - 기초",
+        "publishedAt": "2024-01-26T07:26:00.000Z"
+      },
+      {
+        "url": "https://kenel.tistory.com/94",
+        "title": "[Android] Navigation - 애니메이션",
+        "publishedAt": "2024-01-27T05:25:00.000Z"
       }
     ]
   }
