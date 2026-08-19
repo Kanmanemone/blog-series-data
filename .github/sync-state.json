@@ -1,5 +1,5 @@
 {
-  "cutoff": "2026-08-15T03:51:13+09:00",
+  "cutoff": "2026-08-19T15:41:30+09:00",
   "processedPosts": [
     {
       "url": "https://kenel.tistory.com/418",
@@ -2087,9 +2087,10 @@
     {
       "url": "https://kenel.tistory.com/73",
       "rawSeriesName": null,
-      "processedAt": "2026-08-09T16:43:28+09:00",
-      "title": "동적 프로그래밍 (Dynamic Programming), 상향식(Bottom-up) 및 하향식(Top-down) 접근",
-      "lastMod": "2026-08-09T05:48:20.000Z"
+      "processedAt": "2026-08-19T15:46:30+09:00",
+      "title": "동적 프로그래밍 (Dynamic Programming, DP), 상향식(Bottom-up) 및 하향식(Top-down) 접근",
+      "lastMod": "2026-08-19T01:28:26.000Z",
+      "publishedAt": "2024-01-04T05:00:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/72",
@@ -2639,6 +2640,13 @@
       "lastMod": "2026-08-14T15:04:29.000Z",
       "publishedAt": "2026-08-14T14:56:00.000Z",
       "processedAt": "2026-08-15T03:56:13+09:00"
+    },
+    {
+      "url": "https://kenel.tistory.com/436",
+      "title": "[프로그래머스] 42898 (등굣길)",
+      "lastMod": "2026-08-19T01:40:02.000Z",
+      "publishedAt": "2026-08-19T01:40:00.000Z",
+      "processedAt": "2026-08-19T15:46:30+09:00"
     }
   ]
 }
