@@ -1,5 +1,5 @@
 {
-  "cutoff": "2026-08-19T15:41:30+09:00",
+  "cutoff": "2026-08-20T21:47:46+09:00",
   "processedPosts": [
     {
       "url": "https://kenel.tistory.com/418",
@@ -2647,6 +2647,13 @@
       "lastMod": "2026-08-19T01:40:02.000Z",
       "publishedAt": "2026-08-19T01:40:00.000Z",
       "processedAt": "2026-08-19T15:46:30+09:00"
+    },
+    {
+      "url": "https://kenel.tistory.com/438",
+      "title": "[프로그래머스] 1844 (게임 맵 최단거리)",
+      "lastMod": "2026-08-20T08:02:42.000Z",
+      "publishedAt": "2026-08-20T08:02:00.000Z",
+      "processedAt": "2026-08-20T21:52:46+09:00"
     }
   ]
 }
