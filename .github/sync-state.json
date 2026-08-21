@@ -1,5 +1,5 @@
 {
-  "cutoff": "2026-08-20T21:47:46+09:00",
+  "cutoff": "2026-08-21T21:46:11+09:00",
   "processedPosts": [
     {
       "url": "https://kenel.tistory.com/418",
@@ -2654,6 +2654,20 @@
       "lastMod": "2026-08-20T08:02:42.000Z",
       "publishedAt": "2026-08-20T08:02:00.000Z",
       "processedAt": "2026-08-20T21:52:46+09:00"
+    },
+    {
+      "url": "https://kenel.tistory.com/439",
+      "title": "[프로그래머스] 87694 (아이템 줍기)",
+      "lastMod": "2026-08-21T07:49:36.000Z",
+      "publishedAt": "2026-08-21T07:46:00.000Z",
+      "processedAt": "2026-08-21T21:51:11+09:00"
+    },
+    {
+      "url": "https://kenel.tistory.com/433",
+      "title": "[Android] Navigation - Navigation 2 &rarr; 3",
+      "lastMod": "2026-08-21T07:37:45.000Z",
+      "publishedAt": "2026-08-21T07:00:00.000Z",
+      "processedAt": "2026-08-21T21:51:11+09:00"
     }
   ]
 }
