@@ -4,6 +4,8 @@ const test = require("node:test");
 const assert = require("node:assert/strict");
 const {
   decodeHtmlEntities,
+  hasUnresolvedNamedEntity,
+  extractTitle,
   extractPublishedAt,
   filterCandidates,
   selectDriftCandidates,
@@ -12,11 +14,44 @@ const {
   renderCommitSummary,
 } = require("../index.js");
 
-test("다섯 개 기본 HTML 엔티티를 원문 문자로 치환한다(FR-007)", () => {
+test("HTML 4.01/XHTML1 표준 표에 있는 이름 있는 엔티티를 원문 문자로 치환한다(FR-007, 이 저장소에서 실제로 관측된 것들)", () => {
   assert.equal(decodeHtmlEntities("A &amp; B"), "A & B");
   assert.equal(decodeHtmlEntities("&lt;tag&gt;"), "<tag>");
   assert.equal(decodeHtmlEntities("&quot;quoted&quot;"), '"quoted"');
-  assert.equal(decodeHtmlEntities("It&#39;s"), "It's");
+  assert.equal(decodeHtmlEntities("Navigation 2 &rarr; 3"), "Navigation 2 → 3");
+  assert.equal(decodeHtmlEntities("2&times;n 타일링"), "2×n 타일링");
+});
+
+test("표준 표에 있으면 이 저장소에서 한 번도 등록한 적 없는 이름도 코드 수정 없이 디코딩된다(003-fix-rarr-entity-decode 재발 방지 핵심 — htmlNamedEntities.js를 직접 건드리지 않고도 통과해야 함)", () => {
+  assert.equal(decodeHtmlEntities("Copyright &copy; 2026"), "Copyright © 2026");
+  assert.equal(decodeHtmlEntities("A&ndash;Z"), "A–Z");
+  assert.equal(decodeHtmlEntities("100&euro;"), "100€");
+});
+
+test("숫자 문자 참조는 표에 없어도(코드포인트 자체가 곧 답이므로) 항상 디코딩된다 — decimal과 hex 모두", () => {
+  assert.equal(decodeHtmlEntities("It&#39;s"), "It's"); // decimal, 이름 있는 표에는 apos가 없음
+  assert.equal(decodeHtmlEntities("&#169; 2026"), "© 2026"); // decimal
+  assert.equal(decodeHtmlEntities("Navigation 2 &#x2192; 3"), "Navigation 2 → 3"); // hex
+});
+
+test("hasUnresolvedNamedEntity는 HTML 4.01/XHTML1 표준 표에도 없는 진짜 예외적인 이름만 감지한다", () => {
+  // &checkmark;(U+2713)는 HTML5에서 새로 생긴 이름으로 HTML 4.01/XHTML1 표에는 없다.
+  assert.equal(hasUnresolvedNamedEntity(decodeHtmlEntities("A &amp; &checkmark; B")), true);
+  assert.equal(hasUnresolvedNamedEntity(decodeHtmlEntities("A &amp; &copy; B")), false);
+  assert.equal(hasUnresolvedNamedEntity(decodeHtmlEntities("숫자 참조만 있음 &#169;")), false);
+});
+
+test("extractTitle은 표준 표에도 없는 이름이 남으면 그 게시글을 저장하지 않도록 예외를 던진다(재발 방지 최후 안전망)", () => {
+  const html = "<title>[공지] 완료 &checkmark; 안내</title>";
+  assert.throws(
+    () => extractTitle(html, "https://kenel.tistory.com/999"),
+    /처리하지 못한 HTML 엔티티가 남아있음.*999.*완료 &checkmark; 안내/s,
+  );
+});
+
+test("extractTitle은 알려진 엔티티만 있으면 정상적으로 디코딩된 제목을 반환한다(회귀)", () => {
+  const html = "<title>[Android] Navigation - Navigation 2 &rarr; 3</title>";
+  assert.equal(extractTitle(html, "https://kenel.tistory.com/433"), "[Android] Navigation - Navigation 2 → 3");
 });
 
 test("extractPublishedAt은 <span class=\"date\">의 공개 시각을 KST 기준 ISO 문자열로 변환한다(T024, 2026-08-09 kenel.tistory.com 실측 형식)", () => {

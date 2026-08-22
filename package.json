@@ -3,6 +3,6 @@
   "private": true,
   "description": "티스토리 시리즈 목차 JSON 동기화 자동화 스크립트 테스트 실행용. 외부 npm 의존성 없음(001, 002 research.md).",
   "scripts": {
-    "test": "node --test scripts/sync-tistory-series/__tests__/index.test.js scripts/sync-tistory-series/__tests__/reconcile.test.js scripts/sync-tistory-series/__tests__/seriesAssignments.test.js scripts/sync-tistory-series/__tests__/seriesFiles.test.js scripts/sync-tistory-series/__tests__/seriesName.test.js scripts/sync-tistory-series/__tests__/sitemap.test.js scripts/sync-tistory-series/__tests__/syncState.test.js"
+    "test": "node --test scripts/sync-tistory-series/__tests__/index.test.js scripts/sync-tistory-series/__tests__/reconcile.test.js scripts/sync-tistory-series/__tests__/seriesAssignments.test.js scripts/sync-tistory-series/__tests__/seriesDataIntegrity.test.js scripts/sync-tistory-series/__tests__/seriesFiles.test.js scripts/sync-tistory-series/__tests__/seriesName.test.js scripts/sync-tistory-series/__tests__/sitemap.test.js scripts/sync-tistory-series/__tests__/syncState.test.js"
   }
 }

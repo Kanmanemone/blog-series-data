@@ -29,18 +29,44 @@ const {
   resolveReclassifyBatches,
 } = require("./seriesAssignments.js");
 const { findSeriesIdForUrl, reconcile } = require("./reconcile.js");
+const NAMED_ENTITY_CODEPOINTS = require("./htmlNamedEntities.js");
 
-// 게시글 페이지에서 실측된 다섯 개 기본 엔티티만 방어적으로 치환한다(research.md §3).
-const HTML_ENTITIES = {
-  "&amp;": "&",
-  "&lt;": "<",
-  "&gt;": ">",
-  "&quot;": '"',
-  "&#39;": "'",
-};
+// 003-fix-rarr-entity-decode 사후 분석(&rarr; 다음 &times;가 같은 방식으로 또 발견됨,
+// speckit-converge T009-T011): "실측되는 대로 하나씩 이름을 등록"하는 화이트리스트
+// 방식은 다음에 등록되지 않은 이름이 나타나는 것 자체를 막지 못한다. 대신
+// htmlNamedEntities.js에 HTML 4.01/XHTML1이 확정한 이름 있는 문자 참조 표 전체(1999년
+// 이후 변경 없음, ~250개)를 내장해, 이름 있는 엔티티도 숫자 문자 참조(&#39;, &#x2192;)와
+// 동일하게 "코드포인트를 찾아 String.fromCodePoint로 바꾼다"는 하나의 경로로 처리한다.
+// 그 표에도 없는 이름(HTML5에서 새로 생긴 것 등 진짜 예외적인 경우)을 만나면
+// extractTitle이 예외를 던져(hasUnresolvedNamedEntity) 그 게시글을 이번 실행에서
+// 건너뛰게 만든다 — run()의 기존 fetchPostTitle/fetchPostDetails try/catch가 이미
+// "조회 실패 시 그 게시글만 건너뛰고 로그를 남긴다"를 하고 있으므로, 원문이 series
+// 목차나 sync-state에 조용히 저장되는 대신 사람이 로그로 알아차릴 때까지 안전하게
+// 보류된다(별도 재시도 장치 불필요).
+const ENTITY_PATTERN = /&(#\d+|#x[0-9a-fA-F]+|[a-zA-Z][a-zA-Z0-9]*);/g;
 
 function decodeHtmlEntities(text) {
-  return text.replace(/&amp;|&lt;|&gt;|&quot;|&#39;/g, (entity) => HTML_ENTITIES[entity]);
+  return text.replace(ENTITY_PATTERN, (match, body) => {
+    let codePoint;
+    if (body[0] === "#") {
+      codePoint = body[1] === "x" || body[1] === "X" ? parseInt(body.slice(2), 16) : parseInt(body.slice(1), 10);
+    } else {
+      codePoint = NAMED_ENTITY_CODEPOINTS[body];
+      if (codePoint === undefined) return match; // 표에 없는 이름 - 원문 보존, hasUnresolvedNamedEntity가 나중에 감지
+    }
+    try {
+      return String.fromCodePoint(codePoint);
+    } catch {
+      return match; // 코드포인트 범위를 벗어나는 등 비정상 값은 원문을 보존한다.
+    }
+  });
+}
+
+// decodeHtmlEntities 이후에도 이름 있는 엔티티가 남아있으면 true. 숫자 문자 참조와
+// htmlNamedEntities.js에 있는 이름은 decodeHtmlEntities가 항상 해소하므로(비정상
+// 코드포인트 제외) 이 시점에 남는 것은 그 표에도 없는 이름뿐이다.
+function hasUnresolvedNamedEntity(text) {
+  return /&[a-zA-Z][a-zA-Z0-9]*;/.test(text);
 }
 
 // 게시글 페이지 HTML을 fetch한다(FR-007).
@@ -57,7 +83,14 @@ function extractTitle(html, url) {
   if (!titleMatch) {
     throw new Error(`게시글 제목 조회 실패: ${url} (<title> 태그를 찾을 수 없음)`);
   }
-  return decodeHtmlEntities(titleMatch[1]);
+  const decoded = decodeHtmlEntities(titleMatch[1]);
+  if (hasUnresolvedNamedEntity(decoded)) {
+    throw new Error(
+      `게시글 제목에 처리하지 못한 HTML 엔티티가 남아있음: ${url} (제목: "${decoded}") — ` +
+        "htmlNamedEntities.js(HTML 4.01/XHTML1 표준 표)에도 없는 이름임. 새 엔티티를 등록해야 함(원문 그대로 저장하지 않고 이번 실행에서 건너뜀)",
+    );
+  }
+  return decoded;
 }
 
 /**
@@ -414,6 +447,8 @@ if (require.main === module) {
 
 module.exports = {
   decodeHtmlEntities,
+  hasUnresolvedNamedEntity,
+  extractTitle,
   fetchPostTitle,
   extractPublishedAt,
   filterCandidates,
