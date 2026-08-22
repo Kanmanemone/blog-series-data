@@ -1,4 +1,4 @@
-name: 티스토리 시리즈 목차 동기화 (예약 실행)
+name: 게시글 시리즈 목차 동기화 (예약 실행)
 
 on:
   # 6시간마다 실행. 처리 대상은 마지막 커트라인 이후 변경분만이라 부담이 크지 않다(plan.md Performance Goals).
@@ -34,18 +34,22 @@ jobs:
             git add .github/series-assignments.json
           fi
 
-          # 002-post-drift-detection: 스크립트가 이번 실행에서 실제로 생성·갱신·
-          # 삭제한 내역을 커밋 메시지 본문에 담는다(FR-012, SC-007). 요약 파일이
-          # 없으면(드리프트 반영 없이 001의 신규 게시글 처리만 있었던 실행) 제목
-          # 줄만 사용한다 — 커밋 메시지가 매번 똑같은 고정 문구로 남지 않는다.
-          # 요약 파일이 있으면(items 1건당 1줄, renderCommitSummary) 줄 수를 세어
-          # 제목 줄에 총 건수를 덧붙이고, 본문은 그 줄들(각 줄 "- " 불릿)을 그대로 쓴다.
+          # 003-post-sync-commit-categories: 스크립트가 이번 실행에서 집계한 8개
+          # 카테고리(게시글: 새 글/정보 갱신/삭제, 시리즈: 생성/항목 추가/항목 제거/
+          # 제목 갱신/삭제)를 커밋 메시지 본문에 담는다. 요약 파일의 첫 줄이 총
+          # 건수(N, buildCommitMessageBody/writeCommitSummary가 이미 계산해 둠)이고
+          # 그다음 줄부터가 "- 게시글"/"- 시리즈" 그룹으로 나뉜 본문이다 — 그룹 헤더
+          # 줄까지 세어버리는 `wc -l` 대신 이 첫 줄을 그대로 N으로 쓴다. 요약 파일이
+          # 없으면(드리프트 반영 없이 sync-state.json 메타데이터만 갱신된 실행이라도
+          # 8개 카테고리 중 하나로는 반드시 잡히므로 이 분기는 방어적 기본값이다) 총
+          # 건수를 0건으로 표기하고 본문 없이 제목 줄만 커밋한다.
+          sync_date=$(TZ='Asia/Seoul' date +%Y-%m-%d)
           if [ -f .sync-commit-summary.txt ]; then
-            change_count=$(wc -l < .sync-commit-summary.txt)
-            git commit -m "chore: 티스토리 시리즈 목차 동기화 (총 ${change_count}건)" -m "$(cat .sync-commit-summary.txt)"
+            change_count=$(head -n1 .sync-commit-summary.txt)
+            git commit -m "chore: 게시글 동기화 (${sync_date}, 총 ${change_count}건)" -m "$(tail -n +2 .sync-commit-summary.txt)"
             rm -f .sync-commit-summary.txt
           else
-            git commit -m "chore: 티스토리 시리즈 목차 동기화"
+            git commit -m "chore: 게시글 동기화 (${sync_date}, 총 0건)"
           fi
 
           # 병합 검토 없이 기본 브랜치로 즉시 push한다(spec.md Clarifications Session 2026-07-22).

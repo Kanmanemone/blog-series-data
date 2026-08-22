@@ -37,8 +37,35 @@ Select-String -Path navigation_series.json -Pattern '→'
 
 ## 예상 결과
 
-- `npm test` 전체 통과 (기존 6개 테스트 파일 + 신규 파일 회귀 없음).
+- `npm test` 전체 통과 (기존 테스트 파일 + 신규 파일 회귀 없음).
 - navigation_series.json과 .github/sync-state.json에 `&rarr;` 문자열이 더 이상 존재하지
   않는다.
 - 저장소 내 다른 `*_series.json` 파일에는 애초에 매치가 없었으므로(사전 grep 확인) 변화
   없이 통과한다.
+
+## 4. 커밋 메시지 카테고리 집계 검증 (User Story 4)
+
+```powershell
+node -e "
+const { buildCommitMessageBody } = require('./scripts/sync-tistory-series/index.js');
+console.log(buildCommitMessageBody({
+  postNew: 1, postInfoUpdate: 1, postDeleted: 0,
+  seriesCreated: 0, seriesAdded: 1, seriesRemoved: 0, seriesRetitled: 1, seriesDeleted: 0,
+}));
+"
+```
+
+예상 출력(0건 카테고리 줄과, 이번 예시엔 없지만 그룹 전체가 0일 때의 헤더 생략 동작은
+단위 테스트로 별도 확인):
+
+```text
+- 게시글
+  - 새 글: 1건
+  - 정보 갱신: 1건
+- 시리즈
+  - 항목 추가: 1건
+  - 제목 갱신: 1건
+```
+
+`npm test`가 `index.test.js`의 `buildCommitMessageBody` 케이스(0건 생략, 빈 그룹 헤더
+생략, N=합)를 포함해 전체 통과하는지로도 검증한다.

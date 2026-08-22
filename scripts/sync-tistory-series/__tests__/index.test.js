@@ -10,8 +10,7 @@ const {
   filterCandidates,
   selectDriftCandidates,
   MAX_UNKNOWN_LASTMOD_REFETCH_PER_RUN,
-  buildNewPostCud,
-  renderCommitSummary,
+  buildCommitMessageBody,
 } = require("../index.js");
 
 test("HTML 4.01/XHTML1 표준 표에 있는 이름 있는 엔티티를 원문 문자로 치환한다(FR-007, 이 저장소에서 실제로 관측된 것들)", () => {
@@ -185,42 +184,62 @@ test("selectDriftCandidates는 이미 삭제 확정된 레코드는 두 목록 �
   assert.deepEqual(toMarkDeleted, []);
 });
 
-test("buildNewPostCud는 신규 생성 파일과 기존 파일에 항목이 추가된 경우를 구분한다(FR-012, SC-007)", () => {
-  const createdFile = { seriesId: "newseries", data: { items: [{}, {}] } }; // 2건
-  const appendedFile = { seriesId: "coroutines", data: { items: [{}, {}, {}] } };
-  const changedFiles = new Set([createdFile, appendedFile]);
-  const appendCountsByFile = new Map([[appendedFile, 2]]); // createdFile은 이 Map에 없음 = 신규 생성
+// 003-post-sync-commit-categories: buildCommitMessageBody 테스트에서 매번 8개 필드를
+// 다 쓰지 않도록, 전부 0인 기본값에 필요한 값만 덮어써서 쓴다.
+function zeroCounts(overrides = {}) {
+  return {
+    postNew: 0,
+    postInfoUpdate: 0,
+    postDeleted: 0,
+    seriesCreated: 0,
+    seriesAdded: 0,
+    seriesRemoved: 0,
+    seriesRetitled: 0,
+    seriesDeleted: 0,
+    ...overrides,
+  };
+}
 
-  const cud = buildNewPostCud(changedFiles, appendCountsByFile);
-
-  assert.equal(cud.length, 2);
-  assert.deepEqual(
-    cud.find((e) => e.seriesId === "newseries"),
-    { type: "created", seriesId: "newseries", detail: "2건" },
-  );
-  assert.deepEqual(
-    cud.find((e) => e.seriesId === "coroutines"),
-    { type: "updated", seriesId: "coroutines", detail: "항목 추가 2건" },
-  );
+test("buildCommitMessageBody는 게시글 438(새 글) 사례를 '- 게시글' 그룹의 '새 글' 줄로 표시한다(SC-006)", () => {
+  assert.equal(buildCommitMessageBody(zeroCounts({ postNew: 1 })), "- 게시글\n  - 새 글: 1건");
 });
 
-test("buildNewPostCud는 변경된 파일이 없으면 빈 배열을 반환한다", () => {
-  assert.deepEqual(buildNewPostCud(new Set(), new Map()), []);
+test("buildCommitMessageBody는 게시글 439(메타데이터만 갱신) 사례를 '- 게시글' 그룹의 '정보 갱신' 줄로 표시한다(SC-006)", () => {
+  assert.equal(buildCommitMessageBody(zeroCounts({ postInfoUpdate: 1 })), "- 게시글\n  - 정보 갱신: 1건");
 });
 
-test("renderCommitSummary는 CUD 목록을 '- ' 불릿이 붙은 텍스트로 렌더링한다(research.md §6, /speckit-converge T023)", () => {
-  const text = renderCommitSummary([
-    { type: "created", seriesId: "coroutines", detail: "2건" },
-    { type: "updated", seriesId: "flow", detail: "제목 갱신 1건, 항목 추가 1건" },
-    { type: "deleted", seriesId: "legacy", detail: "항목 부족으로 파일 삭제" },
-  ]);
+test("buildCommitMessageBody는 n=0인 카테고리 줄을 생략한다(FR-014)", () => {
+  const body = buildCommitMessageBody(zeroCounts({ postNew: 2, postDeleted: 0 }));
+  assert.doesNotMatch(body, /삭제/);
+  assert.match(body, /새 글: 2건/);
+});
 
+test("buildCommitMessageBody는 한 그룹의 카테고리가 모두 0이면 그 그룹 헤더 줄 자체를 생략한다(FR-015)", () => {
+  const onlyPost = buildCommitMessageBody(zeroCounts({ postNew: 1 }));
+  assert.doesNotMatch(onlyPost, /- 시리즈/);
+
+  const onlySeries = buildCommitMessageBody(zeroCounts({ seriesAdded: 1 }));
+  assert.doesNotMatch(onlySeries, /- 게시글/);
+});
+
+test("buildCommitMessageBody는 게시글·시리즈 둘 다 있으면 두 그룹을 순서대로, 2칸 들여쓰기로 나눠 보여준다(SC-008)", () => {
+  const body = buildCommitMessageBody(
+    zeroCounts({ postNew: 1, postInfoUpdate: 1, seriesAdded: 1, seriesRetitled: 1 }),
+  );
   assert.equal(
-    text,
-    [
-      "- Created: coroutines_series.json (2건)",
-      "- Updated: flow_series.json (제목 갱신 1건, 항목 추가 1건)",
-      "- Deleted: legacy_series.json (항목 부족으로 파일 삭제)",
-    ].join("\n"),
+    body,
+    ["- 게시글", "  - 새 글: 1건", "  - 정보 갱신: 1건", "- 시리즈", "  - 항목 추가: 1건", "  - 제목 갱신: 1건"].join(
+      "\n",
+    ),
   );
+});
+
+test("buildCommitMessageBody는 서로 다른 시리즈 파일에서 발생한 같은 카테고리 이벤트를 파일명 없이 하나의 합산 줄로 보여준다(SC-008)", () => {
+  // reconcile()이 이미 여러 파일에 걸친 항목 추가를 합산해서 넘겨주므로, 이 함수는
+  // 그 숫자를 그대로 한 줄로만 표시하면 된다 — 어떤 파일에서 발생했는지는 모른다.
+  assert.equal(buildCommitMessageBody(zeroCounts({ seriesAdded: 4 })), "- 시리즈\n  - 항목 추가: 4건");
+});
+
+test("buildCommitMessageBody는 모든 카운트가 0이면 빈 문자열을 반환한다", () => {
+  assert.equal(buildCommitMessageBody(zeroCounts()), "");
 });

@@ -41,10 +41,9 @@ test("reconcile은 배치 결정에 posts가 2개 이상인데 파일이 없으�
       },
     };
 
-    const cud = reconcile(assignments, root);
+    const totals = reconcile(assignments, root);
 
-    assert.equal(cud.length, 1);
-    assert.deepEqual(cud[0], { type: "created", seriesId: "newseries", detail: "2건" });
+    assert.deepEqual(totals, { created: 1, added: 0, removed: 0, retitled: 0, deleted: 0 });
     assert.deepEqual(readFile(root, "newseries"), {
       listName: "NewSeries",
       items: [
@@ -64,9 +63,9 @@ test("reconcile은 배치 결정에 posts가 2개 미만이면 파일을 생성�
       lonely: { listName: "Lonely", posts: [{ url: "https://kenel.tistory.com/300", title: "Lonely - 1화" }] },
     };
 
-    const cud = reconcile(assignments, root);
+    const totals = reconcile(assignments, root);
 
-    assert.equal(cud.length, 0);
+    assert.deepEqual(totals, { created: 0, added: 0, removed: 0, retitled: 0, deleted: 0 });
     assert.equal(fs.existsSync(path.join(root, "lonely_series.json")), false);
   } finally {
     fs.rmSync(root, { recursive: true, force: true });
@@ -84,10 +83,9 @@ test("reconcile은 배치 결정상 2개 미만으로 줄어든 기존 파일을
       coroutines: { listName: "Coroutines", posts: [{ url: "https://kenel.tistory.com/104", title: "Coroutines - 기초" }] },
     };
 
-    const cud = reconcile(assignments, root);
+    const totals = reconcile(assignments, root);
 
-    assert.equal(cud.length, 1);
-    assert.equal(cud[0].type, "deleted");
+    assert.deepEqual(totals, { created: 0, added: 0, removed: 0, retitled: 0, deleted: 1 });
     assert.equal(fs.existsSync(path.join(root, "coroutines_series.json")), false);
   } finally {
     fs.rmSync(root, { recursive: true, force: true });
@@ -116,13 +114,9 @@ test("reconcile은 항목 추가·제거·제목 갱신이 섞여 있으면 diff
       },
     };
 
-    const cud = reconcile(assignments, root);
+    const totals = reconcile(assignments, root);
 
-    assert.equal(cud.length, 1);
-    assert.equal(cud[0].type, "updated");
-    assert.match(cud[0].detail, /제목 갱신 1건/);
-    assert.match(cud[0].detail, /항목 추가 1건/);
-    assert.match(cud[0].detail, /항목 제거 1건/);
+    assert.deepEqual(totals, { created: 0, added: 1, removed: 1, retitled: 1, deleted: 0 });
 
     const updated = readFile(root, "coroutines");
     assert.equal(updated.listName, "Coroutines"); // 기존 listName 유지
@@ -159,9 +153,9 @@ test("reconcile은 배치 결정과 실제 파일이 이미 일치하면 파일�
       },
     };
 
-    const cud = reconcile(assignments, root);
+    const totals = reconcile(assignments, root);
 
-    assert.equal(cud.length, 0);
+    assert.deepEqual(totals, { created: 0, added: 0, removed: 0, retitled: 0, deleted: 0 });
     assert.equal(fs.statSync(filePath).mtimeMs, before); // 파일이 실제로 다시 쓰이지 않았다
     assert.deepEqual(readFile(root, "coroutines"), matchingData);
   } finally {
@@ -177,9 +171,9 @@ test("reconcile은 배치 결정에 없는 seriesId의 기존 파일은 건드�
       items: [{ title: "제목", url: "https://kenel.tistory.com/500" }],
     });
 
-    const cud = reconcile({}, root);
+    const totals = reconcile({}, root);
 
-    assert.equal(cud.length, 0);
+    assert.deepEqual(totals, { created: 0, added: 0, removed: 0, retitled: 0, deleted: 0 });
     assert.equal(fs.existsSync(path.join(root, "untracked_series.json")), true);
     const files = listSeriesFiles(root);
     assert.equal(files.length, 1);

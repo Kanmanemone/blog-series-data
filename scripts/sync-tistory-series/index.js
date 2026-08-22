@@ -181,42 +181,62 @@ function selectDriftCandidates(processedPosts, sitemapByUrl) {
 }
 
 const COMMIT_SUMMARY_PATH = path.join(process.cwd(), ".sync-commit-summary.txt");
-const CUD_TYPE_LABEL = { created: "Created", updated: "Updated", deleted: "Deleted" };
 
-// reconcile()이 반환한 CUD 목록을 사람이 읽는 텍스트로 렌더링한다(research.md §6).
-// 각 줄은 "- "로 시작하는 불릿 목록이며, 커밋 스텝이 줄 수를 세어 커밋 제목의
-// 총 건수(예: "(총 4건)")를 계산할 수 있도록 항목당 정확히 한 줄을 유지한다(FR-012).
-function renderCommitSummary(cudSummary) {
-  return cudSummary
-    .map((entry) => `- ${CUD_TYPE_LABEL[entry.type]}: ${entry.seriesId}_series.json (${entry.detail})`)
-    .join("\n");
+// 003-post-sync-commit-categories(spec.md User Story 4, research.md 결정 5): 커밋
+// 메시지 본문은 파일명·게시글 제목 같은 개별 상세를 나열하지 않고(git diff가 이미
+// 보여줌), "게시글"(시리즈 파일엔 영향 없이 sync-state.json에만 남는 변경)과
+// "시리즈"(*_series.json에 실제로 반영되는 변경) 두 그룹으로 나눠 카테고리별 합산
+// 건수만 표시한다. 배열 순서가 곧 본문에 나열되는 순서다.
+const POST_CATEGORIES = [
+  ["postNew", "새 글"],
+  ["postInfoUpdate", "정보 갱신"],
+  ["postDeleted", "삭제"],
+];
+const SERIES_CATEGORIES = [
+  ["seriesCreated", "생성"],
+  ["seriesAdded", "항목 추가"],
+  ["seriesRemoved", "항목 제거"],
+  ["seriesRetitled", "제목 갱신"],
+  ["seriesDeleted", "삭제"],
+];
+
+// 카테고리 중 이번 실행에서 실제로 건수가 있는 것만 "  - <라벨>: n건" 줄로 만든다(FR-013,
+// FR-014 — 0건인 카테고리는 줄 자체를 만들지 않음). 2칸 들여쓰기는 "- " 마커 폭에
+// 맞춘 것으로, 상위 그룹 헤더 줄("- 게시글"/"- 시리즈")의 자식임을 나타낸다.
+function buildCategoryLines(counts, categories) {
+  return categories.filter(([key]) => counts[key] > 0).map(([key, label]) => `  - ${label}: ${counts[key]}건`);
 }
 
 /**
- * 001의 기존 흐름(신규 게시글을 기존 시리즈에 추가, 신규 시리즈 파일 생성)이 만든
- * 변경을 CUD 항목으로 변환한다(FR-012, SC-007 — 드리프트가 없었던 실행도 실제
- * 변경 내역이 커밋 메시지에 남아야 한다, `/speckit-converge` F2). `appendCountsByFile`에
- * 없는 파일은 이번 실행에서 새로 생성된 것으로 간주한다.
+ * 8개 카테고리 집계(counts)를 "chore: 게시글 동기화" 커밋의 본문 텍스트로 만든다
+ * (FR-012~FR-015). "게시글"·"시리즈" 그룹은 소속 카테고리가 모두 0건이면 그룹 헤더
+ * 줄 자체를 생략한다(FR-015) — 예를 들어 이번 실행에 시리즈 파일 변경이 전혀 없었으면
+ * "- 시리즈" 줄이 아예 나오지 않는다.
  */
-function buildNewPostCud(changedFiles, appendCountsByFile) {
-  const entries = [];
-  for (const file of changedFiles) {
-    if (appendCountsByFile.has(file)) {
-      entries.push({ type: "updated", seriesId: file.seriesId, detail: `항목 추가 ${appendCountsByFile.get(file)}건` });
-    } else {
-      entries.push({ type: "created", seriesId: file.seriesId, detail: `${file.data.items.length}건` });
-    }
-  }
-  return entries;
+function buildCommitMessageBody(counts) {
+  const lines = [];
+  const postLines = buildCategoryLines(counts, POST_CATEGORIES);
+  if (postLines.length > 0) lines.push("- 게시글", ...postLines);
+  const seriesLines = buildCategoryLines(counts, SERIES_CATEGORIES);
+  if (seriesLines.length > 0) lines.push("- 시리즈", ...seriesLines);
+  return lines.join("\n");
 }
 
-// 변경이 있으면 임시 파일에 CUD 요약을 써내고, 없으면(이전 실행의 잔여물 포함) 지운다(FR-012).
-function writeCommitSummary(cudSummary) {
-  if (cudSummary.length === 0) {
+// 커밋 제목의 총 건수(N)는 8개 카테고리 값의 합이다(FR-016).
+function totalCount(counts) {
+  return Object.values(counts).reduce((sum, n) => sum + n, 0);
+}
+
+// 변경이 있으면 임시 파일 첫 줄에 N을, 이어지는 줄에 본문을 써낸다(워크플로우가
+// `head -n1`로 N을, `tail -n +2`로 본문을 읽는다 — 중첩된 그룹 헤더 줄까지 세어버리는
+// `wc -l`보다 정확하다). 변경이 없으면(이전 실행의 잔여물 포함) 파일을 지운다.
+function writeCommitSummary(counts) {
+  const total = totalCount(counts);
+  if (total === 0) {
     fs.rmSync(COMMIT_SUMMARY_PATH, { force: true });
     return;
   }
-  fs.writeFileSync(COMMIT_SUMMARY_PATH, renderCommitSummary(cudSummary) + "\n", "utf8");
+  fs.writeFileSync(COMMIT_SUMMARY_PATH, `${total}\n${buildCommitMessageBody(counts)}\n`, "utf8");
 }
 
 async function run() {
@@ -234,6 +254,21 @@ async function run() {
   }
 
   const sitemapByUrl = new Map(allPosts.map((post) => [post.canonicalUrl, post]));
+
+  // 003-post-sync-commit-categories: 이번 실행에서 커밋 메시지에 남길 8개 카테고리
+  // 집계. "시리즈" 5종은 이 블록과 reconcile()의 결과를 더해서 채우고, "게시글" 3종은
+  // reconcile()이 아예 보지 않는(시리즈에 속하지 않는) 지점에서 직접 증가시킨다
+  // (research.md 결정 5).
+  const counts = {
+    postNew: 0,
+    postInfoUpdate: 0,
+    postDeleted: 0,
+    seriesCreated: 0,
+    seriesAdded: 0,
+    seriesRemoved: 0,
+    seriesRetitled: 0,
+    seriesDeleted: 0,
+  };
 
   // ---- 001의 기존 흐름: 커트라인 이후 새로 나타난 게시글 처리 ----
   const candidates = filterCandidates(allPosts, cutoff);
@@ -258,12 +293,6 @@ async function run() {
   }
 
   const changedFiles = new Set();
-  // 001의 기존 흐름(신규 게시글 추가·신규 시리즈 생성)이 만든 변경도 커밋 요약에
-  // 포함하기 위한 집계다(FR-012, SC-007 — 드리프트가 전혀 없었던 실행도 실제로
-  // 무엇이 바뀌었는지 커밋 메시지로 알 수 있어야 한다, `/speckit-converge` F2).
-  // seriesId별로 이번 실행에서 기존 파일에 몇 건이 추가됐는지만 세고, 파일 자체를
-  // 새로 만든 경우는 changedFiles에는 있지만 이 Map에는 없는 것으로 구분한다.
-  const appendCountsByFile = new Map();
 
   if (processedCandidates.length > 0) {
     const existingFilesForNewPosts = listSeriesFiles();
@@ -271,13 +300,21 @@ async function run() {
 
     for (const post of processedCandidates) {
       // " - "가 없어 시리즈를 추출할 수 없는 게시글은 매칭·생성 대상에서 제외한다(FR-008).
-      if (post.seriesId === null) continue;
+      // sync-state.json에는 기록되지만 시리즈에는 반영되지 않으므로 "새 글"로 센다(FR-009).
+      if (post.seriesId === null) {
+        counts.postNew += 1;
+        continue;
+      }
 
       const matched = findMatchingFile(existingFilesForNewPosts, post.seriesId);
       if (matched) {
         if (appendToSeries(matched, post)) {
           changedFiles.add(matched);
-          appendCountsByFile.set(matched, (appendCountsByFile.get(matched) || 0) + 1);
+          counts.seriesAdded += 1;
+        } else {
+          // 이미 같은 URL이 시리즈에 있음(예: 같은 실행에서 lastMod가 다시 바뀌어
+          // 후보로 재등장) — sync-state.json만 갱신되고 시리즈 파일은 그대로다.
+          counts.postInfoUpdate += 1;
         }
         continue;
       }
@@ -314,7 +351,13 @@ async function run() {
       const created = createSeriesFile(seriesId, allSiblings);
       if (created) {
         changedFiles.add(created);
+        counts.seriesCreated += 1;
         console.log(`[sync] 새 시리즈 파일 생성: ${created.filePath}`);
+      } else {
+        // 형제를 합쳐도 2명 미만이라 파일이 만들어지지 않음 — 이번 실행 후보들은
+        // sync-state.json에만 기록되고 시리즈에는 반영되지 않으므로 "새 글"이다(FR-009).
+        // historicalOnlyWithTitle은 과거 실행에서 이미 처리 이력에 기록됐으므로 세지 않는다.
+        counts.postNew += thisRunSiblings.length;
       }
     }
 
@@ -336,8 +379,6 @@ async function run() {
     }
   }
 
-  const newPostCud = buildNewPostCud(changedFiles, appendCountsByFile);
-
   // ---- 002-post-drift-detection: 이미 처리된 게시글의 드리프트 감지·반영 ----
   const runProcessedAtForDrift = formatKst(runStartedAt);
   const { toRefetch, toMarkDeleted } = selectDriftCandidates(state.processedPosts, sitemapByUrl);
@@ -348,6 +389,11 @@ async function run() {
 
   const driftTouchedUrls = [...toMarkDeleted];
 
+  // 재조회 직전의 제목을 기억해 둔다 — upsertProcessedPost가 곧바로 덮어써 버리므로,
+  // 나중에(아래 배치 결정 루프에서) "제목 텍스트가 실제로 바뀌었는지"를 판단하려면
+  // 미리 캡처해 둬야 한다(정보 갱신 카테고리 판정, FR-010).
+  const driftOldTitles = new Map();
+
   for (const url of toRefetch) {
     let newTitle, publishedAt;
     try {
@@ -356,6 +402,8 @@ async function run() {
       console.error(`[sync] ${url} 드리프트 재확인용 제목 조회 실패, 이번 실행에서는 건너뜁니다: ${error.message}`);
       continue;
     }
+    const previousRecord = state.processedPosts.find((r) => r.url === url);
+    driftOldTitles.set(url, previousRecord ? previousRecord.title : undefined);
     const currentPost = sitemapByUrl.get(url);
     upsertProcessedPost(state.processedPosts, {
       url,
@@ -369,9 +417,7 @@ async function run() {
 
   // 이번 실행에서 실제로 title·lastMod가 갱신됐거나 deletedAt이 새로 설정된
   // 게시글에 대해서만 배치 결정을 갱신한다(FR-006 — 변경되지 않은 게시글은 다시
-  // 계산하지 않는다). 001의 신규 게시글 처리 CUD(newPostCud)는 드리프트 여부와
-  // 무관하게 항상 커밋 요약에 포함한다(`/speckit-converge` F2).
-  let cudSummary = [...newPostCud];
+  // 계산하지 않는다).
   if (driftTouchedUrls.length > 0) {
     const seriesFilesForAssignment = listSeriesFiles();
     const assignments = readAssignments();
@@ -392,14 +438,31 @@ async function run() {
       }
 
       if (record.deletedAt) {
+        // 시리즈에 속하지 않았던 게시글의 삭제 확정은 reconcile()이 볼 수 없는(대상
+        // 자체가 없는) 영역이므로 여기서 직접 센다(FR-011). 속해 있었으면 아래
+        // reconcile()의 diff(항목 제거 또는 파일 삭제)에 자연히 반영된다.
+        if (!oldSeriesId) counts.postDeleted += 1;
         updateAssignmentForPost(assignments, { url, deletedAt: record.deletedAt, oldSeriesId });
         continue;
       }
 
-      if (!oldSeriesId) continue; // 아직 어떤 목차에도 반영된 적 없는 게시글 — 이 기능 범위 밖(Edge Cases)
+      if (!oldSeriesId) {
+        // 아직 어떤 목차에도 반영된 적 없는 게시글 — 이 기능 범위 밖(Edge Cases).
+        // sync-state.json만 갱신됐으므로 "정보 갱신"으로 센다(FR-010).
+        counts.postInfoUpdate += 1;
+        continue;
+      }
 
       const rawSeriesName = extractRawSeriesName(record.title);
       const newSeriesId = rawSeriesName ? toSeriesId(rawSeriesName) : null;
+
+      // 제목 텍스트가 실제로는 안 바뀐 재확인(lastMod/publishedAt만 갱신)은
+      // reconcile()의 diff에서 0건으로 잡혀 눈에 보이지 않으므로 여기서 직접
+      // "정보 갱신"으로 센다(FR-010). 텍스트가 진짜로 바뀐 경우만 아래에서 계속 진행해
+      // reconcile()의 "제목 갱신"/재분류 diff로 잡히게 둔다(이중 집계 방지).
+      if (driftOldTitles.get(url) === record.title) {
+        counts.postInfoUpdate += 1;
+      }
 
       if (!newSeriesId || newSeriesId === oldSeriesId) {
         updateAssignmentForPost(assignments, { url, title: record.title, oldSeriesId, publishedAt: record.publishedAt });
@@ -414,10 +477,15 @@ async function run() {
     writeAssignments(assignments);
     // 매 실행마다 배치 결정 "전체"와 실제 파일 "전체"를 비교한다(FR-008) — 부분
     // 갱신은 배치 결정을 만드는 단계까지고, 재조정은 항상 전체 범위로 수행한다.
-    cudSummary = [...newPostCud, ...reconcile(assignments)];
+    const seriesTotals = reconcile(assignments);
+    counts.seriesCreated += seriesTotals.created;
+    counts.seriesAdded += seriesTotals.added;
+    counts.seriesRemoved += seriesTotals.removed;
+    counts.seriesRetitled += seriesTotals.retitled;
+    counts.seriesDeleted += seriesTotals.deleted;
   }
 
-  writeCommitSummary(cudSummary);
+  writeCommitSummary(counts);
 
   if (processedCandidates.length === 0 && driftTouchedUrls.length === 0) {
     console.log("[sync] 이번 실행에서 반영할 변경이 없어 워킹 트리를 변경하지 않고 종료합니다.");
@@ -434,7 +502,9 @@ async function run() {
   writeSyncState(state);
 
   console.log(
-    `[sync] 완료: 목차 변경 총 ${cudSummary.length}건(신규 게시글 처리 ${newPostCud.length}건 포함), 다음 커트라인 ${state.cutoff ?? "(변경 없음)"}`,
+    `[sync] 완료: 총 ${totalCount(counts)}건(게시글 ${counts.postNew + counts.postInfoUpdate + counts.postDeleted}건, ` +
+      `시리즈 ${counts.seriesCreated + counts.seriesAdded + counts.seriesRemoved + counts.seriesRetitled + counts.seriesDeleted}건), ` +
+      `다음 커트라인 ${state.cutoff ?? "(변경 없음)"}`,
   );
 }
 
@@ -454,7 +524,6 @@ module.exports = {
   filterCandidates,
   selectDriftCandidates,
   MAX_UNKNOWN_LASTMOD_REFETCH_PER_RUN,
-  buildNewPostCud,
-  renderCommitSummary,
+  buildCommitMessageBody,
   run,
 };

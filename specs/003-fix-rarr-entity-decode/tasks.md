@@ -275,3 +275,68 @@ Phase 8을 커밋한 뒤 사용자가 "화이트리스트를 왜 관리하냐, S
   SC-004, SC-005 (missing)
 
 **Checkpoint**: `npm test` 전체 통과, 저장소 전체 JSON 재스캔 결과 미해석 엔티티 0건.
+
+---
+
+## Phase 10: User Story 4 — 커밋 메시지 8-카테고리 집계 (spec.md, research.md 결정 5)
+
+`&rarr;`/`&times;` 수정과는 독립적인 요구사항으로, 자동 동기화 커밋 메시지가 시리즈
+파일 CUD만 세던 것을 게시글 3종 + 시리즈 5종, 총 8개 카테고리로 넓히고 형식을
+"게시글"/"시리즈" 중첩 그룹 + 카테고리별 합산 건수로 바꾼다.
+
+- [X] T020 `scripts/sync-tistory-series/reconcile.js`의 `reconcile(assignments, rootDir)`가
+  파일별 CUD 배열 대신 `{created, added, removed, retitled, deleted}` 5개 숫자 집계를
+  반환하도록 다시 쓴다(각 파일의 `diffItems` 결과를 배열에 담는 대신 실행 전체에 걸쳐
+  합산). `findSeriesIdForUrl`은 그대로 둔다. JSDoc을 새 반환 형태에 맞게 갱신한다 per
+  research.md 결정 5 (missing)
+- [X] T021 [P] `scripts/sync-tistory-series/__tests__/reconcile.test.js`를 T020의 새
+  반환 형태(`{created, added, removed, retitled, deleted}`)에 맞춰 갱신한다 — 기존
+  테스트가 검증하던 시나리오(생성/삭제/추가·제거·제목갱신 혼합/변경 없음/범위 밖 파일
+  무시)는 그대로 유지하되 단언(assert) 대상만 배열 원소에서 숫자 필드로 바꾼다
+  (depends on T020) per research.md 결정 5 (missing)
+- [X] T022 `scripts/sync-tistory-series/index.js`의 `run()`에 `postNew`/`postInfoUpdate`/
+  `postDeleted` 카운터를 추가하고 다음 지점에서 직접 증가시킨다: (a) 001 신규 후보
+  루프에서 `seriesId === null`인 후보와, `unmatchedBySeriesId` 그룹인데 형제가 2명
+  미만이라 `createSeriesFile`이 파일을 안 만든 후보는 `postNew`; (b) 001에서
+  `appendToSeries`가 이미 있는 URL이라 false를 반환하면 `postInfoUpdate`; (c) 002
+  드리프트 재확인 루프에서, `upsertProcessedPost` 호출 전에 이전 title을 캡처해 새
+  title과 비교 — `oldSeriesId`가 없거나 title 텍스트가 실제로 안 바뀌었으면
+  `postInfoUpdate`; (d) 002 삭제 확정 루프에서 `oldSeriesId`가 없는 게시글은
+  `postDeleted` per FR-009, FR-010, FR-011 (missing)
+- [X] T023 [P] `scripts/sync-tistory-series/index.js`에 순수 함수
+  `buildCommitMessageBody(counts)`를 추가한다 — 8개 카운트를 받아 "게시글"(새 글/정보
+  갱신/삭제)·"시리즈"(생성/항목 추가/항목 제거/제목 갱신/삭제) 두 그룹으로 나눈 본문
+  문자열을 만든다. n=0인 카테고리 줄 생략(FR-014), 그룹 전체 합이 0이면 헤더 줄 생략
+  (FR-015), 카테고리 줄은 `  - <라벨>: n건`(2칸 들여쓰기). 같은 파일에서 `buildNewPostCud`,
+  `renderCommitSummary`, `CUD_TYPE_LABEL`을 제거한다(더 이상 쓰이지 않음) per FR-012,
+  FR-013, FR-014, FR-015 (missing)
+- [X] T024 `scripts/sync-tistory-series/index.js`의 `writeCommitSummary`를
+  `writeCommitSummary(counts)`로 바꾼다 — N(8개 카운트의 합, FR-016)을 첫 줄에, T023의
+  `buildCommitMessageBody(counts)` 결과를 이어지는 줄에 써서 `.sync-commit-summary.txt`를
+  만든다(N===0이면 기존처럼 파일을 만들지 않음/지운다). `run()`에서 001의
+  `seriesCreated`/`seriesAdded`(changedFiles·appendCountsByFile 기반)와 T020의 002
+  집계, T022의 게시글 3종을 하나의 `counts` 객체로 합쳐 `writeCommitSummary(counts)`를
+  호출하도록 배선한다. 실행 끝의 콘솔 로그도 `cudSummary.length` 대신 8개 카운트 요약을
+  출력하도록 바꾼다(depends on T020, T022, T023) per FR-016 (missing)
+- [X] T025 [P] `buildCommitMessageBody`를 `module.exports`에 추가해 단위 테스트에서 직접
+  호출 가능하게 한다(depends on T023) per FR-012~FR-016 (missing)
+- [X] T026 `scripts/sync-tistory-series/__tests__/index.test.js`를 갱신한다: (a)
+  `buildNewPostCud`/`renderCommitSummary` 테스트 제거, (b) `buildCommitMessageBody`
+  단위 테스트 추가 — 카테고리별 n건 표시, n=0 줄 생략, 그룹 전체 0일 때 헤더 생략,
+  게시글/시리즈 둘 다 있을 때 순서와 들여쓰기, N=8개 합 검증(depends on T023, T025) per
+  FR-012~FR-016, SC-006, SC-008 (missing)
+- [X] T027 `.github/workflows/tistory-series-sync.yml`과
+  `.github/workflows/tistory-series-sync-manual.yml`의 커밋 스텝을 T024의 새
+  `.sync-commit-summary.txt` 형식에 맞춘다 — `wc -l` 대신 `head -n1`로 N을 읽고,
+  `tail -n +2`로 본문을 읽어 커밋 메시지 본문(`-m`)에 쓴다. 커밋 제목 텍스트("chore:
+  게시글 동기화")는 이미 적용돼 있으므로 그대로 둔다(depends on T024) per FR-018
+  (missing)
+- [X] T028 `npm test`를 실행해 전체 스위트가 회귀 없이 통과함을 확인한다(depends on
+  T020~T026) per SC-006, SC-007, SC-008 (missing)
+- [X] T029 quickstart.md 4단계의 `node -e` 스니펫을 실제로 실행해 `buildCommitMessageBody`
+  출력이 문서에 적은 예상 형식과 일치하는지 확인한다(depends on T024, T025) (missing)
+
+**Checkpoint**: `npm test` 전체 통과. `buildCommitMessageBody`가 8개 카테고리 조합에서
+문서화된 형식(그룹/들여쓰기/0건 생략)을 정확히 만들어낸다. 워크플로우 두 파일이 새
+`.sync-commit-summary.txt` 형식을 올바르게 읽는다(로컬 시뮬레이션으로 확인, 실제
+GitHub Actions 실행 확인은 이번 세션 범위 밖).

@@ -30,6 +30,15 @@ speckit-converge 1차 실행에서 같은 클래스의 두 번째 사례(`&times
 유지한다. "완전한 범용 HTML5 엔티티 디코더(수천 개, living standard)까지는 가지 않는다"는
 원래 범위 제약은 여전히 유지한다.
 
+**설계 갱신 3(사용자 요청, spec.md User Story 4)**: 위 두 갱신과는 독립적인 관심사로,
+자동 동기화 커밋 메시지("chore: ... 동기화")가 시리즈 파일 CUD만 세고 처리 이력
+(`.github/sync-state.json`) 전용 변경(새 게시글이 시리즈 미반영, 메타데이터만 갱신,
+시리즈 밖 게시글 삭제)을 놓치던 것을 대화 중 실측(게시글 438, 439)으로 발견해 함께
+고친다. `reconcile()`/`buildNewPostCud()`/`renderCommitSummary()`의 "파일별 CUD 목록 +
+포맷된 detail 문자열" 구조를 "8개 카테고리별 집계 숫자" 구조로 재설계한다(research.md
+결정 5) — 커밋 본문이 더 이상 어떤 파일이 바뀌었는지 나열하지 않고(git diff가 이미
+보여줌), 카테고리별 총 건수만 "게시글"/"시리즈" 두 그룹으로 묶어 보여준다.
+
 ## Technical Context
 
 **Language/Version**: Node.js (repo 기존 스크립트와 동일, `node --test` 사용, 버전 고정 없음)
@@ -48,7 +57,7 @@ speckit-converge 1차 실행에서 같은 클래스의 두 번째 사례(`&times
 
 **Constraints**: Constitution I(시리즈 데이터 스키마 — title/url/listName 외 키 추가 금지), 001 research.md §3 정책의 정신(완전한 범용 named-entity 표 직접 구현 금지)은 유지하되, research.md 결정 3에 따라 숫자 문자 참조는 범용 디코딩하고 이름 있는 엔티티는 화이트리스트+실패 감지로 처리
 
-**Scale/Scope**: decodeHtmlEntities/extractTitle 수정(숫자 참조 범용화 + 미등록 이름 있는 엔티티 감지), 데이터 파일 2곳 값 수정, 신규 테스트 파일 1개 추가
+**Scale/Scope**: decodeHtmlEntities/extractTitle 수정(숫자 참조 범용화 + 미등록 이름 있는 엔티티 감지), 데이터 파일 2곳 값 수정, 신규 테스트 파일 1개 추가. 설계 갱신 3: `reconcile()` 반환 형태 변경, `run()`의 8-카테고리 집계 추가, 커밋 메시지 빌드 함수 재작성, 워크플로우 2개 파일의 커밋 스텝 수정.
 
 ## Constitution Check
 
@@ -60,6 +69,12 @@ speckit-converge 1차 실행에서 같은 클래스의 두 번째 사례(`&times
 - **IV. 콘텐츠는 한국어 우선**: PASS — 수정 후 title 값("→" 포함)은 여전히 한국어 제목 문자열이며 콘텐츠 언어에 영향 없음.
 
 Gate 위반 없음 — Complexity Tracking 불필요.
+
+**설계 갱신 3 재점검**: 커밋 메시지 포맷 변경은 `*_series.json` 스키마(Constitution I)에
+영향 없음(파일 내용 자체는 그대로, 커밋 메타데이터만 변경). 새 코드의 주석은 한국어로
+구체적으로 작성한다(Constitution II). 콘텐츠 언어 원칙(Constitution IV)은 커밋 메시지에도
+그대로 적용해 카테고리 라벨을 한국어로 통일한다(사용자가 최종 확정한 "새 글/정보 갱신/삭제",
+"생성/항목 추가/항목 제거/제목 갱신/삭제"). 위반 없음.
 
 ## Project Structure
 
@@ -82,11 +97,22 @@ specs/003-fix-rarr-entity-decode/
 ```text
 scripts/sync-tistory-series/
 ├── index.js                          # decodeHtmlEntities(숫자 참조 + 표준 표 통합 디코딩),
-│                                      # hasUnresolvedNamedEntity, extractTitle(실패 감지)
-├── htmlNamedEntities.js              # 신규: HTML 4.01/XHTML1 이름 있는 문자 참조 표 전체(252개)
+│                                      # hasUnresolvedNamedEntity, extractTitle(실패 감지),
+│                                      # run()의 8-카테고리 집계, buildCommitMessageBody(신규),
+│                                      # writeCommitSummary(N-첫줄 포맷으로 재작성),
+│                                      # buildNewPostCud/renderCommitSummary/CUD_TYPE_LABEL 제거
+├── reconcile.js                      # reconcile()이 cudSummary 배열 대신
+│                                      # {created, added, removed, retitled, deleted} 집계 숫자를 반환
+├── htmlNamedEntities.js              # HTML 4.01/XHTML1 이름 있는 문자 참조 표 전체(252개)
 └── __tests__/
-    ├── index.test.js                 # 표준 표 기반 디코딩, 숫자 참조 일반화, extractTitle 실패 감지 케이스
-    └── seriesDataIntegrity.test.js   # 신규: 모든 *_series.json title에 미해석 엔티티 없음을 검증
+    ├── index.test.js                 # 표준 표 기반 디코딩, 숫자 참조 일반화, extractTitle 실패 감지,
+    │                                  # buildCommitMessageBody 케이스 추가; buildNewPostCud/
+    │                                  # renderCommitSummary 테스트는 제거
+    ├── reconcile.test.js             # reconcile() 반환 형태 변경에 맞춰 갱신
+    └── seriesDataIntegrity.test.js   # 모든 *_series.json title에 미해석 엔티티 없음을 검증
+
+.github/workflows/tistory-series-sync.yml         # 커밋 제목 "게시글 동기화"로, N을 파일
+.github/workflows/tistory-series-sync-manual.yml  # 첫 줄에서 읽도록(더 이상 wc -l 아님)
 
 navigation_series.json                # title 값 직접 수정
 .github/sync-state.json               # processedPosts[].title 값 직접 수정
@@ -94,9 +120,10 @@ package.json                          # scripts.test에 신규 테스트 파일 
 ```
 
 **Structure Decision**: 기존 `scripts/sync-tistory-series/` 단일 프로젝트 구조를 그대로
-따른다. 새 모듈이나 디렉터리를 만들지 않고, 기존 `index.js`와 `__tests__/`에 각각 수정·추가만
-한다. 데이터 파일 수정은 스크립트 실행이 아니라 이번 구현 단계에서 직접 값을 고치는 일회성
-보정이다(001/002가 만든 자동 동기화 파이프라인 자체를 바꾸는 것이 아님).
+따른다. 새 모듈이나 디렉터리를 만들지 않고, 기존 `index.js`/`reconcile.js`와 `__tests__/`에
+각각 수정만 한다. 데이터 파일 수정은 스크립트 실행이 아니라 이번 구현 단계에서 직접 값을
+고치는 일회성 보정이다(001/002가 만든 자동 동기화 파이프라인 자체를 바꾸는 것이 아님) —
+반면 커밋 메시지 집계 로직(설계 갱신 3)은 파이프라인 코드 자체를 고치는 것이 맞다.
 
 ## Complexity Tracking
 

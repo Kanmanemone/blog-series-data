@@ -47,12 +47,15 @@ function diffItems(actualItems, desiredPosts) {
  * 실제 파일에 반영한다(FR-008~FR-011). 배치 결정에 없는 seriesId의 기존 파일은
  * 건드리지 않는다 — 이 기능은 "이미 목차에 반영된" 게시글만 대상으로 하므로, 001이나
  * 아직 이 기능의 처리 이력에 편입되지 않은 시리즈까지 재조정 대상으로 삼으면 범위를
- * 벗어난다(spec.md Edge Cases). 반환값은 이번 실행에서 실제로 만든 변경의 CUD 요약
- * 목록이다(FR-012) — 변경이 없으면 빈 배열을 반환하고 어떤 파일도 다시 쓰지 않는다(SC-006).
+ * 벗어난다(spec.md Edge Cases). 반환값은 이번 실행에서 실제로 만든 변경을 집계한
+ * `{created, added, removed, retitled, deleted}` 숫자 5개다(003-fix-rarr-entity-decode
+ * User Story 4, research.md 결정 5) — 어떤 파일에서 발생했는지는 담지 않는다, 커밋
+ * 메시지 본문이 카테고리별 합산 건수만 표시하고 파일명은 나열하지 않기로 했기 때문이다.
+ * 변경이 없으면 모든 값이 0이고 어떤 파일도 다시 쓰지 않는다(SC-006).
  */
 function reconcile(assignments, rootDir = process.cwd()) {
   const existingFiles = listSeriesFiles(rootDir);
-  const cudSummary = [];
+  const totals = { created: 0, added: 0, removed: 0, retitled: 0, deleted: 0 };
 
   for (const [seriesId, group] of Object.entries(assignments)) {
     const file = findMatchingFile(existingFiles, seriesId);
@@ -60,7 +63,7 @@ function reconcile(assignments, rootDir = process.cwd()) {
     if (group.posts.length < 2) {
       if (file) {
         fs.rmSync(file.filePath, { force: true });
-        cudSummary.push({ type: "deleted", seriesId, detail: "항목 부족(2개 미만)으로 파일 삭제" });
+        totals.deleted += 1;
       }
       continue;
     }
@@ -75,7 +78,7 @@ function reconcile(assignments, rootDir = process.cwd()) {
         },
       };
       writeSeriesFile(newFile);
-      cudSummary.push({ type: "created", seriesId, detail: `${group.posts.length}건` });
+      totals.created += 1;
       continue;
     }
 
@@ -85,14 +88,12 @@ function reconcile(assignments, rootDir = process.cwd()) {
     file.data.items = group.posts.map((post) => ({ title: post.title, url: post.url }));
     writeSeriesFile(file);
 
-    const details = [];
-    if (diff.retitled > 0) details.push(`제목 갱신 ${diff.retitled}건`);
-    if (diff.added > 0) details.push(`항목 추가 ${diff.added}건`);
-    if (diff.removed > 0) details.push(`항목 제거 ${diff.removed}건`);
-    cudSummary.push({ type: "updated", seriesId, detail: details.join(", ") });
+    totals.added += diff.added;
+    totals.removed += diff.removed;
+    totals.retitled += diff.retitled;
   }
 
-  return cudSummary;
+  return totals;
 }
 
 module.exports = { findSeriesIdForUrl, diffItems, reconcile };
