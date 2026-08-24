@@ -1,5 +1,5 @@
 {
-  "cutoff": "2026-08-22T15:37:00+09:00",
+  "cutoff": "2026-08-25T03:36:50+09:00",
   "processedPosts": [
     {
       "url": "https://kenel.tistory.com/418",
@@ -2644,30 +2644,30 @@
     {
       "url": "https://kenel.tistory.com/436",
       "title": "[프로그래머스] 42898 (등굣길)",
-      "lastMod": "2026-08-19T01:40:02.000Z",
+      "lastMod": "2026-08-24T13:09:45.000Z",
       "publishedAt": "2026-08-19T01:40:00.000Z",
-      "processedAt": "2026-08-19T15:46:30+09:00"
+      "processedAt": "2026-08-25T03:41:50+09:00"
     },
     {
       "url": "https://kenel.tistory.com/438",
       "title": "[프로그래머스] 1844 (게임 맵 최단거리)",
-      "lastMod": "2026-08-20T08:02:42.000Z",
+      "lastMod": "2026-08-24T13:11:10.000Z",
       "publishedAt": "2026-08-20T08:02:00.000Z",
-      "processedAt": "2026-08-20T21:52:46+09:00"
+      "processedAt": "2026-08-25T03:41:50+09:00"
     },
     {
       "url": "https://kenel.tistory.com/439",
       "title": "[프로그래머스] 87694 (아이템 줍기)",
-      "lastMod": "2026-08-21T13:13:19.000Z",
+      "lastMod": "2026-08-24T13:16:57.000Z",
       "publishedAt": "2026-08-21T07:46:00.000Z",
-      "processedAt": "2026-08-22T03:38:20+09:00"
+      "processedAt": "2026-08-25T03:41:50+09:00"
     },
     {
       "url": "https://kenel.tistory.com/433",
       "title": "[Android] Navigation - Navigation 2 → 3",
-      "lastMod": "2026-08-21T07:37:45.000Z",
+      "lastMod": "2026-08-24T13:19:28.000Z",
       "publishedAt": "2026-08-21T07:00:00.000Z",
-      "processedAt": "2026-08-21T21:51:11+09:00"
+      "processedAt": "2026-08-25T03:41:50+09:00"
     }
   ]
 }
