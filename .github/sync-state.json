@@ -1,5 +1,5 @@
 {
-  "cutoff": "2026-08-25T03:36:50+09:00",
+  "cutoff": "2026-08-25T15:45:46+09:00",
   "processedPosts": [
     {
       "url": "https://kenel.tistory.com/418",
@@ -384,9 +384,9 @@
     {
       "url": "https://kenel.tistory.com/334",
       "rawSeriesName": null,
-      "processedAt": "2026-08-10T03:42:55+09:00",
+      "processedAt": "2026-08-25T15:50:46+09:00",
       "title": "[백준] 26169 (세 번 이내에 사과를 먹자)",
-      "lastMod": "2025-04-23T06:52:59.000Z",
+      "lastMod": "2026-08-25T03:41:32.000Z",
       "publishedAt": "2025-04-08T06:54:00.000Z"
     },
     {
@@ -1120,9 +1120,9 @@
     {
       "url": "https://kenel.tistory.com/212",
       "rawSeriesName": "그래프",
-      "processedAt": "2026-08-10T22:12:17+09:00",
-      "title": "그래프 - 깊이 우선 탐색 (DFS, Depth-First Search)",
-      "lastMod": "2025-04-23T08:27:38.000Z",
+      "processedAt": "2026-08-25T15:50:46+09:00",
+      "title": "그래프 - 깊이 우선 탐색 (DFS, Depth-First Search), 백트래킹 (Backtracking)",
+      "lastMod": "2026-08-25T03:00:45.000Z",
       "publishedAt": "2024-09-23T11:27:00.000Z"
     },
     {
@@ -2668,6 +2668,20 @@
       "lastMod": "2026-08-24T13:19:28.000Z",
       "publishedAt": "2026-08-21T07:00:00.000Z",
       "processedAt": "2026-08-25T03:41:50+09:00"
+    },
+    {
+      "url": "https://kenel.tistory.com/435",
+      "title": "Swemo - Iteration 8: Label과 Text 분리",
+      "lastMod": "2026-08-25T06:50:06.000Z",
+      "publishedAt": "2026-08-25T06:47:00.000Z",
+      "processedAt": "2026-08-25T15:50:46+09:00"
+    },
+    {
+      "url": "https://kenel.tistory.com/440",
+      "title": "[프로그래머스] 43164 (여행경로)",
+      "lastMod": "2026-08-25T04:44:25.000Z",
+      "publishedAt": "2026-08-25T03:50:00.000Z",
+      "processedAt": "2026-08-25T15:50:46+09:00"
     }
   ]
 }
