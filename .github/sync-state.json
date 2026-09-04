@@ -1,5 +1,5 @@
 {
-  "cutoff": "2026-09-04T12:22:22+09:00",
+  "cutoff": "2026-09-04T19:44:56+09:00",
   "processedPosts": [
     {
       "url": "https://kenel.tistory.com/418",
@@ -2674,9 +2674,9 @@
     {
       "url": "https://kenel.tistory.com/435",
       "title": "Swemo - Iteration 8: Label과 Text 분리",
-      "lastMod": "2026-09-03T07:40:06.000Z",
+      "lastMod": "2026-09-04T06:39:13.000Z",
       "publishedAt": "2026-08-25T06:47:00.000Z",
-      "processedAt": "2026-09-03T19:50:49+09:00"
+      "processedAt": "2026-09-04T19:49:56+09:00"
     },
     {
       "url": "https://kenel.tistory.com/440",
@@ -2695,9 +2695,23 @@
     {
       "url": "https://kenel.tistory.com/444",
       "title": "[프로그래머스] 86971 (전력망을 둘로 나누기)",
-      "lastMod": "2026-09-04T03:17:36.000Z",
+      "lastMod": "2026-09-04T04:49:45.000Z",
       "publishedAt": "2026-09-04T02:48:00.000Z",
-      "processedAt": "2026-09-04T12:27:22+09:00"
+      "processedAt": "2026-09-04T19:49:56+09:00"
+    },
+    {
+      "url": "https://kenel.tistory.com/446",
+      "title": "[프로그래머스] 84512 (모음사전)",
+      "lastMod": "2026-09-04T05:10:00.000Z",
+      "publishedAt": "2026-09-04T05:10:00.000Z",
+      "processedAt": "2026-09-04T19:49:56+09:00"
+    },
+    {
+      "url": "https://kenel.tistory.com/445",
+      "title": "그래프 - BFS vs DFS (너비 우선 탐색 vs 깊이 우선 탐색)",
+      "lastMod": "2026-09-04T04:22:40.000Z",
+      "publishedAt": "2026-09-04T04:22:00.000Z",
+      "processedAt": "2026-09-04T19:49:56+09:00"
     }
   ]
 }

@@ -12,6 +12,10 @@
     {
       "title": "그래프 - 깊이 우선 탐색 (DFS, Depth-First Search)",
       "url": "https://kenel.tistory.com/212"
+    },
+    {
+      "title": "그래프 - BFS vs DFS (너비 우선 탐색 vs 깊이 우선 탐색)",
+      "url": "https://kenel.tistory.com/445"
     }
   ]
 }
