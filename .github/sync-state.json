@@ -1,5 +1,5 @@
 {
-  "cutoff": "2026-09-04T19:44:56+09:00",
+  "cutoff": "2026-09-05T23:41:29+09:00",
   "processedPosts": [
     {
       "url": "https://kenel.tistory.com/418",
@@ -2712,6 +2712,13 @@
       "lastMod": "2026-09-04T04:22:40.000Z",
       "publishedAt": "2026-09-04T04:22:00.000Z",
       "processedAt": "2026-09-04T19:49:56+09:00"
+    },
+    {
+      "url": "https://kenel.tistory.com/447",
+      "title": "[프로그래머스] 42860 (조이스틱)",
+      "lastMod": "2026-09-05T13:44:51.000Z",
+      "publishedAt": "2026-09-05T13:35:00.000Z",
+      "processedAt": "2026-09-05T23:46:29+09:00"
     }
   ]
 }
