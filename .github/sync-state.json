@@ -1,5 +1,5 @@
 {
-  "cutoff": "2026-10-07T13:48:30+09:00",
+  "cutoff": "2026-10-08T13:58:43+09:00",
   "processedPosts": [
     {
       "url": "https://kenel.tistory.com/418",
@@ -1913,9 +1913,9 @@
     {
       "url": "https://kenel.tistory.com/97",
       "rawSeriesName": null,
-      "processedAt": "2026-08-11T22:08:59+09:00",
-      "title": "[Kotlin] 함수형 인터페이스 (Single Abstract Method Interface)",
-      "lastMod": "2025-03-01T07:02:30.000Z",
+      "processedAt": "2026-10-08T14:03:43+09:00",
+      "title": "[Kotlin] 함수형 인터페이스 (Single Abstract Method Interface, SAM)",
+      "lastMod": "2026-10-08T02:34:31.000Z",
       "publishedAt": "2024-01-30T04:14:00.000Z"
     },
     {
@@ -2673,10 +2673,10 @@
     },
     {
       "url": "https://kenel.tistory.com/435",
-      "title": "Swemo - Iteration 8: Label과 Text 분리",
-      "lastMod": "2026-10-07T03:30:05.000Z",
+      "title": "Swemo - Iteration 8: Bulleted List 구현",
+      "lastMod": "2026-10-08T04:41:00.000Z",
       "publishedAt": "2026-08-25T06:47:00.000Z",
-      "processedAt": "2026-10-07T13:53:30+09:00"
+      "processedAt": "2026-10-08T14:03:43+09:00"
     },
     {
       "url": "https://kenel.tistory.com/440",
