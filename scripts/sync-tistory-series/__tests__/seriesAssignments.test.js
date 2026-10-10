@@ -12,6 +12,7 @@ const {
   insertByPublishedAt,
   updateAssignmentForPost,
   resolveReclassifyBatches,
+  addPostsToGroup,
 } = require("../seriesAssignments.js");
 
 function tmpPath() {
@@ -292,4 +293,55 @@ test("resolveReclassifyBatches로 새 그룹에 편입되는 게시글은 publis
     "https://kenel.tistory.com/104",
     "https://kenel.tistory.com/210",
   ]);
+});
+
+test("addPostsToGroup은 그룹이 없으면 목차 파일로 시드하고 전달한 게시글의 publishedAt을 채운다(004 FR-003)", () => {
+  const assignments = {};
+  const seriesFile = {
+    seriesId: "swemo",
+    data: {
+      listName: "Swemo",
+      items: [
+        { title: "Swemo - 7", url: "https://kenel.tistory.com/427" },
+        { title: "Swemo - 8", url: "https://kenel.tistory.com/435" },
+      ],
+    },
+  };
+
+  addPostsToGroup(assignments, seriesFile, [
+    { url: "https://kenel.tistory.com/435", title: "Swemo - 8", publishedAt: "2026-08-25T06:47:00.000Z" },
+  ]);
+
+  assert.equal(assignments.swemo.listName, "Swemo");
+  assert.deepEqual(assignments.swemo.posts, [
+    { url: "https://kenel.tistory.com/427", title: "Swemo - 7", publishedAt: null },
+    { url: "https://kenel.tistory.com/435", title: "Swemo - 8", publishedAt: "2026-08-25T06:47:00.000Z" },
+  ]);
+});
+
+test("addPostsToGroup은 기존 그룹의 순서를 바꾸지 않고 새 게시글을 공개 시각 위치에 넣으며, 이미 있는 URL은 제목만 갱신한다", () => {
+  const assignments = {
+    flow: {
+      listName: "Flow",
+      posts: [
+        { url: "https://kenel.tistory.com/210", title: "Flow - 심화", publishedAt: "2024-06-01T00:00:00.000Z" },
+        { url: "https://kenel.tistory.com/200", title: "Flow - 기초", publishedAt: "2024-01-01T00:00:00.000Z" },
+      ],
+    },
+  };
+  const seriesFile = { seriesId: "flow", data: { listName: "Flow", items: [] } };
+
+  addPostsToGroup(assignments, seriesFile, [
+    { url: "https://kenel.tistory.com/205", title: "Flow - 중급", publishedAt: "2024-03-01T00:00:00.000Z" },
+    { url: "https://kenel.tistory.com/200", title: "Flow - 기초(개정)", publishedAt: "2024-01-01T00:00:00.000Z" },
+  ]);
+
+  assert.deepEqual(
+    assignments.flow.posts.map((p) => [p.url, p.title]),
+    [
+      ["https://kenel.tistory.com/205", "Flow - 중급"],
+      ["https://kenel.tistory.com/210", "Flow - 심화"],
+      ["https://kenel.tistory.com/200", "Flow - 기초(개정)"],
+    ],
+  );
 });

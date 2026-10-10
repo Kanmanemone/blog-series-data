@@ -21,7 +21,8 @@
       },
       {
         "url": "https://kenel.tistory.com/412",
-        "title": "2026 Build with AI: Hands-on Campus - 5월부터 과제는 에이전트에게 맡기고 대학생활 즐겨보기 (feat.Kotlin"
+        "title": "2026 Build with AI: Hands-on Campus - 5월부터 과제는 에이전트에게 맡기고 대학생활 즐겨보기 (feat.Kotlin)",
+        "publishedAt": "2026-07-11T11:19:00.000Z"
       },
       {
         "url": "https://kenel.tistory.com/414",
@@ -64,6 +65,11 @@
       {
         "url": "https://kenel.tistory.com/427",
         "title": "Swemo - Iteration 7: 점검과 정리 1"
+      },
+      {
+        "url": "https://kenel.tistory.com/435",
+        "title": "Swemo - Iteration 8: Bulleted List 구현",
+        "publishedAt": "2026-08-25T06:47:00.000Z"
       }
     ]
   },
@@ -564,7 +570,7 @@
       },
       {
         "url": "https://kenel.tistory.com/212",
-        "title": "그래프 - 깊이 우선 탐색 (DFS, Depth-First Search)",
+        "title": "그래프 - 깊이 우선 탐색 (DFS, Depth-First Search), 백트래킹 (Backtracking)",
         "publishedAt": "2024-09-23T11:27:00.000Z"
       }
     ]

@@ -27,6 +27,7 @@ const {
   ensureGroupSeeded,
   updateAssignmentForPost,
   resolveReclassifyBatches,
+  addPostsToGroup,
 } = require("./seriesAssignments.js");
 const { findSeriesIdForUrl, reconcile } = require("./reconcile.js");
 const NAMED_ENTITY_CODEPOINTS = require("./htmlNamedEntities.js");
@@ -132,6 +133,25 @@ async function fetchPostDetails(url) {
 function filterCandidates(allPosts, cutoff) {
   if (cutoff === null) return allPosts;
   return allPosts.filter((post) => post.lastmod > cutoff);
+}
+
+/**
+ * 004-fix-edited-title-sync: filterCandidates는 "커트라인 이후 수정된 모든 게시글"을
+ * 고르므로, 이미 목차에 반영된 게시글을 수정해도 신규 게시글 흐름의 후보가 된다.
+ * 그 흐름은 목차에 이미 있는 항목을 "정보 갱신"으로만 세고 처리 이력의 title·lastMod를
+ * 새 값으로 덮어써, 같은 실행의 selectDriftCandidates가 "lastMod 변화 없음"으로
+ * 판단하게 만들었다 — 제목 변경이 영구히 목차에 반영되지 않았다(2026-10-08 실행의
+ * 435 사례). 그래서 처리 이력에 deletedAt 없이 레코드가 있고 어떤 *_series.json에든
+ * 이미 들어 있는 게시글은 여기서 뺀다. 이 게시글들의 처리 이력 lastMod는 그대로
+ * 남으므로 같은 실행의 드리프트 감지가 재조회·재분류·재조정까지 맡는다(002 범위).
+ * 처리 이력이 없는(수동 추가) 항목이나 아직 어떤 목차에도 없는 게시글은 기존처럼
+ * 신규 게시글 흐름이 처리한다 — 드리프트 감지는 그런 게시글을 보지 않기 때문이다.
+ */
+function excludeAlreadyListed(candidates, processedPosts, seriesFiles) {
+  const trackedUrls = new Set(processedPosts.filter((record) => !record.deletedAt).map((record) => record.url));
+  return candidates.filter(
+    (post) => !(trackedUrls.has(post.canonicalUrl) && findSeriesIdForUrl(seriesFiles, post.canonicalUrl)),
+  );
 }
 
 // 배포 이전 레코드(lastMod 없음)는 "변경 여부 불명"이라 항상 후보가 된다(isDriftCandidate).
@@ -270,10 +290,18 @@ async function run() {
     seriesDeleted: 0,
   };
 
+  // 배치 결정은 한 번만 읽어 001(신규 게시글)과 002(드리프트) 단계가 같은 객체를
+  // 갱신하게 한다 — 001이 목차에 쓴 항목이 002의 재조정 전에 배치 결정에 들어가야
+  // 재조정이 그 항목을 지우지 않는다(004 FR-003).
+  const assignments = readAssignments();
+
   // ---- 001의 기존 흐름: 커트라인 이후 새로 나타난 게시글 처리 ----
-  const candidates = filterCandidates(allPosts, cutoff);
+  const changedSinceCutoff = filterCandidates(allPosts, cutoff);
+  const existingFilesForNewPosts = listSeriesFiles();
+  const candidates = excludeAlreadyListed(changedSinceCutoff, state.processedPosts, existingFilesForNewPosts);
   console.log(
-    `[sync] 커트라인(${cutoff ? formatKst(cutoff) : "없음 - 최초 실행"}) 이후 변경된 게시글 ${candidates.length}건 발견`,
+    `[sync] 커트라인(${cutoff ? formatKst(cutoff) : "없음 - 최초 실행"}) 이후 변경된 게시글 ${changedSinceCutoff.length}건 발견` +
+      `(이미 목차에 있어 드리프트 감지로 넘긴 게시글 ${changedSinceCutoff.length - candidates.length}건)`,
   );
 
   // 후보마다 제목을 조회하고 원시 시리즈명·seriesId를 계산한다(FR-007~FR-009).
@@ -295,7 +323,6 @@ async function run() {
   const changedFiles = new Set();
 
   if (processedCandidates.length > 0) {
-    const existingFilesForNewPosts = listSeriesFiles();
     const unmatchedBySeriesId = new Map();
 
     for (const post of processedCandidates) {
@@ -310,10 +337,14 @@ async function run() {
       if (matched) {
         if (appendToSeries(matched, post)) {
           changedFiles.add(matched);
+          addPostsToGroup(assignments, matched, [
+            { url: post.canonicalUrl, title: post.title, publishedAt: post.publishedAt },
+          ]);
           counts.seriesAdded += 1;
         } else {
-          // 이미 같은 URL이 시리즈에 있음(예: 같은 실행에서 lastMod가 다시 바뀌어
-          // 후보로 재등장) — sync-state.json만 갱신되고 시리즈 파일은 그대로다.
+          // 이미 같은 URL이 시리즈에 있음 — excludeAlreadyListed 이후에는 처리 이력이
+          // 없거나(수동 추가 항목) 삭제 확정된 레코드라 넘겨지지 않은 게시글만 여기
+          // 온다. sync-state.json만 갱신되고 시리즈 파일은 그대로다.
           counts.postInfoUpdate += 1;
         }
         continue;
@@ -351,6 +382,18 @@ async function run() {
       const created = createSeriesFile(seriesId, allSiblings);
       if (created) {
         changedFiles.add(created);
+        // 과거 이력 형제(historicalOnlyWithTitle)는 이번 실행에서 공개 시각을 다시 읽지
+        // 않았으므로 처리 이력에 저장된 값을 쓴다(없으면 null → 그룹 끝에 배치).
+        addPostsToGroup(
+          assignments,
+          created,
+          allSiblings.map((post) => ({
+            url: post.canonicalUrl,
+            title: post.title,
+            publishedAt:
+              post.publishedAt ?? state.processedPosts.find((r) => r.url === post.canonicalUrl)?.publishedAt ?? null,
+          })),
+        );
         counts.seriesCreated += 1;
         console.log(`[sync] 새 시리즈 파일 생성: ${created.filePath}`);
       } else {
@@ -420,7 +463,6 @@ async function run() {
   // 계산하지 않는다).
   if (driftTouchedUrls.length > 0) {
     const seriesFilesForAssignment = listSeriesFiles();
-    const assignments = readAssignments();
 
     // 재분류(시리즈 구분 기준이 바뀌는 경우) 후보는 바로 반영하지 않고 모아뒀다가,
     // 아래에서 목표 seriesId별로 배치 전체를 함께 판단한다 — 같은 실행에서 여러
@@ -474,7 +516,6 @@ async function run() {
     }
 
     resolveReclassifyBatches(assignments, reclassifyCandidates);
-    writeAssignments(assignments);
     // 매 실행마다 배치 결정 "전체"와 실제 파일 "전체"를 비교한다(FR-008) — 부분
     // 갱신은 배치 결정을 만드는 단계까지고, 재조정은 항상 전체 범위로 수행한다.
     const seriesTotals = reconcile(assignments);
@@ -483,6 +524,12 @@ async function run() {
     counts.seriesRemoved += seriesTotals.removed;
     counts.seriesRetitled += seriesTotals.retitled;
     counts.seriesDeleted += seriesTotals.deleted;
+  }
+
+  // 001이 목차를 바꿨거나(addPostsToGroup) 002가 배치 결정을 갱신했을 때만 쓴다 —
+  // 둘 다 없으면 배치 결정 내용도 그대로라 파일을 다시 쓰지 않는다.
+  if (changedFiles.size > 0 || driftTouchedUrls.length > 0) {
+    writeAssignments(assignments);
   }
 
   writeCommitSummary(counts);
@@ -522,6 +569,7 @@ module.exports = {
   fetchPostTitle,
   extractPublishedAt,
   filterCandidates,
+  excludeAlreadyListed,
   selectDriftCandidates,
   MAX_UNKNOWN_LASTMOD_REFETCH_PER_RUN,
   buildCommitMessageBody,

@@ -8,6 +8,7 @@ const {
   extractTitle,
   extractPublishedAt,
   filterCandidates,
+  excludeAlreadyListed,
   selectDriftCandidates,
   MAX_UNKNOWN_LASTMOD_REFETCH_PER_RUN,
   buildCommitMessageBody,
@@ -99,6 +100,32 @@ test("filterCandidates는 cutoff가 null이면(최초 실행) 전체를 후보�
   ];
 
   assert.equal(filterCandidates(posts, null).length, 1);
+});
+
+test("excludeAlreadyListed는 처리 이력이 있고 이미 목차에 있는 게시글만 신규 후보에서 뺀다(004 FR-001)", () => {
+  const post = (id) => ({ id, canonicalUrl: `https://kenel.tistory.com/${id}`, lastmod: new Date("2026-10-08T00:00:00.000Z") });
+  const candidates = [post("1"), post("2"), post("3"), post("4")];
+  const processedPosts = [
+    { url: "https://kenel.tistory.com/1", title: "A - 1" }, // (a) 처리 이력 있음 + 목차에 있음 → 제외
+    { url: "https://kenel.tistory.com/3", title: "C - 1" }, // (c) 처리 이력 있음 + 목차에 없음 → 유지
+    { url: "https://kenel.tistory.com/4", title: "A - 4", deletedAt: "2026-09-01T00:00:00+09:00" }, // (d) 삭제 확정 → 유지
+  ];
+  const seriesFiles = [
+    {
+      seriesId: "a",
+      data: {
+        items: [
+          { url: "https://kenel.tistory.com/1", title: "A - 1" },
+          { url: "https://kenel.tistory.com/2", title: "A - 2" }, // (b) 처리 이력 없음 + 목차에 있음 → 유지
+          { url: "https://kenel.tistory.com/4", title: "A - 4" },
+        ],
+      },
+    },
+  ];
+
+  const result = excludeAlreadyListed(candidates, processedPosts, seriesFiles);
+
+  assert.deepEqual(result.map((p) => p.id), ["2", "3", "4"]);
 });
 
 test("selectDriftCandidates는 lastMod가 변하지 않은 게시글은 재조회 후보로 잡지 않는다(FR-005 음성 케이스)", () => {

@@ -81,6 +81,22 @@ function upsertInGroup(assignments, seriesId, post, listNameIfCreating) {
   }
 }
 
+/**
+ * 001의 신규 게시글 흐름이 목차 파일(seriesFile)에 항목을 추가하거나 파일을 새로
+ * 만들었을 때, 같은 내용을 배치 결정에도 기록한다(004-fix-edited-title-sync FR-003).
+ * 재조정(reconcile.js)은 배치 결정 그룹의 posts로 목차 파일을 통째로 덮어쓰므로,
+ * 여기에 기록하지 않은 항목은 그 시리즈의 다른 게시글이 드리프트로 재조정되는 순간
+ * 목차에서 지워진다(실측: swemo 그룹에 435가 없던 상태). 그룹이 없으면 목차 파일의
+ * 현재 items로 시드하고(listName 포함), posts의 각 `{url, title, publishedAt}`은
+ * upsertInGroup 규칙(기존 순서 불변, 새 항목은 공개 시각 기준 위치)으로 넣는다.
+ */
+function addPostsToGroup(assignments, seriesFile, posts) {
+  ensureGroupSeeded(assignments, seriesFile.seriesId, seriesFile);
+  for (const post of posts) {
+    upsertInGroup(assignments, seriesFile.seriesId, post, seriesFile.data.listName);
+  }
+}
+
 function removeFromGroup(assignments, seriesId, url) {
   const group = assignments[seriesId];
   if (!group) return;
@@ -161,4 +177,5 @@ module.exports = {
   insertByPublishedAt,
   updateAssignmentForPost,
   resolveReclassifyBatches,
+  addPostsToGroup,
 };
