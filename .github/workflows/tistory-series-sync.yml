@@ -30,9 +30,6 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add -- '*_series.json' .github/sync-state.json
-          if [ -f .github/series-assignments.json ]; then
-            git add .github/series-assignments.json
-          fi
 
           # 003-post-sync-commit-categories: 스크립트가 이번 실행에서 집계한 8개
           # 카테고리(게시글: 새 글/정보 갱신/삭제, 시리즈: 생성/항목 추가/항목 제거/

@@ -8,7 +8,11 @@ const path = require("node:path");
 const {
   listSeriesFiles,
   findMatchingFile,
-  appendToSeries,
+  findSeriesIdForUrl,
+  orderByPublishedAt,
+  appendBatch,
+  retitleItem,
+  removeItem,
   collectSiblingCandidates,
   createSeriesFile,
 } = require("../seriesFiles.js");
@@ -53,37 +57,70 @@ test("seriesId가 일치하는 파일을 찾는다", () => {
   }
 });
 
-test("appendToSeries는 이미 있는 URL이면 건너뛰고 순서를 보존한다(FR-011)", () => {
-  const file = {
-    filePath: "coroutines_series.json",
-    data: {
-      listName: "Coroutines",
-      items: [{ title: "기초", url: "https://kenel.tistory.com/104" }],
-    },
-  };
-
-  const changed = appendToSeries(file, { canonicalUrl: "https://kenel.tistory.com/104", title: "다른 제목" });
-
-  assert.equal(changed, false);
-  assert.equal(file.data.items.length, 1);
-  assert.equal(file.data.items[0].title, "기초");
+const url = (id) => `https://kenel.tistory.com/${id}`;
+const makeFile = (ids) => ({
+  seriesId: "coroutines",
+  filePath: "coroutines_series.json",
+  data: { listName: "Coroutines", items: ids.map((id) => ({ title: `T${id}`, url: url(id) })) },
 });
 
-test("appendToSeries는 새 URL을 배열 끝에 추가한다", () => {
-  const file = {
-    filePath: "coroutines_series.json",
-    data: {
-      listName: "Coroutines",
-      items: [{ title: "기초", url: "https://kenel.tistory.com/104" }],
-    },
-  };
+test("findSeriesIdForUrl은 url을 포함한 파일의 seriesId를 찾는다", () => {
+  const files = [makeFile([104])];
+  assert.equal(findSeriesIdForUrl(files, url(104)), "coroutines");
+  assert.equal(findSeriesIdForUrl(files, url(999)), null);
+});
 
-  const changed = appendToSeries(file, { canonicalUrl: "https://kenel.tistory.com/105", title: "심화" });
+test("appendBatch는 이미 있는 URL은 건너뛰고 기존 항목 순서를 보존한다(005 FR-002)", () => {
+  // 관리자가 공개 시각과 다르게 바꿔 둔 순서 [105, 104]
+  const file = makeFile([105, 104]);
 
-  assert.equal(changed, true);
-  assert.equal(file.data.items.length, 2);
-  assert.equal(file.data.items[1].url, "https://kenel.tistory.com/105");
-  assert.equal(file.data.items[0].url, "https://kenel.tistory.com/104"); // 기존 순서 보존
+  const appended = appendBatch(file, [{ canonicalUrl: url(104), title: "다른 제목", publishedAt: null }]);
+
+  assert.equal(appended, 0);
+  assert.deepEqual(file.data.items.map((i) => i.title), ["T105", "T104"]);
+});
+
+test("appendBatch는 새 글 묶음을 그 안에서만 공개 시각 순으로 정렬해 끝에 붙인다(005 FR-003)", () => {
+  const file = makeFile([105, 104]);
+
+  const appended = appendBatch(file, [
+    { canonicalUrl: url(301), title: "늦게 공개", publishedAt: "2026-10-02T00:00:00.000Z" },
+    { canonicalUrl: url(302), title: "공개 시각 모름", publishedAt: null },
+    { canonicalUrl: url(300), title: "일찍 공개", publishedAt: "2026-10-01T00:00:00.000Z" },
+  ]);
+
+  assert.equal(appended, 3);
+  assert.deepEqual(file.data.items.map((i) => i.url), [url(105), url(104), url(300), url(301), url(302)]);
+});
+
+test("retitleItem은 같은 위치에서 제목만 바꾸고, 같거나 없으면 false를 반환한다", () => {
+  const file = makeFile([105, 104, 106]);
+
+  assert.equal(retitleItem(file, url(104), "새 제목"), true);
+  assert.deepEqual(file.data.items.map((i) => i.title), ["T105", "새 제목", "T106"]);
+  assert.equal(retitleItem(file, url(104), "새 제목"), false);
+  assert.equal(retitleItem(file, url(999), "x"), false);
+});
+
+test("removeItem은 항목을 빼고 나머지 상대 순서를 유지하며, 없으면 false를 반환한다", () => {
+  const file = makeFile([105, 104, 106]);
+
+  assert.equal(removeItem(file, url(104)), true);
+  assert.deepEqual(file.data.items.map((i) => i.url), [url(105), url(106)]);
+  assert.equal(removeItem(file, url(104)), false);
+});
+
+test("orderByPublishedAt은 공개 시각 오름차순, 모르는 글은 뒤로, 같으면 입력 순서를 유지하고 원본을 바꾸지 않는다", () => {
+  const posts = [
+    { id: "a", publishedAt: null },
+    { id: "b", publishedAt: "2026-10-02T00:00:00.000Z" },
+    { id: "c", publishedAt: "2026-10-01T00:00:00.000Z" },
+    { id: "d", publishedAt: "2026-10-02T00:00:00.000Z" },
+    { id: "e", publishedAt: undefined },
+  ];
+
+  assert.deepEqual(orderByPublishedAt(posts).map((p) => p.id), ["c", "b", "d", "a", "e"]);
+  assert.deepEqual(posts.map((p) => p.id), ["a", "b", "c", "d", "e"]);
 });
 
 test("createSeriesFile은 공유 게시글이 1개면 생성하지 않는다(FR-012, SC-005)", () => {
@@ -99,18 +136,21 @@ test("createSeriesFile은 공유 게시글이 1개면 생성하지 않는다(FR-
   assert.equal(createSeriesFile("newseries", siblings), null);
 });
 
-test("createSeriesFile은 공유 게시글이 2개 이상이면 발행 순서대로 생성한다(FR-012, FR-013)", () => {
+test("createSeriesFile은 공유 게시글이 2개 이상이면 공개 시각 순으로 생성하고 lastmod와 무관하다(FR-012, FR-013, 005 FR-003)", () => {
   const siblings = [
     {
       canonicalUrl: "https://kenel.tistory.com/201",
       title: "[NewSeries] 두번째",
       lastmod: new Date("2026-07-02T00:00:00+09:00"),
+      publishedAt: "2026-06-02T00:00:00.000Z",
       rawSeriesName: "NewSeries",
     },
     {
       canonicalUrl: "https://kenel.tistory.com/200",
       title: "[NewSeries] 첫번째",
-      lastmod: new Date("2026-07-01T00:00:00+09:00"),
+      // 예전에 공개했지만 최근에 수정 — 005 이전(lastmod 정렬)에는 뒤로 갔다.
+      lastmod: new Date("2026-07-09T00:00:00+09:00"),
+      publishedAt: "2026-06-01T00:00:00.000Z",
       rawSeriesName: "NewSeries",
     },
   ];

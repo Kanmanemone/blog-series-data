@@ -31,11 +31,9 @@ test("모든 *_series.json의 title에 미해석 HTML entity가 없다", () => {
 });
 
 // 004-fix-edited-title-sync: 수정된 게시글 제목이 처리 이력에만 반영되고 목차에는
-// 반영되지 않은 사고(435·212·412)와, 001이 목차에 추가한 항목이 배치 결정에 빠져 있던
-// 사고(swemo 그룹의 435)가 재발하지 않는지 실제 저장소 데이터로 확인한다
-// (data-model.md INV-2, INV-3).
+// 반영되지 않은 사고(435·212·412)가 재발하지 않는지 실제 저장소 데이터로 확인한다
+// (004 data-model.md INV-3). 004 INV-2(배치 결정 비교)는 005에서 배치 결정을 없애며 제거했다.
 const { readSyncState } = require("../syncState.js");
-const { readAssignments } = require("../seriesAssignments.js");
 
 test("모든 *_series.json 항목의 제목이 처리 이력(sync-state.json)의 제목과 같다(004 INV-3)", () => {
   const recordsByUrl = new Map(readSyncState().processedPosts.map((record) => [record.url, record]));
@@ -55,23 +53,21 @@ test("모든 *_series.json 항목의 제목이 처리 이력(sync-state.json)의
   assert.deepEqual(offenders, []);
 });
 
-test("배치 결정(series-assignments.json)의 각 그룹이 같은 이름의 목차 파일과 게시글 구성·제목이 같다(004 INV-2)", () => {
-  const filesBySeriesId = new Map(listSeriesFiles().map((file) => [file.seriesId, file]));
-
-  const offenders = [];
-  for (const [seriesId, group] of Object.entries(readAssignments())) {
-    const file = filesBySeriesId.get(seriesId);
-    if (!file) continue; // 2개 미만이라 목차 파일이 없는 그룹은 재조정이 지운 상태 그대로다.
-    const fileTitles = new Map(file.data.items.map((item) => [item.url, item.title]));
-    const groupTitles = new Map(group.posts.map((post) => [post.url, post.title]));
-    for (const [url, title] of fileTitles) {
-      if (!groupTitles.has(url)) offenders.push(`${seriesId}: 목차에만 있음 ${url}`);
-      else if (groupTitles.get(url) !== title) offenders.push(`${seriesId}: 제목 다름 ${url}`);
-    }
-    for (const url of groupTitles.keys()) {
-      if (!fileTitles.has(url)) offenders.push(`${seriesId}: 배치 결정에만 있음 ${url}`);
+// 005-drop-series-assignments: 배치 결정이 없어진 뒤로는 목차 파일끼리의 일관성만 남는다.
+// 재분류·새 목차 생성이 옛 목차에서 항목을 빼지 않으면 같은 글이 두 목차에 동시에
+// 남는다(004 converge에서 실제로 재현된 결함 유형) — 그런 상태가 저장소에 없는지 확인한다.
+test("한 게시글 URL은 최대 한 목차에만 있다(005 INV-2)", () => {
+  const seriesIdsByUrl = new Map();
+  for (const file of listSeriesFiles()) {
+    for (const item of file.data.items) {
+      if (!seriesIdsByUrl.has(item.url)) seriesIdsByUrl.set(item.url, []);
+      seriesIdsByUrl.get(item.url).push(file.seriesId);
     }
   }
+
+  const offenders = [...seriesIdsByUrl]
+    .filter(([, seriesIds]) => seriesIds.length > 1)
+    .map(([url, seriesIds]) => `${url}: ${seriesIds.join(", ")}`);
 
   assert.deepEqual(offenders, []);
 });

@@ -262,7 +262,7 @@ test("buildCommitMessageBody는 게시글·시리즈 둘 다 있으면 두 그�
 });
 
 test("buildCommitMessageBody는 서로 다른 시리즈 파일에서 발생한 같은 카테고리 이벤트를 파일명 없이 하나의 합산 줄로 보여준다(SC-008)", () => {
-  // reconcile()이 이미 여러 파일에 걸친 항목 추가를 합산해서 넘겨주므로, 이 함수는
+  // finalizeSeriesEdits(index.js)가 이미 여러 파일에 걸친 항목 추가를 합산해서 넘겨주므로, 이 함수는
   // 그 숫자를 그대로 한 줄로만 표시하면 된다 — 어떤 파일에서 발생했는지는 모른다.
   assert.equal(buildCommitMessageBody(zeroCounts({ seriesAdded: 4 })), "- 시리즈\n  - 항목 추가: 4건");
 });

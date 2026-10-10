@@ -31,15 +31,64 @@ function findMatchingFile(files, seriesId) {
   return files.find((file) => file.seriesId === seriesId) || null;
 }
 
+// 주어진 URL을 담고 있는 목차 파일의 seriesId를 찾는다(없으면 null). 005 이후 목차
+// 파일이 게시글 소속의 유일한 기준이므로 "지금 어느 목차에 있는가"는 항상 이 함수로 판단한다.
+function findSeriesIdForUrl(seriesFiles, url) {
+  const file = seriesFiles.find((f) => f.data.items.some((item) => item.url === url));
+  return file ? file.seriesId : null;
+}
+
+// ---- 005-drop-series-assignments: 목차 파일 편집 연산 ----
+// 동기화가 목차 파일을 고치는 방법은 아래 세 함수(끝에 붙이기, 제목 바꾸기, 빼기)와
+// 새 파일 생성(createSeriesFile)뿐이다. 기존 항목의 위치를 옮기는 연산은 일부러 두지
+// 않는다 — 관리자가 *_series.json에서 직접 바꾼 순서를 자동 동기화가 되돌리지 않게
+// 하기 위해서다(헌법 v1.1.0 원칙 I).
+
 /**
- * 매칭된 시리즈 파일의 items에 게시글을 추가한다(FR-011). 이미 같은 url이 있으면
- * 아무 것도 하지 않고 false를 반환해(중복 방지) 기존 항목 순서를 건드리지 않는다.
+ * 공개 시각(publishedAt, ISO 문자열) 오름차순으로 정렬한 새 배열을 반환한다. 공개 시각이
+ * 없는(null/undefined, 페이지 마크업에서 못 읽은) 글은 뒤로 보낸다. Array#sort는 안정
+ * 정렬이라 공개 시각이 같거나 둘 다 없으면 입력 순서가 유지된다. 값은 모두
+ * Date#toISOString() 결과(UTC, 같은 길이)라 문자열 비교가 곧 시간 비교다.
  */
-function appendToSeries(file, post) {
-  const alreadyExists = file.data.items.some((item) => item.url === post.canonicalUrl);
-  if (alreadyExists) return false;
-  file.data.items.push({ title: post.title, url: post.canonicalUrl });
+function orderByPublishedAt(posts) {
+  return [...posts].sort((a, b) => {
+    if (!a.publishedAt || !b.publishedAt) return (a.publishedAt ? 0 : 1) - (b.publishedAt ? 0 : 1);
+    if (a.publishedAt === b.publishedAt) return 0;
+    return a.publishedAt < b.publishedAt ? -1 : 1;
+  });
+}
+
+/**
+ * 한 번에 붙일 게시글 묶음({title, canonicalUrl, publishedAt})을 공개 시각 순으로 정렬해
+ * items 끝에 붙이고, 실제로 붙인 개수를 반환한다. 이미 items에 있는 URL은 건너뛴다(중복
+ * 방지). 기존 항목과는 공개 시각을 비교하지 않는다 — 공개 시각을 과거로 설정한 글도 끝에
+ * 붙고, 다른 위치를 원하면 관리자가 직접 옮긴다.
+ */
+function appendBatch(file, posts) {
+  const existingUrls = new Set(file.data.items.map((item) => item.url));
+  let appended = 0;
+  for (const post of orderByPublishedAt(posts)) {
+    if (existingUrls.has(post.canonicalUrl)) continue;
+    existingUrls.add(post.canonicalUrl);
+    file.data.items.push({ title: post.title, url: post.canonicalUrl });
+    appended += 1;
+  }
+  return appended;
+}
+
+// url 항목의 제목을 같은 위치에서 바꾼다. 항목이 없거나 제목이 이미 같으면 false.
+function retitleItem(file, url, title) {
+  const item = file.data.items.find((i) => i.url === url);
+  if (!item || item.title === title) return false;
+  item.title = title;
   return true;
+}
+
+// url 항목을 뺀다(나머지 항목의 상대 순서는 그대로). 항목이 없었으면 false.
+function removeItem(file, url) {
+  const before = file.data.items.length;
+  file.data.items = file.data.items.filter((item) => item.url !== url);
+  return file.data.items.length !== before;
 }
 
 // file.data를 그대로 JSON으로 저장한다. 기존 *_series.json과 동일하게 2-space 들여쓰기,
@@ -83,6 +132,8 @@ function collectSiblingCandidates(seriesId, thisRunSiblings, processedPosts, all
       id: currentPost.id,
       canonicalUrl: currentPost.canonicalUrl,
       lastmod: currentPost.lastmod,
+      // 005: 새 목차 파일을 공개 시각 순으로 만들 때 쓴다(추가 조회 없이 처리 이력 값 사용).
+      publishedAt: record.publishedAt ?? null,
       rawSeriesName,
     });
   }
@@ -92,15 +143,16 @@ function collectSiblingCandidates(seriesId, thisRunSiblings, processedPosts, all
 
 /**
  * 새 시리즈 파일을 만든다(FR-012, FR-013, FR-017). siblings의 각 원소는
- * {title, canonicalUrl, lastmod, rawSeriesName}를 가져야 한다. 같은 seriesId를
+ * {title, canonicalUrl, publishedAt, rawSeriesName}를 가져야 한다. 같은 seriesId를
  * 공유하는 공개 게시글이 2개 미만이면 생성하지 않고 null을 반환한다(FR-012 임계치, SC-005).
- * 생성하는 경우 listName은 발행 순서(lastmod 오름차순)로 가장 먼저 발견된 게시글의
- * rawSeriesName을 쓴다.
+ * 항목은 공개 시각 순(orderByPublishedAt)이고 listName은 그 첫 글의 rawSeriesName이다.
+ * 005 이전에는 lastmod(마지막 수정 시각) 순이라, 예전 글을 최근에 고쳤다면 새 글보다
+ * 뒤에 놓였다.
  */
 function createSeriesFile(seriesId, siblings, rootDir = process.cwd()) {
   if (siblings.length < 2) return null;
 
-  const sorted = [...siblings].sort((a, b) => a.lastmod - b.lastmod);
+  const sorted = orderByPublishedAt(siblings);
   const listName = sorted[0].rawSeriesName;
   const items = sorted.map((post) => ({ title: post.title, url: post.canonicalUrl }));
   const filePath = path.join(rootDir, `${seriesId}${SERIES_FILE_SUFFIX}`);
@@ -111,7 +163,11 @@ module.exports = {
   SERIES_FILE_SUFFIX,
   listSeriesFiles,
   findMatchingFile,
-  appendToSeries,
+  findSeriesIdForUrl,
+  orderByPublishedAt,
+  appendBatch,
+  retitleItem,
+  removeItem,
   writeSeriesFile,
   collectSiblingCandidates,
   createSeriesFile,

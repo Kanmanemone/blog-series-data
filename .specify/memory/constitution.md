@@ -1,25 +1,21 @@
 <!--
 Sync Impact Report
-- Version change: (template, unratified) → 1.0.0
-- Rationale for 1.0.0: Initial ratification. First concrete set of principles for
-  this repository, replacing the bracketed template placeholders.
-- Modified principles: n/a (initial adoption)
-- Added sections:
-  - Core Principles I–IV (data schema consistency, comment style, standalone
-    vanilla tools, Korean-first content)
-  - Repository Constraints (series file naming/location)
-  - Development Workflow (when to use Spec Kit vs. direct commits)
-  - Governance
+- Version change: 1.0.0 → 1.1.0
+- Rationale for 1.1.0 (MINOR): Principle I의 items 순서 규칙을 "발행 순서로 정렬"에서
+  "목차 파일의 현재 순서가 정답이며, 자동 동기화는 기존 순서를 바꾸지 않고 끝에 붙인다"로
+  재정의했다. 기존 *_series.json은 모두 새 규칙을 그대로 만족하고(기존 항목 순서를 바꿀
+  필요 없음) 원칙을 제거하지 않았으므로 하위 호환 확장으로 본다. 배경:
+  005-drop-series-assignments에서 별도 배치 결정 파일(.github/series-assignments.json)을
+  없애고 *_series.json을 유일한 진실 공급원으로 삼기로 했다.
+- Modified principles: I. 시리즈 데이터 스키마 일관성 — items 순서 규칙 개정(제목 유지)
+- Added sections: none
 - Removed sections: none
 - Templates requiring updates:
-  - .specify/templates/plan-template.md — ✅ no change needed (Constitution
-    Check section already resolves dynamically against this file)
-  - .specify/templates/spec-template.md — ✅ no change needed (no
-    principle-specific text baked in)
-  - .specify/templates/tasks-template.md — ✅ no change needed (task
-    categories are generic; no principle-specific task type introduced)
-  - .claude/skills/speckit-*/SKILL.md — ✅ no outdated agent-specific
-    references found
+  - .specify/templates/plan-template.md — ✅ no change needed (Constitution Check는
+    런타임에 이 파일을 읽음)
+  - .specify/templates/spec-template.md — ✅ no change needed
+  - .specify/templates/tasks-template.md — ✅ no change needed
+  - .claude/skills/speckit-*/SKILL.md — ✅ no principle-specific text
 - Follow-up TODOs: none
 -->
 
@@ -41,7 +37,10 @@ Sync Impact Report
 ```
 
 - `listName`과 `items[].title`, `items[].url`은 필수이며 다른 키를 추가하지 않는다.
-- `items`는 게시글이 발행된 순서(오래된 것 → 최신 것)대로 정렬한다.
+- `items`의 순서는 목차 파일에 적힌 현재 순서가 정답이다. 자동 동기화는 기존 항목의 순서를
+  바꾸지 않고 새 항목을 배열 끝에 붙인다. 한 번의 실행에서 같은 파일에 여러 항목을 붙일
+  때만 그 항목들끼리 공개 시각(오래된 것 → 최신 것) 순으로 붙인다.
+- 관리자가 `*_series.json`에서 직접 바꾼 항목 순서는 이후 자동 동기화가 그대로 유지한다.
 - 기존 필드의 이름이나 구조를 바꿔야 한다면, 그 변경을 소비하는 모든 `*_series.json` 파일과
   `index.html`을 같은 커밋 안에서 함께 수정한다.
 
@@ -106,4 +105,4 @@ Sync Impact Report
 - 개정할 때마다 이 파일 상단에 Sync Impact Report를 남기고, 영향받는
   `.specify/templates/*`, `.claude/skills/speckit-*` 파일을 함께 점검한다.
 
-**Version**: 1.0.0 | **Ratified**: 2026-07-21 | **Last Amended**: 2026-07-21
+**Version**: 1.1.0 | **Ratified**: 2026-07-21 | **Last Amended**: 2026-10-10
