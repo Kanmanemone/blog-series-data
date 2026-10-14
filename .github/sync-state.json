@@ -1,5 +1,5 @@
 {
-  "cutoff": "2026-10-14T20:18:55+09:00",
+  "cutoff": "2026-10-15T01:39:45+09:00",
   "processedPosts": [
     {
       "url": "https://kenel.tistory.com/418",
@@ -1905,9 +1905,9 @@
     {
       "url": "https://kenel.tistory.com/98",
       "rawSeriesName": null,
-      "processedAt": "2026-10-14T20:23:55+09:00",
+      "processedAt": "2026-10-15T01:44:45+09:00",
       "title": "[Kotlin] 함수 타입(Fuction types) 표현식",
-      "lastMod": "2026-10-14T04:48:14.000Z",
+      "lastMod": "2026-10-14T13:39:18.000Z",
       "publishedAt": "2024-01-31T01:17:00.000Z"
     },
     {
