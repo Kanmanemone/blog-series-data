@@ -1,5 +1,5 @@
 {
-  "cutoff": "2026-10-18T19:28:43+09:00",
+  "cutoff": "2026-10-28T02:34:18+09:00",
   "processedPosts": [
     {
       "url": "https://kenel.tistory.com/418",
@@ -99,9 +99,10 @@
     {
       "url": "https://kenel.tistory.com/401",
       "rawSeriesName": null,
-      "processedAt": "2026-08-09T16:43:28+09:00",
+      "processedAt": "2026-10-28T02:39:18+09:00",
       "title": "2023 ~ 2026년 AI 사용법의 진화",
-      "lastMod": "2026-07-23T00:48:19.000Z"
+      "lastMod": "2026-10-27T15:03:17.000Z",
+      "publishedAt": "2026-05-01T07:42:00.000Z"
     },
     {
       "url": "https://kenel.tistory.com/399",
@@ -267,9 +268,9 @@
     {
       "url": "https://kenel.tistory.com/375",
       "rawSeriesName": null,
-      "processedAt": "2026-08-10T03:42:55+09:00",
+      "processedAt": "2026-10-28T02:39:18+09:00",
       "title": "SOLID 원칙",
-      "lastMod": "2026-04-24T09:50:48.000Z",
+      "lastMod": "2026-10-27T13:20:52.000Z",
       "publishedAt": "2025-12-01T10:27:00.000Z"
     },
     {
@@ -1914,9 +1915,9 @@
     {
       "url": "https://kenel.tistory.com/97",
       "rawSeriesName": null,
-      "processedAt": "2026-10-08T14:03:43+09:00",
+      "processedAt": "2026-10-28T02:39:18+09:00",
       "title": "[Kotlin] 함수형 인터페이스 (Single Abstract Method Interface, SAM)",
-      "lastMod": "2026-10-08T02:34:31.000Z",
+      "lastMod": "2026-10-27T12:38:45.000Z",
       "publishedAt": "2024-01-30T04:14:00.000Z"
     },
     {
@@ -2675,9 +2676,9 @@
     {
       "url": "https://kenel.tistory.com/435",
       "title": "Swemo - Iteration 8: Bulleted List 구현 1",
-      "lastMod": "2026-10-21T06:36:35.000Z",
+      "lastMod": "2026-10-27T12:23:41.000Z",
       "publishedAt": "2026-08-25T06:47:00.000Z",
-      "processedAt": "2026-10-21T20:21:09+09:00"
+      "processedAt": "2026-10-28T02:39:18+09:00"
     },
     {
       "url": "https://kenel.tistory.com/440",
