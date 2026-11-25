@@ -1,5 +1,5 @@
 {
-  "cutoff": "2026-10-31T20:45:56+09:00",
+  "cutoff": "2026-11-25T16:25:53+09:00",
   "processedPosts": [
     {
       "url": "https://kenel.tistory.com/418",
@@ -2743,6 +2743,20 @@
       "lastMod": "2026-10-31T11:29:38.000Z",
       "publishedAt": "2026-10-31T11:29:00.000Z",
       "processedAt": "2026-10-31T20:50:56+09:00"
+    },
+    {
+      "url": "https://kenel.tistory.com/457",
+      "title": "Swemo - Iteration 11: 드래그, 순서 변경, 스크롤",
+      "lastMod": "2026-11-25T05:13:46.000Z",
+      "publishedAt": "2026-11-25T04:26:00.000Z",
+      "processedAt": "2026-11-25T16:30:53+09:00"
+    },
+    {
+      "url": "https://kenel.tistory.com/453",
+      "title": "Swemo - Iteration 10: MVP 2 구현 (1/2)",
+      "lastMod": "2026-11-25T05:44:13.000Z",
+      "publishedAt": "2026-11-25T03:15:00.000Z",
+      "processedAt": "2026-11-25T16:30:53+09:00"
     }
   ]
 }
